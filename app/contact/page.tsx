@@ -268,6 +268,12 @@ export default function ContactPage() {
                         </div>
                     </div>
                 </div>
+
+                <section className="mt-8">
+                    <p className="text-gray-400">
+                        I&apos;ll get back to you as soon as possible.
+                    </p>
+                </section>
             </div>
         </div>
     );
