@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 export default function WorkPage() {
     return (
         <div className="min-h-screen bg-black text-white">
@@ -21,10 +23,12 @@ export default function WorkPage() {
                     {/* Project 1 */}
                     <div className="bg-gray-900 rounded-xl p-6 hover:bg-gray-800 transition-colors">
                         <div className="aspect-video bg-gray-800 rounded-lg overflow-hidden mb-4">
-                            <img
-                                src="https://via.placeholder.com/600x400"
+                            <Image
+                                src="/path-to-image.jpg"
                                 alt="Project 1"
-                                className="w-full h-full object-cover"
+                                width={500}
+                                height={300}
+                                className="w-full h-full object-cover rounded-lg"
                             />
                         </div>
                         <h3 className="text-xl font-bold mb-2">Design System</h3>
@@ -44,10 +48,12 @@ export default function WorkPage() {
                     {/* Project 2 */}
                     <div className="bg-gray-900 rounded-xl p-6 hover:bg-gray-800 transition-colors">
                         <div className="aspect-video bg-gray-800 rounded-lg overflow-hidden mb-4">
-                            <img
-                                src="https://via.placeholder.com/600x400"
+                            <Image
+                                src="/path-to-image.jpg"
                                 alt="Project 2"
-                                className="w-full h-full object-cover"
+                                width={500}
+                                height={300}
+                                className="w-full h-full object-cover rounded-lg"
                             />
                         </div>
                         <h3 className="text-xl font-bold mb-2">E-commerce Platform</h3>
@@ -67,10 +73,12 @@ export default function WorkPage() {
                     {/* Project 3 */}
                     <div className="bg-gray-900 rounded-xl p-6 hover:bg-gray-800 transition-colors">
                         <div className="aspect-video bg-gray-800 rounded-lg overflow-hidden mb-4">
-                            <img
-                                src="https://via.placeholder.com/600x400"
+                            <Image
+                                src="/path-to-image.jpg"
                                 alt="Project 3"
-                                className="w-full h-full object-cover"
+                                width={500}
+                                height={300}
+                                className="w-full h-full object-cover rounded-lg"
                             />
                         </div>
                         <h3 className="text-xl font-bold mb-2">Analytics Dashboard</h3>
@@ -90,10 +98,12 @@ export default function WorkPage() {
                     {/* Project 4 */}
                     <div className="bg-gray-900 rounded-xl p-6 hover:bg-gray-800 transition-colors">
                         <div className="aspect-video bg-gray-800 rounded-lg overflow-hidden mb-4">
-                            <img
-                                src="https://via.placeholder.com/600x400"
+                            <Image
+                                src="/path-to-image.jpg"
                                 alt="Project 4"
-                                className="w-full h-full object-cover"
+                                width={500}
+                                height={300}
+                                className="w-full h-full object-cover rounded-lg"
                             />
                         </div>
                         <h3 className="text-xl font-bold mb-2">Mobile App</h3>
@@ -115,7 +125,7 @@ export default function WorkPage() {
                 <div className="bg-gradient-to-br from-gray-900 to-black rounded-xl p-8 text-center">
                     <h2 className="text-2xl font-bold mb-4">Interested in working together?</h2>
                     <p className="text-gray-400 mb-6">
-                        Let's discuss your project and see how I can help
+                        Let&apos;s discuss your project and see how I can help
                     </p>
                     <button className="bg-green-500 hover:bg-green-600 text-black font-medium px-8 py-3 rounded-lg transition-colors">
                         Get in Touch

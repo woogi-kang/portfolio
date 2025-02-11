@@ -35,8 +35,9 @@ export default function ContactPage() {
 
                 <div className="max-w-4xl mx-auto">
                     <h1 className="text-5xl font-bold mb-4">Let's Connect</h1>
-                    <p className="text-gray-400 text-lg mb-8">
-                        Have a project in mind? Let's discuss how we can work together.
+                    <p className="text-gray-400 text-lg">
+                        Let&apos;s discuss your project and see how I can help.
+                        I&apos;m available for freelance work and consulting.
                     </p>
                 </div>
             </div>
