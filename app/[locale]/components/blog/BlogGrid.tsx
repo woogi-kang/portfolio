@@ -4,6 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Tables } from '@/lib/supabase/types';
 import { Link } from '@/config/navigation';
 import EmptyState from '../shared/EmptyState';
+import Image from 'next/image';
 
 interface BlogGridProps {
     posts: Tables<'blog_posts'>[];
@@ -27,9 +28,11 @@ export default function BlogGrid({ posts }: BlogGridProps) {
             {posts.map((post) => (
                 <Link key={post.id} href={`/blog/${post.id}`}>
                     <article className="group hover:bg-white/5 rounded-lg p-4 transition-colors">
-                        <img
+                        <Image
                             src={post.thumbnail_image_url}
                             alt={locale === 'ko' ? post.title_ko : post.title}
+                            width={800}
+                            height={450}
                             className="w-full aspect-video object-cover rounded-lg mb-4"
                         />
                         <h3 className="text-xl font-semibold mb-2 group-hover:text-green-400 transition-colors">

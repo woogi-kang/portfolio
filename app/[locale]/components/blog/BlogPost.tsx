@@ -3,6 +3,7 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { Tables } from '@/lib/supabase/types';
 import { Link } from '@/config/navigation';
+import Image from 'next/image';
 
 interface BlogPostProps {
     post: Tables<'blog_posts'>;
@@ -13,7 +14,7 @@ export default function BlogPost({ post }: BlogPostProps) {
     const t = useTranslations('blog');
 
     return (
-        <article className="max-w-4xl mx-auto px-6 py-16">
+        <article className="container mx-auto px-6 py-16">
             <div className="mb-8">
                 <Link href="/blog" className="text-green-400 hover:text-green-300 mb-8 inline-block">
                     ← {t('backToBlog')}
@@ -26,10 +27,12 @@ export default function BlogPost({ post }: BlogPostProps) {
                     <span className="mx-2">•</span>
                     <span>{post.category}</span>
                 </div>
-                <img
+                <Image
                     src={post.thumbnail_image_url}
                     alt={locale === 'ko' ? post.title_ko : post.title}
-                    className="w-full rounded-lg mb-8"
+                    width={1200}
+                    height={675}
+                    className="w-full aspect-video object-cover rounded-lg mb-8"
                 />
                 <div className="prose prose-invert max-w-none">
                     {locale === 'ko' ? post.content_ko : post.content}
