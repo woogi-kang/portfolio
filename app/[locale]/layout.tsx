@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google';
 import { notFound } from 'next/navigation';
-import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import { locales } from '@/config/navigation';
 import '../globals.css';
 import Navigation from './components/Navigation';
@@ -8,10 +9,10 @@ import Navigation from './components/Navigation';
 const inter = Inter({ subsets: ['latin'] });
 
 export function generateStaticParams() {
-    return [{ locale: 'en' }, { locale: 'ko' }];
+    return locales.map((locale) => ({ locale }));
 }
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
     children,
     params: { locale }
 }: {
@@ -19,15 +20,24 @@ export default function LocaleLayout({
     params: { locale: string };
 }) {
     if (!locales.includes(locale as any)) notFound();
+    
+    unstable_setRequestLocale(locale);
 
-    const messages = useMessages();
+    let messages;
+    try {
+        messages = (await import(`../../messages/${locale}.json`)).default;
+    } catch (error) {
+        notFound();
+    }
 
     return (
         <html lang={locale}>
-            <body className={inter.className}>
+            <body className={`${inter.className} bg-black text-white min-h-screen`}>
                 <NextIntlClientProvider messages={messages} locale={locale}>
-                    <Navigation />
-                    {children}
+                    <div className="flex flex-col min-h-screen">
+                        <Navigation />
+                        {children}
+                    </div>
                 </NextIntlClientProvider>
             </body>
         </html>

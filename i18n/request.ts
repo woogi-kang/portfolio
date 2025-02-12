@@ -1,10 +1,9 @@
 import { getRequestConfig } from 'next-intl/server';
-import { setRequestLocale } from 'next-intl/server';
 
-export default getRequestConfig(async ({ locale }) => {
-  setRequestLocale(locale);
-  
+export default getRequestConfig(async () => {
   return {
-    messages: (await import(`../messages/${locale}.json`)).default
+    messages: (await import(`../messages/ko.json`)).default,
+    timeZone: 'Asia/Seoul',
+    now: new Date()
   };
 }); 
