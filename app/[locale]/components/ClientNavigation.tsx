@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/config/navigation';
-import { Menu, Home, FileText, FolderGit2, BookText, X } from 'lucide-react';
+import { Menu, Home, FileText, FolderGit2, BookText, X, Mail } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import LanguageToggle from './shared/LanguageToggle';
 import { cn } from '@/lib/utils';
@@ -25,7 +25,8 @@ export default function ClientNavigation() {
         { href: '/', label: t('home'), icon: <Home className="w-5 h-5" /> },
         { href: '/resume', label: t('resume'), icon: <FileText className="w-5 h-5" /> },
         { href: '/projects', label: t('projects'), icon: <FolderGit2 className="w-5 h-5" /> },
-        { href: '/blog', label: t('blog'), icon: <BookText className="w-5 h-5" /> }
+        { href: '/blog', label: t('blog'), icon: <BookText className="w-5 h-5" /> },
+        { href: '/contact', label: t('contact'), icon: <Mail className="w-5 h-5" /> }
     ];
 
     // Mobile drawer navigation

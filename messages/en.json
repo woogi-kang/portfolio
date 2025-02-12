@@ -139,7 +139,7 @@
     },
     "contact": {
         "title": "Contact",
-        "subtitle": "Get in touch with me",
+        "subtitle": "I'm always open to discussing new opportunities, sharing insights over coffee, or connecting with fellow developers. Whether you have a project in mind, want to discuss tech, or have an interesting opportunity - I'd love to hear from you.",
         "form": {
             "name": {
                 "label": "Name",
@@ -160,8 +160,11 @@
             "email": {
                 "title": "Email"
             },
+            "location": {
+                "title": "Location"
+            },
             "social": {
-                "title": "Social"
+                "title": "Connect"
             }
         }
     },
@@ -174,19 +177,24 @@
     "footer": {
         "about": {
             "title": "About",
-            "description": "Flutter developer specializing in mobile app development"
+            "description": "Senior Flutter Developer specializing in building high-performance mobile applications with a focus on clean architecture and scalable solutions."
         },
         "links": {
-            "title": "Links",
+            "title": "Quick Links",
             "projects": "Projects",
             "blog": "Blog",
+            "resume": "Resume",
             "contact": "Contact"
         },
-        "social": {
-            "title": "Social"
+        "tech": {
+            "title": "Tech Stack"
         },
-        "copyright": "All rights reserved",
-        "navigation": "Navigation"
+        "contact": {
+            "title": "Contact",
+            "location": "Based in Seoul, South Korea"
+        },
+        "copyright": "woogi",
+        "rights": "All rights reserved"
     },
     "notFound": {
         "message": "Page not found",

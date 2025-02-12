@@ -1,37 +1,68 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
 
 export default function ContactInfo() {
     const t = useTranslations('contact.info');
 
+    const socialLinks = [
+        {
+            name: 'GitHub',
+            href: 'https://github.com/yourusername',
+            icon: Github,
+        },
+        {
+            name: 'LinkedIn',
+            href: 'https://linkedin.com/in/yourusername',
+            icon: Linkedin,
+        },
+    ];
+
     return (
         <div className="space-y-8">
-            <div>
-                <h3 className="text-xl font-semibold mb-2">{t('email.title')}</h3>
-                <a href="mailto:contact@example.com" className="text-green-400 hover:text-green-300">
-                    contact@example.com
-                </a>
-            </div>
-            <div>
-                <h3 className="text-xl font-semibold mb-2">{t('social.title')}</h3>
+            <div className="space-y-6">
                 <div className="space-y-2">
-                    <a
-                        href="https://github.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block text-gray-400 hover:text-white"
+                    <h3 className="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">
+                        {t('email.title')}
+                    </h3>
+                    <a 
+                        href="mailto:woogi.dev@gmail.com" 
+                        className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors group"
                     >
-                        GitHub
+                        <Mail className="w-4 h-4 transition-transform group-hover:scale-110" />
+                        woogi.dev@gmail.com
                     </a>
-                    <a
-                        href="https://linkedin.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block text-gray-400 hover:text-white"
-                    >
-                        LinkedIn
-                    </a>
+                </div>
+
+                <div className="space-y-2">
+                    <h3 className="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">
+                        {t('location.title')}
+                    </h3>
+                    <p className="inline-flex items-center gap-2 text-gray-400">
+                        <MapPin className="w-4 h-4" />
+                        Seoul, South Korea
+                    </p>
+                </div>
+
+                <div className="space-y-2">
+                    <h3 className="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">
+                        {t('social.title')}
+                    </h3>
+                    <div className="flex items-center gap-4">
+                        {socialLinks.map((link) => (
+                            <a
+                                key={link.name}
+                                href={link.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-400 hover:text-white transition-colors group"
+                                aria-label={link.name}
+                            >
+                                <link.icon className="w-5 h-5 transition-transform group-hover:scale-110" />
+                            </a>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
