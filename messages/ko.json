@@ -1,0 +1,213 @@
+{
+    "navigation": {
+        "home": "홈",
+        "projects": "프로젝트",
+        "resume": "이력서",
+        "blog": "블로그",
+        "contact": "연락처"
+    },
+    "home": {
+        "hero": {
+            "title": {
+                "line1": "플러터 개발자",
+                "line2": "모바일 전문가"
+            },
+            "subtitle": {
+                "line1": "아름답고 성능 좋은 모바일 애플리케이션을",
+                "line2": "플러터와 현대적인 개발 방식으로 만듭니다."
+            },
+            "status": "구직 중"
+        },
+        "recentProjects": {
+            "title": "최근 프로젝트",
+            "viewAll": "전체보기"
+        },
+        "recentPosts": {
+            "title": "최근 글",
+            "viewAll": "전체보기"
+        },
+        "loading": {
+            "projects": "프로젝트 로딩 중...",
+            "posts": "게시글 로딩 중..."
+        },
+        "projects": {
+            "recent": {
+                "title": "최근 프로젝트",
+                "viewAll": "모든 프로젝트 보기"
+            },
+            "empty": {
+                "title": "프로젝트가 없습니다",
+                "message": "곧 프로젝트가 추가될 예정입니다"
+            },
+            "viewProject": "프로젝트 보기"
+        },
+        "blog": {
+            "recent": {
+                "title": "최근 게시글",
+                "viewAll": "모든 게시글 보기"
+            },
+            "empty": {
+                "title": "게시글이 없습니다",
+                "message": "곧 게시글이 추가될 예정입니다"
+            }
+        }
+    },
+    "resume": {
+        "title": "이력서",
+        "subtitle": "전문 경력 및 기술",
+        "experience": {
+            "title": "경력",
+            "empty": {
+                "title": "경력이 없습니다",
+                "message": "곧 경력이 추가될 예정입니다"
+            }
+        },
+        "skills": {
+            "title": "기술",
+            "empty": {
+                "title": "기술이 없습니다",
+                "message": "곧 기술이 추가될 예정입니다"
+            },
+            "categories": {
+                "Languages": "프로그래밍 언어",
+                "Mobile Frameworks": "모바일 프레임워크",
+                "Web Frameworks": "웹 프레임워크",
+                "State Management": "상태 관리",
+                "Backend & Cloud": "백엔드 & 클라우드",
+                "Databases": "데이터베이스",
+                "Testing": "테스팅",
+                "DevOps & CI/CD": "데브옵스 & CI/CD",
+                "Design & UI": "디자인 & UI",
+                "Project Management": "프로젝트 관리",
+                "App Services": "앱 서비스",
+                "Performance": "성능 최적화"
+            }
+        },
+        "education": {
+            "title": "학력",
+            "empty": {
+                "title": "학력이 없습니다",
+                "message": "곧 학력이 추가될 예정입니다"
+            }
+        },
+        "loading": {
+            "experience": "경력 정보 로딩 중...",
+            "skills": "기술 스택 로딩 중...",
+            "education": "학력 정보 로딩 중..."
+        }
+    },
+    "blog": {
+        "empty": {
+            "title": "게시글을 찾을 수 없습니다",
+            "message": "곧 게시글이 추가될 예정입니다"
+        },
+        "readMore": "더 읽기",
+        "title": "블로그",
+        "subtitle": "개발에 대한 생각, 튜토리얼 및 인사이트",
+        "backToBlog": "블로그 목록으로",
+        "recent": {
+            "title": "최근 게시글",
+            "viewAll": "모든 게시글 보기"
+        },
+        "categories": {
+            "all": "전체",
+            "development": "개발",
+            "performance": "성능",
+            "devops": "데브옵스",
+            "design": "디자인"
+        }
+    },
+    "projects": {
+        "empty": {
+            "title": "프로젝트를 찾을 수 없습니다",
+            "message": "곧 프로젝트가 추가될 예정입니다"
+        },
+        "noImage": "이미지 없음",
+        "title": "프로젝트",
+        "subtitle": "최근 작업 및 사이드 프로젝트 모음",
+        "viewProject": "프로젝트 보기",
+        "viewLive": "라이브 보기",
+        "backToProjects": "프로젝트 목록으로",
+        "recent": {
+            "title": "최근 프로젝트",
+            "viewAll": "전체 보기"
+        },
+        "filters": {
+            "all": "전체",
+            "mobile": "모바일",
+            "web": "웹",
+            "other": "기타"
+        }
+    },
+    "contact": {
+        "title": "연락처",
+        "subtitle": "연락 주시기 바랍니다",
+        "form": {
+            "name": {
+                "label": "이름",
+                "placeholder": "이름을 입력하세요"
+            },
+            "email": {
+                "label": "이메일",
+                "placeholder": "이메일을 입력하세요"
+            },
+            "message": {
+                "label": "메시지",
+                "placeholder": "메시지를 입력하세요"
+            },
+            "submit": "메시지 보내기",
+            "submitting": "전송 중..."
+        },
+        "info": {
+            "email": {
+                "title": "이메일"
+            },
+            "social": {
+                "title": "소셜 미디어"
+            }
+        }
+    },
+    "footer": {
+        "navigation": "네비게이션",
+        "links": {
+            "title": "링크",
+            "projects": "프로젝트",
+            "blog": "블로그",
+            "contact": "연락처"
+        },
+        "social": {
+            "title": "소셜 미디어"
+        },
+        "copyright": "모든 권리 보유",
+        "about": {
+            "title": "소개",
+            "description": "모바일 앱 개발 전문 Flutter 개발자"
+        }
+    },
+    "common": {
+        "loading": "로딩 중...",
+        "error": "오류가 발생했습니다",
+        "retry": "다시 시도",
+        "loading": {
+            "projects": "프로젝트 로딩 중...",
+            "posts": "게시글 로딩 중..."
+        }
+    },
+    "newsletter": {
+        "title": "뉴스레터 구독",
+        "description": "새로운 프로젝트와 블로그 소식을 받아보세요",
+        "placeholder": "이메일을 입력하세요",
+        "subscribe": "구독하기",
+        "success": "구독해 주셔서 감사합니다!",
+        "error": "구독 중 오류가 발생했습니다"
+    },
+    "error": {
+        "title": "오류가 발생했습니다",
+        "message": "죄송합니다. 문제가 발생했습니다. 다시 시도해 주세요.",
+        "retry": "다시 시도"
+    },
+    "notFound": {
+        "message": "페이지를 찾을 수 없습니다",
+        "backHome": "홈으로 돌아가기"
+    }
+} 

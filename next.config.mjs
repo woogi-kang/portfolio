@@ -1,6 +1,11 @@
 import path from 'path';
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const withNextIntl = createNextIntlPlugin();
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const config = {
     output: 'standalone',
 };
-export default nextConfig;
+
+export default withNextIntl(config);

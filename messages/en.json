@@ -1,0 +1,168 @@
+{
+    "navigation": {
+        "home": "Home",
+        "projects": "Projects",
+        "resume": "Resume",
+        "blog": "Blog",
+        "contact": "Contact"
+    },
+    "home": {
+        "hero": {
+            "title": {
+                "line1": "Flutter Developer",
+                "line2": "and Mobile Expert"
+            },
+            "subtitle": {
+                "line1": "Crafting beautiful and performant mobile applications",
+                "line2": "with Flutter and modern development practices."
+            },
+            "status": "Available for work"
+        },
+        "loading": {
+            "projects": "Loading projects...",
+            "posts": "Loading posts..."
+        },
+        "projects": {
+            "recent": {
+                "title": "Recent Projects",
+                "viewAll": "View all projects"
+            },
+            "empty": {
+                "title": "No projects yet",
+                "message": "Projects will be added soon"
+            },
+            "viewProject": "View Project"
+        },
+        "blog": {
+            "recent": {
+                "title": "Recent Posts",
+                "viewAll": "View all posts"
+            },
+            "empty": {
+                "title": "No posts yet",
+                "message": "Blog posts will be added soon"
+            }
+        },
+        "recentProjects": {
+            "title": "Recent Projects",
+            "viewAll": "View all"
+        },
+        "recentPosts": {
+            "title": "Recent Posts",
+            "viewAll": "View all"
+        }
+    },
+    "projects": {
+        "title": "Projects",
+        "subtitle": "A collection of my recent work and side projects",
+        "viewProject": "View Project",
+        "viewLive": "View Live",
+        "backToProjects": "Back to Projects",
+        "empty": {
+            "title": "No projects found",
+            "message": "Projects will be added soon"
+        },
+        "recent": {
+            "title": "Recent Projects",
+            "viewAll": "View All"
+        }
+    },
+    "blog": {
+        "title": "Blog",
+        "subtitle": "Thoughts, tutorials and insights about development",
+        "backToBlog": "Back to Blog",
+        "empty": {
+            "title": "No posts found",
+            "message": "Blog posts will be added soon"
+        },
+        "recent": {
+            "title": "Recent Posts",
+            "viewAll": "View All"
+        }
+    },
+    "resume": {
+        "title": "Resume",
+        "subtitle": "My professional experience and skills",
+        "experience": {
+            "title": "Experience",
+            "empty": {
+                "title": "No experience yet",
+                "message": "Experience will be added soon"
+            }
+        },
+        "skills": {
+            "title": "Skills",
+            "empty": {
+                "title": "No skills yet",
+                "message": "Skills will be added soon"
+            }
+        },
+        "education": {
+            "title": "Education",
+            "empty": {
+                "title": "No education yet",
+                "message": "Education will be added soon"
+            }
+        }
+    },
+    "contact": {
+        "title": "Contact",
+        "subtitle": "Get in touch with me",
+        "form": {
+            "name": {
+                "label": "Name",
+                "placeholder": "Your name"
+            },
+            "email": {
+                "label": "Email",
+                "placeholder": "your@email.com"
+            },
+            "message": {
+                "label": "Message",
+                "placeholder": "Your message"
+            },
+            "submit": "Send Message",
+            "submitting": "Sending..."
+        },
+        "info": {
+            "email": {
+                "title": "Email"
+            },
+            "social": {
+                "title": "Social"
+            }
+        }
+    },
+    "newsletter": {
+        "title": "Subscribe to Newsletter",
+        "description": "Get notified about new projects and blog posts",
+        "placeholder": "Enter your email",
+        "subscribe": "Subscribe"
+    },
+    "footer": {
+        "about": {
+            "title": "About",
+            "description": "Flutter developer specializing in mobile app development"
+        },
+        "links": {
+            "title": "Links",
+            "projects": "Projects",
+            "blog": "Blog",
+            "contact": "Contact"
+        },
+        "social": {
+            "title": "Social"
+        },
+        "copyright": "All rights reserved"
+    },
+    "notFound": {
+        "message": "Page not found",
+        "backHome": "Back to Home"
+    },
+    "common": {
+        "loading": {
+            "projects": "Loading projects...",
+            "posts": "Loading posts..."
+        }
+    }
+} 
