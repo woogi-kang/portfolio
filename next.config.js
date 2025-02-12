@@ -1,7 +1,9 @@
-/** @type {import('next').NextConfig} */
-const withNextIntl = require('next-intl/plugin')();
+const createNextIntlPlugin = require('next-intl/plugin');
 
-module.exports = withNextIntl({
+const withNextIntl = createNextIntlPlugin();
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
     images: {
         domains: [
             // Add your image domains here
@@ -9,4 +11,6 @@ module.exports = withNextIntl({
             'your-image-host.com'
         ],
     },
-}); 
+};
+
+module.exports = withNextIntl(nextConfig); 
