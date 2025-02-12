@@ -12,8 +12,13 @@ async function getData(id: string) {
     }
 }
 
-export default async function BlogPostPage({ params }: { params: { id: string } }) {
-    const { post } = await getData(params.id);
+export default async function BlogPostPage({ 
+    params 
+}: { 
+    params: Promise<{ id: string; locale: string }> 
+}) {
+    const resolvedParams = await params;
+    const { post } = await getData(resolvedParams.id);
     
     return (
         <main>
