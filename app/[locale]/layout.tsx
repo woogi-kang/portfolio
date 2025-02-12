@@ -12,23 +12,35 @@ export function generateStaticParams() {
     return locales.map((locale) => ({ locale }));
 }
 
+export async function generateMetadata({ 
+    params 
+}: { 
+    params: Promise<{ locale: string }> 
+}) {
+    const resolvedParams = await params;
+    const locale = resolvedParams.locale;
+    const messages = (await import(`../../messages/${locale}.json`)).default;
+    
+    return {
+        title: messages.title || 'Flutter Developer Portfolio',
+        description: messages.description || 'Portfolio showcasing Flutter and mobile development projects'
+    };
+}
+
 export default async function LocaleLayout({
     children,
-    params: { locale }
+    params
 }: {
     children: React.ReactNode;
-    params: { locale: string };
+    params: Promise<{ locale: string }>;
 }) {
+    const resolvedParams = await params;
+    const locale = resolvedParams.locale;
+    
     if (!locales.includes(locale as any)) notFound();
     
     unstable_setRequestLocale(locale);
-
-    let messages;
-    try {
-        messages = (await import(`../../messages/${locale}.json`)).default;
-    } catch (error) {
-        notFound();
-    }
+    const messages = (await import(`../../messages/${locale}.json`)).default;
 
     return (
         <html lang={locale} suppressHydrationWarning>
@@ -42,9 +54,4 @@ export default async function LocaleLayout({
             </body>
         </html>
     );
-}
-
-export const metadata = {
-    title: 'Flutter Developer Portfolio',
-    description: 'Portfolio showcasing Flutter and mobile development projects',
-}; 
+} 

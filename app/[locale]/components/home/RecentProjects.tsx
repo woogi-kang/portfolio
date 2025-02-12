@@ -45,8 +45,11 @@ export default function RecentProjects({ projects }: RecentProjectsProps) {
                     >
                         <div className="aspect-video relative overflow-hidden">
                             <Image
-                                src={project.image_urls[0]}
-                                alt={locale === 'ko' ? project.title_ko : project.title}
+                                src={project.image_urls[0] || '/images/placeholder.jpg'}
+                                alt={locale === 'ko' ? 
+                                    `${project.title_ko} 프로젝트 썸네일` : 
+                                    `Project thumbnail for ${project.title}`
+                                }
                                 fill
                                 className="object-cover transition-all duration-500 group-hover:scale-110"
                             />

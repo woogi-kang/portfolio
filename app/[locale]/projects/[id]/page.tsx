@@ -12,8 +12,13 @@ async function getData(id: string) {
     }
 }
 
-export default async function ProjectPage({ params }: { params: { id: string } }) {
-    const { project } = await getData(params.id);
+export default async function ProjectPage({ 
+    params 
+}: { 
+    params: Promise<{ id: string }> 
+}) {
+    const resolvedParams = await params;
+    const { project } = await getData(resolvedParams.id);
     
     return (
         <main>

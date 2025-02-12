@@ -29,8 +29,11 @@ export default function BlogGrid({ posts }: BlogGridProps) {
                 >
                     <div className="aspect-video relative">
                         <Image
-                            src={post.thumbnail_image_url}
-                            alt={locale === 'ko' ? post.title_ko : post.title}
+                            src={post.thumbnail_image_url || '/images/placeholder.jpg'}
+                            alt={locale === 'ko' ? 
+                                `${post.title_ko} 블로그 포스트 썸네일` : 
+                                `Blog post thumbnail for ${post.title}`
+                            }
                             fill
                             className="object-cover transition-transform duration-300 group-hover:scale-105"
                         />

@@ -3,8 +3,9 @@ import type { Tables } from './supabase/types'
 
 export const api = {
     projects: {
-        getAll: async () => {
-            const supabase = createServerSupabaseClient()
+        async getAll() {
+            'use server'
+            const supabase = await createServerSupabaseClient()
             const { data, error } = await supabase
                 .from('projects')
                 .select('*')
@@ -13,8 +14,9 @@ export const api = {
             if (error) throw error
             return data as Tables<'projects'>[]
         },
-        getById: async (id: string) => {
-            const supabase = createServerSupabaseClient()
+        async getById(id: string) {
+            'use server'
+            const supabase = await createServerSupabaseClient()
             const { data, error } = await supabase
                 .from('projects')
                 .select('*')
@@ -26,8 +28,9 @@ export const api = {
         }
     },
     blog: {
-        getAll: async () => {
-            const supabase = createServerSupabaseClient()
+        async getAll() {
+            'use server'
+            const supabase = await createServerSupabaseClient()
             const { data, error } = await supabase
                 .from('blog_posts')
                 .select('*')
@@ -36,8 +39,9 @@ export const api = {
             if (error) throw error
             return data as Tables<'blog_posts'>[]
         },
-        getById: async (id: string) => {
-            const supabase = createServerSupabaseClient()
+        async getById(id: string) {
+            'use server'
+            const supabase = await createServerSupabaseClient()
             const { data, error } = await supabase
                 .from('blog_posts')
                 .select('*')
@@ -49,8 +53,9 @@ export const api = {
         }
     },
     resume: {
-        getExperience: async () => {
-            const supabase = createServerSupabaseClient()
+        async getExperience() {
+            'use server'
+            const supabase = await createServerSupabaseClient()
             const { data, error } = await supabase
                 .from('experience')
                 .select('*')
@@ -59,8 +64,9 @@ export const api = {
             if (error) throw error
             return data as Tables<'experience'>[]
         },
-        getSkills: async () => {
-            const supabase = createServerSupabaseClient()
+        async getSkills() {
+            'use server'
+            const supabase = await createServerSupabaseClient()
             const { data, error } = await supabase
                 .from('skills')
                 .select('*')
@@ -69,8 +75,9 @@ export const api = {
             if (error) throw error
             return data as Tables<'skills'>[]
         },
-        getEducation: async () => {
-            const supabase = createServerSupabaseClient()
+        async getEducation() {
+            'use server'
+            const supabase = await createServerSupabaseClient()
             const { data, error } = await supabase
                 .from('education')
                 .select('*')

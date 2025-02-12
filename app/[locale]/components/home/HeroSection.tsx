@@ -59,7 +59,7 @@ export default function HeroSection() {
                     <div className="relative aspect-square">
                         <Image
                             src="/images/profile.png"
-                            alt="Profile"
+                            alt={'Profile picture'}
                             fill
                             className="rounded-full object-cover object-center"
                             priority

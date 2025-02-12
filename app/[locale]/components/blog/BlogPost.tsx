@@ -42,8 +42,11 @@ export default function BlogPost({ post }: BlogPostProps) {
 
                 <div className="relative aspect-video rounded-xl overflow-hidden bg-white/5">
                     <Image
-                        src={post.thumbnail_image_url}
-                        alt={locale === 'ko' ? post.title_ko : post.title}
+                        src={post.thumbnail_image_url || '/images/placeholder.jpg'}
+                        alt={locale === 'ko' ? 
+                            `${post.title_ko} 블로그 포스트 이미지` : 
+                            `Blog post image for ${post.title}`
+                        }
                         fill
                         className="object-cover"
                     />

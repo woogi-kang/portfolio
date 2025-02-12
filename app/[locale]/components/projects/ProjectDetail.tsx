@@ -29,8 +29,11 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                     {project.image_urls.map((url, index) => (
                         <div key={index} className="relative aspect-video rounded-xl overflow-hidden bg-white/5">
                             <Image
-                                src={url}
-                                alt={`${locale === 'ko' ? project.title_ko : project.title} - ${index + 1}`}
+                                src={url || '/images/placeholder.jpg'}
+                                alt={locale === 'ko' ? 
+                                    `${project.title_ko} 프로젝트 이미지 ${index + 1}` : 
+                                    `Project image ${index + 1} for ${project.title}`
+                                }
                                 fill
                                 className="object-cover"
                             />

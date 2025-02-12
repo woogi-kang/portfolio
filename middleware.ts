@@ -1,13 +1,16 @@
 import createMiddleware from 'next-intl/middleware';
 import { locales, defaultLocale } from './config/navigation';
 
+export const getLocale = () => defaultLocale;
+
 export default createMiddleware({
-  locales,
   defaultLocale,
-  localePrefix: 'always'
+  locales,
+  localePrefix: 'always',
+  localeDetection: false,
+  defaultLocalePrefix: 'as-needed'
 });
 
-// only match routes that don't start with: api, _next, _vercel, static files like favicon.ico, etc.
 export const config = {
   matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
 }; 

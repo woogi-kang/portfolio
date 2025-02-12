@@ -56,8 +56,11 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
                     >
                         <div className="aspect-video relative">
                             <Image
-                                src={project.image_urls[0]}
-                                alt={locale === 'ko' ? project.title_ko : project.title}
+                                src={project.image_urls[0] || '/images/placeholder.jpg'}
+                                alt={locale === 'ko' ? 
+                                    `${project.title_ko} 프로젝트 이미지` : 
+                                    `Project image for ${project.title}`
+                                }
                                 fill
                                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                             />

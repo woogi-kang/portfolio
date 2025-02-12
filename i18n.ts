@@ -1,11 +1,14 @@
 import {getRequestConfig} from 'next-intl/server';
-import {notFound} from 'next/navigation';
 import {locales} from './config/navigation';
 
 export default getRequestConfig(async ({locale}) => {
-  if (!locales.includes(locale as any)) notFound();
+  // Ensure locale is always defined
+  const resolvedLocale = locale || 'ko';
 
   return {
-    messages: (await import(`./messages/${locale}.json`)).default
+    messages: (await import(`./messages/${resolvedLocale}.json`)).default,
+    locale: resolvedLocale, // Explicitly return the locale
+    timeZone: 'Asia/Seoul',
+    now: new Date()
   };
 }); 
