@@ -9,14 +9,11 @@
     "home": {
         "hero": {
             "title": {
-                "line1": "Flutter Developer",
-                "line2": "and Mobile Expert"
+                "line1": "Senior Flutter Developer",
+                "line2": "Flutter & Native Expert"
             },
-            "subtitle": {
-                "line1": "Crafting beautiful and performant mobile applications",
-                "line2": "with Flutter and modern development practices."
-            },
-            "status": "Available for work"
+            "subtitle": "Senior Flutter Developer with 5+ years of scaling mobile applications, specializing in high-performance, enterprise-grade solutions with millions of users.",
+            "status": "Open to work"
         },
         "loading": {
             "projects": "Loading projects...",
