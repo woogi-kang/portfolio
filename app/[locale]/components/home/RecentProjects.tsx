@@ -4,6 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Tables } from '@/lib/supabase/types';
 import { Link } from '@/config/navigation';
 import EmptyState from '../shared/EmptyState';
+import Image from 'next/image';
 
 interface RecentProjectsProps {
     projects: Tables<'projects'>[];
@@ -33,9 +34,11 @@ export default function RecentProjects({ projects }: RecentProjectsProps) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {projects.slice(0, 4).map((project) => (
                     <div key={project.id} className="group relative overflow-hidden rounded-lg">
-                        <img
+                        <Image
                             src={project.image_urls[0]}
                             alt={locale === 'ko' ? project.title_ko : project.title}
+                            width={800}
+                            height={450}
                             className="w-full aspect-video object-cover"
                         />
                         <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
