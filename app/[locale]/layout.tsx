@@ -5,6 +5,7 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 import { locales } from '@/config/navigation';
 import '../globals.css';
 import Navigation from './components/Navigation';
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -51,6 +52,7 @@ export default async function LocaleLayout({
                         {children}
                     </div>
                 </NextIntlClientProvider>
+                <Analytics />
             </body>
         </html>
     );
