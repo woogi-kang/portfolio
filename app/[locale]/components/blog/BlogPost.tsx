@@ -3,6 +3,7 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { Tables } from '@/lib/supabase/types';
 import { Link } from '@/config/navigation';
+import { ArrowLeft, Clock, Tag } from 'lucide-react';
 import Image from 'next/image';
 
 interface BlogPostProps {
@@ -14,27 +15,41 @@ export default function BlogPost({ post }: BlogPostProps) {
     const t = useTranslations('blog');
 
     return (
-        <article className="container mx-auto px-6 py-16">
-            <div className="mb-8">
-                <Link href="/blog" className="text-green-400 hover:text-green-300 mb-8 inline-block">
-                    ← {t('backToBlog')}
-                </Link>
-                <h1 className="text-4xl font-bold mb-4">
+        <article className="container max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16">
+            <Link 
+                href="/blog" 
+                className="inline-flex items-center text-sm text-gray-400 hover:text-white mb-8 group"
+            >
+                <ArrowLeft className="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1" />
+                {t('backToBlog')}
+            </Link>
+
+            <div className="space-y-6">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">
                     {locale === 'ko' ? post.title_ko : post.title}
                 </h1>
-                <div className="flex items-center text-gray-400 mb-8">
-                    <span>{post.read_time}</span>
-                    <span className="mx-2">•</span>
-                    <span>{post.category}</span>
+                
+                <div className="flex items-center gap-4 text-sm text-gray-400">
+                    <div className="flex items-center gap-1.5">
+                        <Clock className="w-4 h-4" />
+                        <span>{post.read_time}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                        <Tag className="w-4 h-4" />
+                        <span>{post.category}</span>
+                    </div>
                 </div>
-                <Image
-                    src={post.thumbnail_image_url}
-                    alt={locale === 'ko' ? post.title_ko : post.title}
-                    width={1200}
-                    height={675}
-                    className="w-full aspect-video object-cover rounded-lg mb-8"
-                />
-                <div className="prose prose-invert max-w-none">
+
+                <div className="relative aspect-video rounded-xl overflow-hidden bg-white/5">
+                    <Image
+                        src={post.thumbnail_image_url}
+                        alt={locale === 'ko' ? post.title_ko : post.title}
+                        fill
+                        className="object-cover"
+                    />
+                </div>
+
+                <div className="prose prose-invert prose-lg max-w-none">
                     {locale === 'ko' ? post.content_ko : post.content}
                 </div>
             </div>
