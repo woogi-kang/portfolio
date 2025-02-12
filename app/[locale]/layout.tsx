@@ -31,7 +31,7 @@ export default async function LocaleLayout({
     }
 
     return (
-        <html lang={locale}>
+        <html lang={locale} suppressHydrationWarning>
             <body className={`${inter.className} bg-black text-white min-h-screen`}>
                 <NextIntlClientProvider messages={messages} locale={locale}>
                     <div className="flex flex-col min-h-screen">

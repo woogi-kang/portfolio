@@ -1,4 +1,4 @@
-export type Database = {
+export interface Database {
   public: {
     Tables: {
       projects: {
@@ -8,10 +8,35 @@ export type Database = {
           title_ko: string
           description: string
           description_ko: string
+          category: 'professional' | 'freelance' | 'personal'
           image_urls: string[]
           tags: string[]
           link?: string
           created_at: string
+        }
+        Insert: {
+          id?: string
+          title: string
+          title_ko: string
+          description: string
+          description_ko: string
+          category: 'professional' | 'freelance' | 'personal'
+          image_urls: string[]
+          tags: string[]
+          link?: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          title?: string
+          title_ko?: string
+          description?: string
+          description_ko?: string
+          category?: 'professional' | 'freelance' | 'personal'
+          image_urls?: string[]
+          tags?: string[]
+          link?: string
+          created_at?: string
         }
       }
       blog_posts: {
