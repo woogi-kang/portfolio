@@ -22,26 +22,26 @@ export default function Experience({ experiences }: ExperienceProps) {
     }
 
     return (
-        <section>
-            <h2 className="text-2xl font-bold mb-8">{t('title')}</h2>
-            <div className="space-y-12">
+        <section className="space-y-6">
+            <h2 className="text-2xl md:text-3xl font-bold">{t('title')}</h2>
+            <div className="space-y-8 md:space-y-12">
                 {experiences.map((exp) => (
                     <div key={exp.id} className="space-y-4">
-                        <div className="flex justify-between items-start">
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
                             <div>
-                                <h3 className="text-xl font-semibold">
+                                <h3 className="text-lg md:text-xl font-semibold">
                                     {locale === 'ko' ? exp.position_ko || exp.position : exp.position}
                                 </h3>
-                                <p className="text-green-400">{exp.company}</p>
+                                <p className="text-green-400 text-sm md:text-base">{exp.company}</p>
                             </div>
-                            <span className="text-gray-400">{exp.period}</span>
+                            <span className="text-gray-400 text-sm whitespace-nowrap">{exp.period}</span>
                         </div>
-                        <p className="text-gray-400">
+                        <p className="text-gray-400 text-sm md:text-base leading-relaxed">
                             {locale === 'ko' ? exp.description_ko || exp.description : exp.description}
                         </p>
-                        <ul className="list-disc list-inside space-y-2 text-gray-300">
+                        <ul className="list-disc list-inside space-y-2 text-gray-300 text-sm md:text-base pl-4">
                             {((locale === 'ko' ? exp.achievements_ko : exp.achievements) || []).map((achievement) => (
-                                <li key={achievement}>{achievement}</li>
+                                <li key={achievement} className="leading-relaxed">{achievement}</li>
                             ))}
                         </ul>
                     </div>

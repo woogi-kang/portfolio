@@ -50,11 +50,18 @@
         }
     },
     "projects": {
+        "noImage": "No Image",
         "title": "Projects",
         "subtitle": "A collection of my recent work and side projects",
         "viewProject": "View Project",
         "viewLive": "View Live",
         "backToProjects": "Back to Projects",
+        "filters": {
+            "all": "All Projects",
+            "professional": "Professional Work",
+            "freelance": "Freelance Projects",
+            "personal": "Side Projects"
+        },
         "empty": {
             "title": "No projects found",
             "message": "Projects will be added soon"
@@ -75,6 +82,13 @@
         "recent": {
             "title": "Recent Posts",
             "viewAll": "View All"
+        },
+        "categories": {
+            "all": "All",
+            "development": "Development",
+            "performance": "Performance",
+            "devops": "DevOps",
+            "design": "Design"
         }
     },
     "resume": {
@@ -92,6 +106,20 @@
             "empty": {
                 "title": "No skills yet",
                 "message": "Skills will be added soon"
+            },
+            "categories": {
+                "Languages": "Programming Languages",
+                "Mobile Frameworks": "Mobile Frameworks",
+                "Web Frameworks": "Web Frameworks",
+                "State Management": "State Management",
+                "Backend & Cloud": "Backend & Cloud",
+                "Databases": "Databases",
+                "Testing": "Testing",
+                "DevOps & CI/CD": "DevOps & CI/CD",
+                "Design & UI": "Design & UI",
+                "Project Management": "Project Management",
+                "App Services": "App Services",
+                "Performance": "Performance"
             }
         },
         "education": {
@@ -100,7 +128,14 @@
                 "title": "No education yet",
                 "message": "Education will be added soon"
             }
-        }
+        },
+        "loading": {
+            "experience": "Loading experience...",
+            "skills": "Loading skills...",
+            "education": "Loading education..."
+        },
+        "downloadResume": "Download Resume",
+        "downloadCoverLetter": "Download Cover Letter"
     },
     "contact": {
         "title": "Contact",
@@ -150,7 +185,8 @@
         "social": {
             "title": "Social"
         },
-        "copyright": "All rights reserved"
+        "copyright": "All rights reserved",
+        "navigation": "Navigation"
     },
     "notFound": {
         "message": "Page not found",

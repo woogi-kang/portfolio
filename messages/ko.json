@@ -91,7 +91,9 @@
             "experience": "경력 정보 로딩 중...",
             "skills": "기술 스택 로딩 중...",
             "education": "학력 정보 로딩 중..."
-        }
+        },
+        "downloadResume": "이력서 다운로드",
+        "downloadCoverLetter": "자기소개서 다운로드"
     },
     "blog": {
         "empty": {
@@ -130,10 +132,10 @@
             "viewAll": "전체 보기"
         },
         "filters": {
-            "all": "전체",
-            "mobile": "모바일",
-            "web": "웹",
-            "other": "기타"
+            "all": "전체 프로젝트",
+            "professional": "회사 프로젝트",
+            "freelance": "프리랜서 프로젝트",
+            "personal": "개인 프로젝트"
         }
     },
     "contact": {
@@ -182,13 +184,8 @@
         }
     },
     "common": {
-        "loading": "로딩 중...",
         "error": "오류가 발생했습니다",
-        "retry": "다시 시도",
-        "loading": {
-            "projects": "프로젝트 로딩 중...",
-            "posts": "게시글 로딩 중..."
-        }
+        "retry": "다시 시도"
     },
     "newsletter": {
         "title": "뉴스레터 구독",
