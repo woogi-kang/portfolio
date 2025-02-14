@@ -14,30 +14,6 @@ export interface Database {
           link?: string
           created_at: string
         }
-        Insert: {
-          id?: string
-          title: string
-          title_ko: string
-          description: string
-          description_ko: string
-          category: 'professional' | 'freelance' | 'personal'
-          image_urls: string[]
-          tags: string[]
-          link?: string
-          created_at?: string
-        }
-        Update: {
-          id?: string
-          title?: string
-          title_ko?: string
-          description?: string
-          description_ko?: string
-          category?: 'professional' | 'freelance' | 'personal'
-          image_urls?: string[]
-          tags?: string[]
-          link?: string
-          created_at?: string
-        }
       }
       blog_posts: {
         Row: {
@@ -56,15 +32,33 @@ export interface Database {
       }
       experience: {
         Row: {
-          id: string
-          position: string
-          position_ko?: string
+          id: number
           company: string
+          company_ko: string
           period: string
+          position: string
+          position_ko: string
+          department: string
+          department_ko: string
+          role: string
+          role_ko: string
           description: string
-          description_ko?: string
-          achievements: string[]
-          achievements_ko?: string[]
+          description_ko: string
+          technical_achievements: {
+            title: string
+            title_ko: string
+            items: string[]
+            items_ko: string[]
+          }[]
+          leadership: {
+            title: string
+            title_ko: string
+            items: string[]
+            items_ko: string[]
+          }[]
+          is_current: boolean
+          order: number
+          created_at: string
         }
       }
       skills: {
@@ -79,7 +73,10 @@ export interface Database {
           id: string
           degree: string
           degree_ko: string
+          major: string
+          major_ko: string
           institution: string
+          institution_ko: string
           period: string
           description: string
           description_ko: string

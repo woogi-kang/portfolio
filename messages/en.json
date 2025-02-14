@@ -135,7 +135,8 @@
             "education": "Loading education..."
         },
         "downloadResume": "Download Resume",
-        "downloadCoverLetter": "Download Cover Letter"
+        "downloadCoverLetter": "Download Cover Letter",
+        "experience": "Experience"
     },
     "contact": {
         "title": "Contact",

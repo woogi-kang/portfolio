@@ -3,9 +3,16 @@
 import { useTranslations } from 'next-intl';
 import { Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLocale } from 'next-intl';
 
 export default function ResumeHeader() {
     const t = useTranslations('resume');
+    const locale = useLocale();
+
+    const coverLetterUrls = {
+        en: process.env.NEXT_PUBLIC_COVER_LETTER_EN_URL,
+        ko: process.env.NEXT_PUBLIC_COVER_LETTER_KO_URL
+    };
 
     return (
         <section className="pt-8 sm:pt-12 md:pt-16 lg:pt-20 space-y-6 sm:space-y-8">
@@ -29,7 +36,10 @@ export default function ResumeHeader() {
                 </Button>
                 <Button 
                     className="group border-white/10 hover:border-white/20 backdrop-blur-sm"
-                    onClick={() => window.open('/cover-letter.pdf', '_blank')}
+                    onClick={() => {
+                        const url = coverLetterUrls[locale as keyof typeof coverLetterUrls];
+                        if (url) window.open(url, '_blank');
+                    }}
                 >
                     <Download className="w-4 h-4 mr-2 transition-transform group-hover:-translate-y-0.5" />
                     {t('downloadCoverLetter')}

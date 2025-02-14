@@ -31,13 +31,17 @@ export default function Education({ education }: EducationProps) {
                         className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 p-4 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm"
                     >
                         <div className="space-y-2">
-                            <h3 className="text-lg md:text-xl font-semibold">
-                                {locale === 'ko' ? edu.degree_ko : edu.degree}
+                            <h3 className="text-lg md:text-xl font-semibold text-green-400">
+                                {locale === 'ko' ? edu.institution_ko : edu.institution}
                             </h3>
-                            <p className="text-green-400 text-sm md:text-base">{edu.institution}</p>
-                            <p className="text-gray-400 text-sm md:text-base leading-relaxed">
-                                {locale === 'ko' ? edu.description_ko : edu.description}
+                            <p className="text-white text-sm md:text-base">
+                                {locale === 'ko' ? edu.degree_ko : edu.degree}
                             </p>
+                            {edu.description && (
+                                <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+                                    {locale === 'ko' ? edu.description_ko : edu.description}
+                                </p>
+                            )}
                         </div>
                         <span className="text-gray-400 text-sm whitespace-nowrap">{edu.period}</span>
                     </div>

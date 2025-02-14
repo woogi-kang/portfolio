@@ -52,13 +52,7 @@
     "resume": {
         "title": "이력서",
         "subtitle": "전문 경력 및 기술",
-        "experience": {
-            "title": "경력",
-            "empty": {
-                "title": "경력이 없습니다",
-                "message": "곧 경력이 추가될 예정입니다"
-            }
-        },
+        "experience": "경력",
         "skills": {
             "title": "기술",
             "empty": {
