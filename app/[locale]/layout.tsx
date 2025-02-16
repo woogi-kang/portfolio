@@ -75,7 +75,7 @@ export async function generateMetadata({
             },
         },
         verification: {
-            google: 'google-site-verification=chhEZbVIBMAPonbRORfRgqF2TIoIZjQqeBJP3yOS2FU',
+            google: '43FT0lWW133JrM1TZObvy2HUqci4N28RAh3OX5W5_fM',
         },
     };
 }
