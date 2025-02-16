@@ -29,7 +29,7 @@ export default function ResumeHeader() {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Button 
                     className="group bg-green-500 hover:bg-green-600 text-white border-0"
-                    onClick={() => window.open('/resume.pdf', '_blank')}
+                    onClick={() => window.open('https://pktorvtrnyqsxgerdmtb.supabase.co/storage/v1/object/sign/portfolio/resume/ko.pdf?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwb3J0Zm9saW8vcmVzdW1lL2tvLnBkZiIsImlhdCI6MTczOTcyNjc5NSwiZXhwIjoxMDM3OTcyNjc5NX0.h6SHXouO1eYdxhlivwWfwRcvRudpnfAjUxFov_4Fo9U', '_blank')}
                 >
                     <Download className="w-4 h-4 mr-2 transition-transform group-hover:-translate-y-0.5" />
                     {t('downloadResume')}

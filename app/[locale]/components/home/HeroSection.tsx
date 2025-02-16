@@ -2,6 +2,8 @@
 
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import { Github, BookText, Linkedin } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function HeroSection() {
     const t = useTranslations('home.hero');
@@ -45,6 +47,31 @@ export default function HeroSection() {
                     <p className="text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed max-w-xl mx-auto md:mx-0">
                         {t('subtitle')}
                     </p>
+
+                    {/* Social Links */}
+                    <div className="flex justify-center md:justify-start gap-3 sm:gap-4">
+                        <Button 
+                            className="group bg-[#24292e] hover:bg-[#1b1f23] text-white border-0"
+                            onClick={() => window.open('https://github.com/woogi-kang', '_blank')}
+                        >
+                            <Github className="w-4 h-4 mr-2 transition-transform group-hover:-translate-y-0.5" />
+                            GitHub
+                        </Button>
+                        <Button 
+                            className="group bg-black hover:bg-[#1a1a1a] text-white border-0"
+                            onClick={() => window.open('https://medium.com/@dev-woogi', '_blank')}
+                        >
+                            <BookText className="w-4 h-4 mr-2 transition-transform group-hover:-translate-y-0.5" />
+                            Medium
+                        </Button>
+                        <Button 
+                            className="group bg-[#0A66C2] hover:bg-[#004182] text-white border-0"
+                            onClick={() => window.open('https://www.linkedin.com/in/taewook-kang/', '_blank')}
+                        >
+                            <Linkedin className="w-4 h-4 mr-2 transition-transform group-hover:-translate-y-0.5" />
+                            LinkedIn
+                        </Button>
+                    </div>
                 </div>
 
                 {/* Profile Image */}
