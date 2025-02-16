@@ -11,7 +11,18 @@ const nextConfig = {
     },
     images: {
         domains: ['your-image-domain.com'], // Add your image domain here
-    }
+    },
+    // Add performance optimizations
+    poweredByHeader: false,
+    compress: true,
+    reactStrictMode: true,
+    swcMinify: true,
+    optimizeFonts: true,
+    // Cache optimization
+    onDemandEntries: {
+        maxInactiveAge: 25 * 1000,
+        pagesBufferLength: 2,
+    },
 };
 
 export default withNextIntl(nextConfig);

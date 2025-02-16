@@ -90,7 +90,10 @@ export default function HeroSection() {
                             fill
                             className="rounded-full object-cover object-center"
                             priority
+                            quality={90}
                             sizes="(max-width: 640px) 192px, (max-width: 768px) 224px, (max-width: 1024px) 33vw, 25vw"
+                            placeholder="blur"
+                            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRg..."
                         />
                         
                         {/* Decorative circles */}
