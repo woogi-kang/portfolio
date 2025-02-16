@@ -25,7 +25,7 @@ export default function ClientNavigation() {
         { href: '/', label: t('home'), icon: <Home className="w-5 h-5" /> },
         { href: '/resume', label: t('resume'), icon: <FileText className="w-5 h-5" /> },
         { href: '/projects', label: t('projects'), icon: <FolderGit2 className="w-5 h-5" /> },
-        { href: '/blog', label: t('blog'), icon: <BookText className="w-5 h-5" /> },
+        // { href: '/blog', label: t('blog'), icon: <BookText className="w-5 h-5" /> },
         { href: '/contact', label: t('contact'), icon: <Mail className="w-5 h-5" /> }
     ];
 

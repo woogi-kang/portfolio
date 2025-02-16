@@ -20,11 +20,6 @@ export default function Footer() {
             icon: Linkedin,
         },
         {
-            name: 'Twitter',
-            href: 'https://twitter.com/yourusername',
-            icon: Twitter,
-        },
-        {
             name: 'Email',
             href: 'mailto:your.email@example.com',
             icon: Mail,
@@ -34,7 +29,7 @@ export default function Footer() {
     const quickLinks = [
         { name: t('links.resume'), href: '/resume' },
         { name: t('links.projects'), href: '/projects' },
-        { name: t('links.blog'), href: '/blog' },
+        // { name: t('links.blog'), href: '/blog' },
         { name: t('links.contact'), href: '/contact' },
     ];
 

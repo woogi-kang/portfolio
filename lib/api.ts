@@ -9,7 +9,7 @@ export const api = {
             const { data, error } = await supabase
                 .from('projects')
                 .select('*')
-                .order('created_at', { ascending: false })
+                .order('created_at', { ascending: true })
 
             if (error) throw error
             return data as Tables<'projects'>[]

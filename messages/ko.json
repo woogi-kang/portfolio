@@ -130,26 +130,32 @@
             "professional": "회사 프로젝트",
             "freelance": "프리랜서 프로젝트",
             "personal": "개인 프로젝트"
-        }
+        },
+        "architecture": "아키텍처",
+        "features": "주요 기능",
+        "techStack": "기술 스택",
+        "libraries": "라이브러리 & 도구",
+        "challenges": "기술적 도전",
+        "problem": "문제",
+        "solution": "해결",
+        "period": "프로젝트 기간",
+        "role": "역할",
+        "company": "회사"
     },
     "contact": {
         "title": "연락처",
         "subtitle": "새로운 기회에 대한 논의, 커피챗, 기술 토론 등 언제든 환영합니다. 프로젝트 협업, 개발 관련 대화, 또는 흥미로운 제안이 있으시다면 편하게 연락해 주세요.",
         "form": {
-            "name": {
-                "label": "이름",
-                "placeholder": "이름을 입력하세요"
-            },
-            "email": {
-                "label": "이메일",
-                "placeholder": "이메일을 입력하세요"
-            },
-            "message": {
-                "label": "메시지",
-                "placeholder": "메시지를 입력하세요"
-            },
-            "submit": "메시지 보내기",
-            "submitting": "전송 중..."
+            "name": "이름",
+            "namePlaceholder": "이름을 입력하세요",
+            "email": "이메일",
+            "emailPlaceholder": "이메일을 입력하세요",
+            "message": "메시지",
+            "messagePlaceholder": "메시지를 입력하세요",
+            "send": "메시지 보내기",
+            "sending": "전송 중...",
+            "success": "메시지가 성공적으로 전송되었습니다! 곧 답변 드리겠습니다.",
+            "error": "메시지 전송에 실패했습니다. 다시 시도해 주세요."
         },
         "info": {
             "email": {

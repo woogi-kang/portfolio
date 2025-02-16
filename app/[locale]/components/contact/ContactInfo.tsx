@@ -9,12 +9,12 @@ export default function ContactInfo() {
     const socialLinks = [
         {
             name: 'GitHub',
-            href: 'https://github.com/yourusername',
+            href: 'https://github.com/woogi-kang',
             icon: Github,
         },
         {
             name: 'LinkedIn',
-            href: 'https://linkedin.com/in/yourusername',
+            href: 'https://www.linkedin.com/in/taewook-kang/',
             icon: Linkedin,
         },
     ];

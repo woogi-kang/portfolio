@@ -69,7 +69,17 @@
         "recent": {
             "title": "Recent Projects",
             "viewAll": "View All"
-        }
+        },
+        "architecture": "Architecture",
+        "features": "Key Features",
+        "techStack": "Tech Stack",
+        "libraries": "Libraries & Tools",
+        "challenges": "Technical Challenges",
+        "problem": "Problem",
+        "solution": "Solution",
+        "period": "Project Period",
+        "role": "Role",
+        "company": "Company"
     },
     "blog": {
         "title": "Blog",
@@ -142,20 +152,16 @@
         "title": "Contact",
         "subtitle": "I'm always open to discussing new opportunities, sharing insights over coffee, or connecting with fellow developers. Whether you have a project in mind, want to discuss tech, or have an interesting opportunity - I'd love to hear from you.",
         "form": {
-            "name": {
-                "label": "Name",
-                "placeholder": "Your name"
-            },
-            "email": {
-                "label": "Email",
-                "placeholder": "your@email.com"
-            },
-            "message": {
-                "label": "Message",
-                "placeholder": "Your message"
-            },
-            "submit": "Send Message",
-            "submitting": "Sending..."
+            "name": "Name",
+            "namePlaceholder": "Your name",
+            "email": "Email",
+            "emailPlaceholder": "your.email@example.com",
+            "message": "Message",
+            "messagePlaceholder": "Your message",
+            "send": "Send Message",
+            "sending": "Sending...",
+            "success": "Message sent successfully! I'll get back to you soon.",
+            "error": "Failed to send message. Please try again."
         },
         "info": {
             "email": {

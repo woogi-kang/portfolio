@@ -6,7 +6,8 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 const nextConfig = {
     images: {
         domains: [
-            'your-supabase-storage-domain.supabase.co',
+            'file.notion.so',
+            'pktorvtrnyqsxgerdmtb.supabase.co',
         ]
     },
 };

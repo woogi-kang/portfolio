@@ -24,9 +24,9 @@ export default async function HomePage() {
                 <Suspense fallback={<LoadingSection type="projects" />}>
                     <RecentProjects projects={projects} />
                 </Suspense>
-                <Suspense fallback={<LoadingSection type="posts" />}>
-                    <RecentBlogs posts={posts} />
-                </Suspense>
+                {/* <Suspense fallback={<LoadingSection type="posts" />}> */}
+                    {/* <RecentBlogs posts={posts} /> */}
+                {/* </Suspense> */}
                 <Footer />
             </main>
         </>

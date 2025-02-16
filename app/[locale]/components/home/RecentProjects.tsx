@@ -22,7 +22,7 @@ export default function RecentProjects({ projects }: RecentProjectsProps) {
     return (
         <section className="space-y-6 sm:space-y-8">
             <div className="flex justify-between items-center">
-                <h2 className="text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">
+                <h2 className="text-2xl sm:text-3xl font-bold">
                     {t('recent.title')}
                 </h2>
                 <Link 
@@ -34,58 +34,56 @@ export default function RecentProjects({ projects }: RecentProjectsProps) {
                 </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
                 {projects.slice(0, 4).map((project) => (
                     <Link 
                         key={project.id} 
                         href={`/projects/${project.id}`}
-                        className="group relative block overflow-hidden rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm 
-                            transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:shadow-2xl 
-                            hover:shadow-green-500/10 hover:-translate-y-1"
+                        className="group relative block overflow-hidden rounded-xl bg-black/20 border border-white/10 
+                            transition-all duration-300 hover:bg-black/40 hover:border-green-500/30"
                     >
-                        <div className="aspect-video relative overflow-hidden">
+                        {/* Image Section */}
+                        <div className="relative aspect-[16/9]">
                             <Image
-                                src={project.image_urls[0] || '/images/placeholder.jpg'}
+                                src={project.thumbnail_url || project.image_urls[0] || '/images/placeholder.jpg'}
                                 alt={locale === 'ko' ? 
-                                    `${project.title_ko} 프로젝트 썸네일` : 
-                                    `Project thumbnail for ${project.title}`
+                                    `${project.title_ko} 프로젝트 이미지` : 
+                                    `Project image for ${project.title}`
                                 }
                                 fill
-                                className="object-cover transition-all duration-500 group-hover:scale-110"
+                                className="object-cover transition-transform duration-500 group-hover:scale-105"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent 
-                                opacity-60 group-hover:opacity-80 transition-opacity duration-300" 
-                            />
-                            <div className="absolute inset-0 bg-green-500/20 opacity-0 group-hover:opacity-100 
-                                transition-opacity duration-300 mix-blend-overlay" 
-                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                         </div>
-                        <div className="relative p-4 sm:p-6">
-                            <h3 className="text-lg sm:text-xl font-semibold mb-2 line-clamp-1 text-white 
-                                transition-colors duration-300 group-hover:text-green-400"
-                            >
-                                {locale === 'ko' ? project.title_ko : project.title}
-                            </h3>
-                            <p className="text-sm sm:text-base text-gray-400 mb-4 line-clamp-2 
-                                transition-colors duration-300 group-hover:text-gray-300"
-                            >
-                                {locale === 'ko' ? project.description_ko : project.description}
-                            </p>
+
+                        {/* Content Section */}
+                        <div className="p-6 space-y-4">
+                            <div>
+                                <h3 className="text-xl font-bold mb-2 text-white group-hover:text-green-400 transition-colors">
+                                    {locale === 'ko' ? project.title_ko : project.title}
+                                </h3>
+                                <p className="text-sm text-gray-300 line-clamp-2">
+                                    {locale === 'ko' ? project.summary_ko : project.summary}
+                                </p>
+                            </div>
+
                             <div className="flex flex-wrap gap-2">
-                                {project.tags.slice(0, 3).map((tag) => (
-                                    <span 
-                                        key={tag} 
-                                        className="text-xs px-2.5 py-1 rounded-full bg-white/10 text-gray-300
-                                            transition-all duration-300 group-hover:bg-white/20 group-hover:text-white"
-                                    >
-                                        {tag}
-                                    </span>
-                                ))}
-                                {project.tags.length > 3 && (
+                                {project.tech_stack.slice(0, 2).flatMap(tech => 
+                                    tech.items.slice(0, 2).map(item => (
+                                        <span 
+                                            key={item} 
+                                            className="text-xs px-2.5 py-1 rounded-full bg-white/10 text-gray-300
+                                                transition-colors group-hover:bg-green-500/20 group-hover:text-green-400"
+                                        >
+                                            {item}
+                                        </span>
+                                    ))
+                                )}
+                                {project.tech_stack.reduce((acc, tech) => acc + tech.items.length, 0) > 4 && (
                                     <span className="text-xs px-2.5 py-1 rounded-full bg-white/10 text-gray-300
-                                        transition-all duration-300 group-hover:bg-white/20 group-hover:text-white"
+                                        transition-colors group-hover:bg-green-500/20 group-hover:text-green-400"
                                     >
-                                        +{project.tags.length - 3}
+                                        +{project.tech_stack.reduce((acc, tech) => acc + tech.items.length, 0) - 4}
                                     </span>
                                 )}
                             </div>
