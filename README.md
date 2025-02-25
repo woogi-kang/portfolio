@@ -1,7 +1,7 @@
 # Taewook Kang | Senior Flutter Developer Portfolio
 
 <p align="center">
-  <img src="public/images/profile.png" width="120" height="120" style="border-radius: 50%;" />
+  <img src="public/images/profile.png" width="200" height="200" alt="Profile" style="border-radius: 50%;" />
 </p>
 
 <p align="center">
