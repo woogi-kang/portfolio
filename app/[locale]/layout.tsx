@@ -39,6 +39,9 @@ export async function generateMetadata({
         ],
         authors: [{ name: 'Taewook Kang' }],
         creator: 'Taewook Kang',
+        verification: {
+            google: 'chhEZbVIBMAPonbRORfRgqF2TIoIZjQqeBJP3yOS2FU',
+        },
         openGraph: {
             type: 'website',
             locale: locale,
@@ -62,20 +65,6 @@ export async function generateMetadata({
             title: 'Taewook Kang | Senior Flutter Developer',
             description: 'Senior Flutter Developer specializing in enterprise mobile applications',
             images: ['https://pktorvtrnyqsxgerdmtb.supabase.co/storage/v1/object/sign/portfolio/thumbnails/og.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwb3J0Zm9saW8vdGh1bWJuYWlscy9vZy5wbmciLCJpYXQiOjE3Mzk3Mjc2MTUsImV4cCI6MjYwMzcyNzYxNX0.UcVDg23wLLerDGzW-2_o6zZd8XCfX0xO1wWF3YNAsZk'],
-        },
-        robots: {
-            index: true,
-            follow: true,
-            googleBot: {
-                index: true,
-                follow: true,
-                'max-video-preview': -1,
-                'max-image-preview': 'large',
-                'max-snippet': -1,
-            },
-        },
-        verification: {
-            google: '43FT0lWW133JrM1TZObvy2HUqci4N28RAh3OX5W5_fM',
         },
     };
 }
