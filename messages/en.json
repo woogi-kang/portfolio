@@ -146,7 +146,16 @@
         },
         "downloadResume": "Download Resume",
         "downloadCoverLetter": "Download Cover Letter",
-        "experience": "Experience"
+        "experience": "Experience",
+        "qualifications": {
+            "title": "Qualifications & Achievements",
+            "empty": {
+                "title": "No qualifications yet",
+                "message": "Qualifications will be added soon"
+            },
+            "viewCredential": "View Credential",
+            "credentialId": "Credential ID"
+        }
     },
     "contact": {
         "title": "Contact",

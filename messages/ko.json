@@ -87,7 +87,16 @@
             "education": "학력 정보 로딩 중..."
         },
         "downloadResume": "이력서 다운로드",
-        "downloadCoverLetter": "자기소개서 다운로드"
+        "downloadCoverLetter": "자기소개서 다운로드",
+        "qualifications": {
+            "title": "자격증 및 기타",
+            "empty": {
+                "title": "자격증 및 기타 데이터가 없습니다",
+                "message": "곧 자격증 및 기타 데이터가 추가될 예정입니다"
+            },
+            "viewCredential": "자격증 보기",
+            "credentialId": "자격증 ID"
+        }
     },
     "blog": {
         "empty": {

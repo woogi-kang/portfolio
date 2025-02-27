@@ -128,6 +128,7 @@ export interface Database {
           id: string
           category: string
           items: string[]
+          order: number
         }
       }
       education: {
@@ -142,6 +143,36 @@ export interface Database {
           period: string
           description: string
           description_ko: string
+        }
+      }
+      certifications: {
+        Row: {
+          id: string
+          name: string
+          name_ko: string
+          issuer: string
+          issuer_ko: string
+          date: string
+          description: string
+          description_ko: string
+          credential_url: string | null
+          credential_id: string | null
+          logo_url: string | null
+        }
+      }
+      qualifications: {
+        Row: {
+          id: string
+          name: string
+          name_ko: string
+          issuer: string
+          issuer_ko: string
+          date: string
+          description: string
+          description_ko: string
+          credential_url: string | null
+          credential_id: string | null
+          logo_url: string | null
         }
       }
     }

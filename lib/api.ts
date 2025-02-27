@@ -70,7 +70,7 @@ export const api = {
             const { data, error } = await supabase
                 .from('skills')
                 .select('*')
-                .order('category', { ascending: true })
+                .order('order_num', { ascending: true })
 
             if (error) throw error
             return data as Tables<'skills'>[]
@@ -85,6 +85,17 @@ export const api = {
 
             if (error) throw error
             return data as Tables<'education'>[]
+        },
+        async getQualifications() {
+            'use server'
+            const supabase = await createServerSupabaseClient()
+            const { data, error } = await supabase
+                .from('qualifications')
+                .select('*')
+                .order('date', { ascending: false })
+
+            if (error) throw error
+            return data as Tables<'qualifications'>[]
         }
     }
 } 

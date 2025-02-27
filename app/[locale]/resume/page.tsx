@@ -4,13 +4,15 @@ import ResumeHeader from '../components/resume/ResumeHeader';
 import Skills from '../components/resume/Skills';
 import Education from '../components/resume/Education';
 import Footer from '../components/shared/Footer';
+import Qualifications from '../components/resume/Certifications';
 
 export default async function ResumePage() {
     // Fetch all data in parallel
-    const [experiences, skills, education] = await Promise.all([
+    const [experiences, skills, education, qualifications] = await Promise.all([
         api.resume.getExperience(),
         api.resume.getSkills(),
-        api.resume.getEducation()
+        api.resume.getEducation(),
+        api.resume.getQualifications()
     ]);
 
     return (
@@ -19,6 +21,7 @@ export default async function ResumePage() {
                 <ResumeHeader />
                 <Experience experiences={experiences} />
                 <Skills skills={skills} />
+                <Qualifications certifications={qualifications} />
                 <Education education={education} />
             </div>
             <Footer />

@@ -12,9 +12,41 @@ export default function ContactForm() {
         message: string | null;
     }>({ type: null, message: null });
 
+    const [formState, setFormState] = useState({
+        name: '',
+        email: '',
+        message: '',
+    });
+    const [errors, setErrors] = useState<Record<string, string>>({});
+    const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+    const validateForm = () => {
+        const newErrors: Record<string, string> = {};
+        
+        if (!formState.name.trim()) {
+            newErrors.name = 'Name is required';
+        }
+        
+        if (!formState.email.trim()) {
+            newErrors.email = 'Email is required';
+        } else if (!/^\S+@\S+\.\S+$/.test(formState.email)) {
+            newErrors.email = 'Email is invalid';
+        }
+        
+        if (!formState.message.trim()) {
+            newErrors.message = 'Message is required';
+        }
+        
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setIsSubmitting(true);
+        
+        if (!validateForm()) return;
+        
+        setStatus('submitting');
         setFormStatus({ type: null, message: null });
 
         try {
@@ -33,19 +65,21 @@ export default function ContactForm() {
                     message: t('form.success')
                 });
                 (e.target as HTMLFormElement).reset();
+                setStatus('success');
+                setFormState({ name: '', email: '', message: '' });
             } else {
                 setFormStatus({
                     type: 'error',
                     message: t('form.error')
                 });
+                setStatus('error');
             }
         } catch (error) {
             setFormStatus({
                 type: 'error',
                 message: t('form.error')
             });
-        } finally {
-            setIsSubmitting(false);
+            setStatus('error');
         }
     };
 
