@@ -1,67 +1,36 @@
-# Taewook Kang | Senior Flutter Developer Portfolio
-
-<p align="center">
-  <img src="public/images/profile.png" width="200" height="200" alt="Profile" style="border-radius: 50%;" />
-</p>
-
-<p align="center">
-  <a href="https://github.com/woogi-kang" target="_blank">
-    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
-  </a>
-  <a href="https://www.linkedin.com/in/taewook-kang/" target="_blank">
-    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
-  </a>
-  <a href="https://medium.com/@dev-woogi" target="_blank">
-    <img src="https://img.shields.io/badge/Medium-000000?style=for-the-badge&logo=medium&logoColor=white" alt="Medium" />
-  </a>
-</p>
-
-## About Me
-
-Senior Flutter Developer with 5+ years of experience building high-performance, enterprise-grade mobile applications. Specializing in clean architecture, performance optimization, and scalable solutions that serve millions of users.
-
-## Portfolio Highlights
-
-- **Professional Experience**: Detailed work history showcasing enterprise mobile application development
-- **Technical Projects**: Case studies of significant projects with architecture details and technical challenges
-- **Skills & Expertise**: Comprehensive overview of technical skills and proficiencies
-- **Blog & Insights**: Technical articles and development insights
-
-## Tech Stack
-
-- **Mobile**: Flutter, Dart, iOS (Swift), Android (Kotlin)
-- **Web**: Next.js, React, TypeScript, TailwindCSS
-- **Backend**: Node.js, NestJS, Firebase, Supabase
-- **Architecture**: Clean Architecture, MVVM, BLoC Pattern
-- **DevOps**: CI/CD, Docker, GitHub Actions
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-This portfolio is built with Next.js, TailwindCSS, and Supabase.
+First, run the development server:
 
 ```bash
-Clone the repository
-git clone https://github.com/woogi-kang/portfolio.git
-Install dependencies
-npm install
-or
-yarn install
-Run the development server
 npm run dev
-or
+# or
 yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the portfolio locally.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Contact
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-I'm always open to discussing new opportunities or connecting with fellow developers. Feel free to reach out via:
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-- Email: woogi.dev@gmail.com
-- LinkedIn: [taewook-kang](https://www.linkedin.com/in/taewook-kang/)
-- GitHub: [woogi-kang](https://github.com/woogi-kang)
+## Learn More
 
-## License
+To learn more about Next.js, take a look at the following resources:
 
-© 2024 Taewook Kang. All rights reserved.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
