@@ -27,10 +27,12 @@ export default function ResumePage() {
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
                 Resume
               </p>
-              <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl dark:text-white">
-                AX/AI Agent Engineering 중심의 경력 요약
+              <h1 className="mt-4 max-w-4xl text-3xl font-semibold tracking-tight text-slate-950 md:text-6xl dark:text-white">
+                <span className="block">AX/AI Agent</span>
+                <span className="block">Engineering 중심의</span>
+                <span className="block">경력 요약</span>
               </h1>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700 dark:text-slate-300">
+              <p className="mt-6 max-w-3xl break-words text-lg leading-8 text-slate-700 dark:text-slate-300">
                 Flutter 멀티플랫폼 제품 개발에서 출발해 PromptOps, RAG, 데이터 파이프라인, 사내 에이전트 플랫폼, 운영 자동화로 확장해 온 실무 6년차 Product Engineer입니다.
               </p>
             </div>
@@ -77,7 +79,7 @@ export default function ResumePage() {
                     <h3 className="text-sm font-semibold text-slate-950 dark:text-white">{group.title}</h3>
                     <div className="mt-2 flex flex-wrap gap-2">
                       {group.items.map((item) => (
-                        <span key={item} className="rounded-md bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                        <span key={item} className="max-w-full rounded-md bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
                           {item}
                         </span>
                       ))}
@@ -96,11 +98,11 @@ export default function ResumePage() {
               </div>
               <div className="mt-6 space-y-4">
                 {timeline.map((item) => (
-                  <article key={`${item.period}-${item.company}`} className="rounded-md border p-5">
+                  <article key={`${item.period}-${item.company}`} className="min-w-0 overflow-hidden rounded-md border p-5">
                     <p className="font-mono text-sm text-slate-500 dark:text-slate-400">{item.period}</p>
-                    <h3 className="mt-3 text-xl font-semibold tracking-tight text-slate-950 dark:text-white">{item.role}</h3>
+                    <h3 className="mt-3 break-words text-xl font-semibold tracking-tight text-slate-950 dark:text-white">{item.role}</h3>
                     <p className="mt-1 text-sm font-medium text-teal-700 dark:text-teal-300">{item.company}</p>
-                    <p className="mt-4 leading-7 text-slate-700 dark:text-slate-300">{item.body}</p>
+                    <p className="mt-4 break-words leading-7 text-slate-700 dark:text-slate-300">{item.body}</p>
                   </article>
                 ))}
               </div>
@@ -115,7 +117,7 @@ export default function ResumePage() {
                 {capabilities.map((capability) => {
                   const Icon = capability.icon
                   return (
-                    <article key={capability.title} className="rounded-md border p-5">
+                    <article key={capability.title} className="min-w-0 overflow-hidden rounded-md border p-5">
                       <div className="flex items-center gap-3">
                         <Icon className="h-5 w-5 text-teal-700 dark:text-teal-300" />
                         <h3 className="font-semibold text-slate-950 dark:text-white">{capability.title}</h3>
@@ -124,7 +126,7 @@ export default function ResumePage() {
                         {capability.items.map((item) => (
                           <li key={item} className="flex gap-2">
                             <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
-                            <span>{item}</span>
+                            <span className="break-words">{item}</span>
                           </li>
                         ))}
                       </ul>

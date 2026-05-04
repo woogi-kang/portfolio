@@ -135,10 +135,10 @@ export default function Home() {
               {focusAreas.map((area) => {
                 const Icon = area.icon
                 return (
-                  <article key={area.title} className="rounded-md border bg-[#fbfcf8] p-5 dark:bg-slate-900/60">
+                  <article key={area.title} className="min-w-0 overflow-hidden rounded-md border bg-[#fbfcf8] p-5 dark:bg-slate-900/60">
                     <Icon className="h-6 w-6 text-teal-700 dark:text-teal-300" />
-                    <h3 className="mt-5 text-lg font-semibold text-slate-950 dark:text-white">{area.title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{area.body}</p>
+                    <h3 className="mt-5 break-words text-lg font-semibold text-slate-950 dark:text-white">{area.title}</h3>
+                    <p className="mt-3 break-words text-sm leading-6 text-slate-600 dark:text-slate-300">{area.body}</p>
                   </article>
                 )
               })}
@@ -171,19 +171,19 @@ export default function Home() {
                 <Link
                   key={project.slug}
                   href={`/portfolio/${project.slug}`}
-                  className="group rounded-md border bg-white p-6 transition-colors hover:border-teal-700 dark:bg-slate-950 dark:hover:border-teal-300"
+                  className="group min-w-0 overflow-hidden rounded-md border bg-white p-6 transition-colors hover:border-teal-700 dark:bg-slate-950 dark:hover:border-teal-300"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <p className="text-sm font-medium text-teal-700 dark:text-teal-300">{project.eyebrow}</p>
-                      <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">{project.title}</h3>
+                      <h3 className="mt-3 break-words text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">{project.title}</h3>
                     </div>
                     <Icon className="h-6 w-6 shrink-0 text-slate-500 transition-colors group-hover:text-teal-700 dark:text-slate-400 dark:group-hover:text-teal-300" />
                   </div>
-                  <p className="mt-4 line-clamp-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{project.summary}</p>
-                  <div className="mt-5 flex flex-wrap gap-2">
+                  <p className="mt-4 line-clamp-3 break-words text-sm leading-6 text-slate-600 dark:text-slate-300">{project.summary}</p>
+                  <div className="mt-5 flex min-w-0 flex-wrap gap-2 overflow-hidden">
                     {project.stack.slice(0, 5).map((tech) => (
-                      <span key={tech} className="rounded-md bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                      <span key={tech} className="max-w-full rounded-md bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
                         {tech}
                       </span>
                     ))}
@@ -203,14 +203,16 @@ export default function Home() {
                 Capability Map
               </p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">
-                에이전트만 만드는 사람이 아니라 제품 운영을 줄이는 엔지니어
+                <span className="block">에이전트 개발을 넘어</span>
+                <span className="block">제품 운영 부담을 줄이는</span>
+                <span className="block">엔지니어</span>
               </h2>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
               {capabilities.map((capability) => {
                 const Icon = capability.icon
                 return (
-                  <article key={capability.title} className="rounded-md border p-5">
+                  <article key={capability.title} className="min-w-0 overflow-hidden rounded-md border p-5">
                     <div className="flex items-center gap-3">
                       <Icon className="h-5 w-5 text-teal-700 dark:text-teal-300" />
                       <h3 className="font-semibold text-slate-950 dark:text-white">{capability.title}</h3>
@@ -219,7 +221,7 @@ export default function Home() {
                       {capability.items.map((item) => (
                         <li key={item} className="flex gap-2">
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
-                          <span>{item}</span>
+                          <span className="break-words">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -244,12 +246,12 @@ export default function Home() {
             </div>
             <div className="space-y-4">
               {timeline.map((item) => (
-                <article key={`${item.period}-${item.company}`} className="grid gap-4 rounded-md border bg-white p-5 dark:bg-slate-950 md:grid-cols-[180px_1fr]">
+                <article key={`${item.period}-${item.company}`} className="grid min-w-0 gap-4 overflow-hidden rounded-md border bg-white p-5 dark:bg-slate-950 md:grid-cols-[180px_1fr]">
                   <p className="font-mono text-sm text-slate-500 dark:text-slate-400">{item.period}</p>
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-950 dark:text-white">{item.role}</h3>
+                    <h3 className="break-words text-lg font-semibold text-slate-950 dark:text-white">{item.role}</h3>
                     <p className="mt-1 text-sm font-medium text-teal-700 dark:text-teal-300">{item.company}</p>
-                    <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{item.body}</p>
+                    <p className="mt-3 break-words text-sm leading-6 text-slate-600 dark:text-slate-300">{item.body}</p>
                   </div>
                 </article>
               ))}
@@ -265,7 +267,9 @@ export default function Home() {
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-300">Stack</p>
                 <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                  AI/AX, 제품 개발, 디바이스 운영을 한 흐름으로 다룹니다.
+                  <span className="block">AI/AX, 제품 개발,</span>
+                  <span className="block">디바이스 운영을</span>
+                  <span className="block">한 흐름으로 다룹니다.</span>
                 </h2>
               </div>
               <div className="grid gap-4 sm:grid-cols-2">

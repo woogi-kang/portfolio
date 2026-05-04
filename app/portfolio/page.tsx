@@ -23,7 +23,9 @@ export default function PortfolioPage() {
           <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_420px] lg:items-end">
             <div>
               <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl dark:text-white">
-                운영 가능한 AI/AX 시스템으로 증명한 작업들
+                <span className="block">운영 가능한</span>
+                <span className="block">AI/AX 시스템</span>
+                <span className="block">구축 사례</span>
               </h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700 dark:text-slate-300">
                 단순 데모나 개인 자동화가 아니라, 팀이 반복해서 쓰고 운영할 수 있는 에이전트, 데이터 파이프라인, 제품 출시/운영 자동화 중심으로 정리했습니다.
@@ -54,7 +56,7 @@ export default function PortfolioPage() {
               <Link
                 key={project.slug}
                 href={`/portfolio/${project.slug}`}
-                className="group rounded-md border p-6 transition-colors hover:border-teal-700 dark:hover:border-teal-300"
+                className="group min-w-0 overflow-hidden rounded-md border p-6 transition-colors hover:border-teal-700 dark:hover:border-teal-300"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
@@ -62,11 +64,11 @@ export default function PortfolioPage() {
                       {String(index + 1).padStart(2, "0")} / {project.period}
                     </p>
                     <p className="mt-4 text-sm font-medium text-teal-700 dark:text-teal-300">{project.eyebrow}</p>
-                    <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">{project.title}</h2>
+                    <h2 className="mt-2 break-words text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">{project.title}</h2>
                   </div>
                   <Icon className="h-6 w-6 shrink-0 text-slate-500 transition-colors group-hover:text-teal-700 dark:text-slate-400 dark:group-hover:text-teal-300" />
                 </div>
-                <p className="mt-5 text-sm leading-6 text-slate-600 dark:text-slate-300">{project.summary}</p>
+                <p className="mt-5 break-words text-sm leading-6 text-slate-600 dark:text-slate-300">{project.summary}</p>
                 <ul className="mt-5 space-y-2">
                   {project.impact.slice(0, 2).map((impact) => (
                     <li key={impact} className="flex gap-2 text-sm text-slate-700 dark:text-slate-300">
@@ -76,9 +78,9 @@ export default function PortfolioPage() {
                   ))}
                 </ul>
                 <div className="mt-6 flex items-center justify-between gap-4">
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex min-w-0 flex-wrap gap-2 overflow-hidden">
                     {project.stack.slice(0, 4).map((tech) => (
-                      <span key={tech} className="rounded-md bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                      <span key={tech} className="max-w-full rounded-md bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
                         {tech}
                       </span>
                     ))}

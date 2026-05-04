@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
 import { Mail, Send, Loader2, CheckCircle2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -60,26 +59,24 @@ export function ContactForm() {
     }
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-        >
+        <div>
             {/* Header */}
             <div className="mb-12 text-center">
                 <div className="mb-4 inline-flex items-center justify-center rounded-full bg-primary/10 p-3">
                     <Mail className="h-6 w-6 text-primary" />
                 </div>
-                <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-                    AX/AI Agent 프로젝트를 함께 이야기해요
+                <h1 className="mb-4 text-2xl font-bold tracking-tight sm:text-3xl md:text-5xl">
+                    <span className="block">AX/AI Agent</span>
+                    <span className="block">프로젝트를 함께</span>
+                    <span className="block">이야기해요</span>
                 </h1>
-                <p className="text-xl text-muted-foreground">
-                    AI 에이전트, RAG 제품, 자동화 파이프라인, Flutter 멀티플랫폼 제품 운영에 대해 이야기할 수 있습니다.
+                <p className="mx-auto max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl">
+                    AI 에이전트, RAG 제품, 자동화 파이프라인, Flutter 멀티플랫폼 제품 운영에 대해 함께 논의할 수 있습니다.
                 </p>
             </div>
 
             {/* Contact Form */}
-            <Card>
+            <Card className="min-w-0 overflow-hidden">
                 <CardHeader>
                     <CardTitle>Send me a message</CardTitle>
                     <CardDescription>
@@ -88,11 +85,7 @@ export function ContactForm() {
                 </CardHeader>
                 <CardContent>
                     {success ? (
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            className="flex flex-col items-center justify-center py-12 text-center"
-                        >
+                        <div className="flex flex-col items-center justify-center py-12 text-center">
                             <CheckCircle2 className="mb-4 h-16 w-16 text-green-500" />
                             <h3 className="mb-2 text-2xl font-bold">Message Sent!</h3>
                             <p className="mb-6 text-muted-foreground">
@@ -101,7 +94,7 @@ export function ContactForm() {
                             <Button onClick={() => setSuccess(false)} variant="outline">
                                 Send Another Message
                             </Button>
-                        </motion.div>
+                        </div>
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="grid gap-6 md:grid-cols-2">
@@ -141,7 +134,7 @@ export function ContactForm() {
                                     name="subject"
                                     value={formData.subject}
                                     onChange={handleChange}
-                                        placeholder="AI agent workflow, RAG product, Flutter platform..."
+                                    placeholder="AI agent, RAG, automation..."
                                 />
                             </div>
 
@@ -154,7 +147,7 @@ export function ContactForm() {
                                     name="message"
                                     value={formData.message}
                                     onChange={handleChange}
-                                    placeholder="현재 해결하려는 문제, 팀 규모, 제품/운영 맥락을 알려주세요."
+                                    placeholder="해결하려는 문제와 제품/운영 맥락을 알려주세요."
                                     className="min-h-[200px]"
                                     required
                                 />
@@ -186,7 +179,7 @@ export function ContactForm() {
 
             {/* Additional Contact Info */}
             <div className="mt-12 text-center">
-                <p className="text-sm text-muted-foreground">
+                <p className="break-words text-sm text-muted-foreground">
                     You can also reach me directly at{" "}
                     <a
                         href="mailto:woogi.dev@gmail.com"
@@ -196,6 +189,6 @@ export function ContactForm() {
                     </a>
                 </p>
             </div>
-        </motion.div>
+        </div>
     )
 }

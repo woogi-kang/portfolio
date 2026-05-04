@@ -12,6 +12,17 @@ export const metadata: Metadata = {
     description: "Writing about Flutter, product engineering, AI agents, and automation.",
 }
 
+function normalizeTags(tags: string[]) {
+    return Array.from(
+        new Set(
+            tags
+                .flatMap((tag) => tag.split(","))
+                .map((tag) => tag.trim())
+                .filter(Boolean)
+        )
+    ).slice(0, 6)
+}
+
 export default async function PostsPage() {
     const username = process.env.NEXT_PUBLIC_VELOG_USERNAME || "woogi-dev"
     const posts = await getVelogPosts(username)
@@ -27,23 +38,23 @@ export default async function PostsPage() {
                         Notes on Flutter, product engineering, AI agents, and automation.
                     </p>
                 </div>
-                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid min-w-0 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                     {posts?.map((post) => (
                         <Link
                             key={post.id}
                             href={`https://velog.io/@${username}/${post.url_slug}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group"
+                            className="group min-w-0"
                         >
-                            <Card className="h-full overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-500/10 hover:border-emerald-500/50">
+                            <Card className="h-full min-w-0 overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-500/10 hover:border-emerald-500/50">
                                 <CardHeader>
                                     <div className="mb-2">
                                         <Badge variant="outline" className="border-emerald-500/30 text-emerald-500 bg-emerald-500/10">
                                             Blog
                                         </Badge>
                                     </div>
-                                    <CardTitle className="line-clamp-2 group-hover:text-emerald-500 transition-colors">
+                                    <CardTitle className="line-clamp-2 [overflow-wrap:normal] [word-break:keep-all] group-hover:text-emerald-500 transition-colors">
                                         {post.title}
                                     </CardTitle>
                                     <CardDescription>
@@ -55,12 +66,12 @@ export default async function PostsPage() {
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="line-clamp-3 text-muted-foreground mb-4">
+                                    <p className="line-clamp-3 [overflow-wrap:normal] [word-break:keep-all] text-muted-foreground mb-4">
                                         {post.short_description}
                                     </p>
-                                    <div className="flex flex-wrap gap-2">
-                                        {post.tags?.map((tag) => (
-                                            <Badge key={tag} variant="secondary" className="text-xs">
+                                    <div className="flex min-w-0 flex-wrap gap-2 overflow-hidden">
+                                        {normalizeTags(post.tags ?? []).map((tag) => (
+                                            <Badge key={tag} title={tag} variant="secondary" className="max-w-[8rem] text-xs">
                                                 {tag}
                                             </Badge>
                                         ))}

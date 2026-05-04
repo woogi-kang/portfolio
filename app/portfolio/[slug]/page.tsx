@@ -54,10 +54,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
                 {project.eyebrow}
               </p>
-              <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl dark:text-white">
+              <h1 className="mt-4 max-w-4xl break-words text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl dark:text-white">
                 {project.title}
               </h1>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700 dark:text-slate-300">{project.summary}</p>
+              <p className="mt-6 max-w-3xl break-words text-lg leading-8 text-slate-700 dark:text-slate-300">{project.summary}</p>
             </div>
             <div className="rounded-md border bg-white p-4 dark:bg-slate-950">
               <Icon className="h-8 w-8 text-teal-700 dark:text-teal-300" />
@@ -65,9 +65,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </div>
           </div>
 
-          <div className="mt-8 flex flex-wrap gap-2">
+          <div className="mt-8 flex min-w-0 flex-wrap gap-2 overflow-hidden">
             {project.stack.map((tech) => (
-              <span key={tech} className="rounded-md bg-slate-100 px-3 py-1 text-sm text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+              <span key={tech} className="max-w-full rounded-md bg-slate-100 px-3 py-1 text-sm text-slate-700 dark:bg-slate-800 dark:text-slate-300">
                 {tech}
               </span>
             ))}
@@ -93,11 +93,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
           <div className="space-y-6">
             {project.sections.map((section) => (
-              <article key={section.title} className="rounded-md border p-6">
+              <article key={section.title} className="min-w-0 overflow-hidden rounded-md border p-6">
                 <h2 className="text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">{section.title}</h2>
                 <div className="mt-5 space-y-4">
                   {section.body.map((paragraph) => (
-                    <p key={paragraph} className="leading-7 text-slate-700 dark:text-slate-300">
+                    <p key={paragraph} className="break-words leading-7 text-slate-700 dark:text-slate-300">
                       {paragraph}
                     </p>
                   ))}
