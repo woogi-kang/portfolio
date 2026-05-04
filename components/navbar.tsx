@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, Package2 } from "lucide-react"
+import { Bot, Menu } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
@@ -17,7 +17,7 @@ const routes = [
     },
     {
         href: "/portfolio",
-        label: "Portfolio",
+        label: "Work",
     },
     {
         href: "/resume",
@@ -25,7 +25,7 @@ const routes = [
     },
     {
         href: "/posts",
-        label: "Blog",
+        label: "Writing",
     },
     {
         href: "/contact",
@@ -38,13 +38,13 @@ export function Navbar() {
     const [isOpen, setIsOpen] = React.useState(false)
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/70">
             <div className="container mx-auto px-4 flex h-14 items-center">
                 <div className="mr-4 hidden md:flex">
                     <Link href="/" className="mr-6 flex items-center space-x-2">
-                        <Package2 className="h-6 w-6" />
+                        <Bot className="h-5 w-5 text-teal-700 dark:text-teal-300" />
                         <span className="hidden font-bold sm:inline-block">
-                            Portfolio
+                            Woogi AX
                         </span>
                     </Link>
                     <nav className="flex items-center space-x-6 text-sm font-medium">
@@ -78,8 +78,8 @@ export function Navbar() {
                             className="flex items-center"
                             onClick={() => setIsOpen(false)}
                         >
-                            <Package2 className="mr-2 h-4 w-4" />
-                            <span className="font-bold">Portfolio</span>
+                            <Bot className="mr-2 h-4 w-4 text-teal-700 dark:text-teal-300" />
+                            <span className="font-bold">Woogi AX</span>
                         </Link>
                         <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
                             <div className="flex flex-col space-y-3">

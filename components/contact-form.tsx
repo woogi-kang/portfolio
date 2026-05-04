@@ -44,8 +44,9 @@ export function ContactForm() {
 
             setSuccess(true)
             setFormData({ name: "", email: "", subject: "", message: "" })
-        } catch (err: any) {
-            setError(err.message || "Something went wrong. Please try again.")
+        } catch (err: unknown) {
+            const message = err instanceof Error ? err.message : "Something went wrong. Please try again."
+            setError(message)
         } finally {
             setLoading(false)
         }
@@ -70,10 +71,10 @@ export function ContactForm() {
                     <Mail className="h-6 w-6 text-primary" />
                 </div>
                 <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-                    Get In Touch
+                    AX/AI Agent 프로젝트를 함께 이야기해요
                 </h1>
                 <p className="text-xl text-muted-foreground">
-                    Have a question or want to work together? I'd love to hear from you.
+                    AI 에이전트, RAG 제품, 자동화 파이프라인, Flutter 멀티플랫폼 제품 운영에 대해 이야기할 수 있습니다.
                 </p>
             </div>
 
@@ -82,7 +83,7 @@ export function ContactForm() {
                 <CardHeader>
                     <CardTitle>Send me a message</CardTitle>
                     <CardDescription>
-                        Fill out the form below and I'll get back to you as soon as possible.
+                        필요한 배경과 목표를 남겨주시면 확인 후 회신하겠습니다.
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -95,7 +96,7 @@ export function ContactForm() {
                             <CheckCircle2 className="mb-4 h-16 w-16 text-green-500" />
                             <h3 className="mb-2 text-2xl font-bold">Message Sent!</h3>
                             <p className="mb-6 text-muted-foreground">
-                                Thank you for reaching out. I'll get back to you soon.
+                                Thank you for reaching out. I will get back to you soon.
                             </p>
                             <Button onClick={() => setSuccess(false)} variant="outline">
                                 Send Another Message
@@ -140,7 +141,7 @@ export function ContactForm() {
                                     name="subject"
                                     value={formData.subject}
                                     onChange={handleChange}
-                                    placeholder="What's this about?"
+                                        placeholder="AI agent workflow, RAG product, Flutter platform..."
                                 />
                             </div>
 
@@ -153,7 +154,7 @@ export function ContactForm() {
                                     name="message"
                                     value={formData.message}
                                     onChange={handleChange}
-                                    placeholder="Tell me about your project or inquiry..."
+                                    placeholder="현재 해결하려는 문제, 팀 규모, 제품/운영 맥락을 알려주세요."
                                     className="min-h-[200px]"
                                     required
                                 />

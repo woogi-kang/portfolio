@@ -1,11 +1,31 @@
 import { Resend } from 'resend'
 import { NextRequest, NextResponse } from 'next/server'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+function escapeHtml(value: string) {
+    return value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;')
+}
 
 export async function POST(request: NextRequest) {
     try {
-        const body = await request.json()
+        const apiKey = process.env.RESEND_API_KEY
+        if (!apiKey) {
+            return NextResponse.json(
+                { error: 'Email service is not configured' },
+                { status: 503 }
+            )
+        }
+
+        const body = await request.json() as {
+            name?: string
+            email?: string
+            subject?: string
+            message?: string
+        }
         const { name, email, subject, message } = body
 
         // Validation
@@ -25,6 +45,12 @@ export async function POST(request: NextRequest) {
             )
         }
 
+        const resend = new Resend(apiKey)
+        const safeName = escapeHtml(name)
+        const safeEmail = escapeHtml(email)
+        const safeSubject = subject ? escapeHtml(subject) : 'No subject'
+        const safeMessage = escapeHtml(message).replace(/\n/g, '<br />')
+
         // Send email using Resend
         const { data, error } = await resend.emails.send({
             from: 'Portfolio Contact <onboarding@resend.dev>', // Resend verified domain
@@ -33,12 +59,12 @@ export async function POST(request: NextRequest) {
             subject: subject || `Portfolio Contact from ${name}`,
             html: `
                 <h2>New Contact Form Submission</h2>
-                <p><strong>From:</strong> ${name}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Subject:</strong> ${subject || 'No subject'}</p>
+                <p><strong>From:</strong> ${safeName}</p>
+                <p><strong>Email:</strong> ${safeEmail}</p>
+                <p><strong>Subject:</strong> ${safeSubject}</p>
                 <hr />
                 <h3>Message:</h3>
-                <p>${message.replace(/\n/g, '<br />')}</p>
+                <p>${safeMessage}</p>
             `,
         })
 

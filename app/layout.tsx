@@ -19,34 +19,49 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://woogi.is-a.dev"),
   title: {
-    default: "Woogi | Full Stack Developer",
+    default: "Kang Taewook | AX Engineer",
     template: "%s | Woogi",
   },
-  description: "Full Stack Developer based in Seoul. I build accessible, pixel-perfect, and performant web experiences.",
-  keywords: ["Full Stack Developer", "Web Developer", "React", "Next.js", "TypeScript", "Portfolio", "Woogi", "Seoul"],
-  authors: [{ name: "Woogi", url: "https://woogi.is-a.dev" }],
-  creator: "Woogi",
+  description:
+    "AX Engineer and Product Engineer based in Seoul. I build AI agents, PromptOps systems, RAG products, automation pipelines, and Flutter multi-platform products.",
+  keywords: [
+    "AX Engineer",
+    "AI Agent Engineer",
+    "PromptOps",
+    "RAG",
+    "MCP",
+    "LangChain",
+    "LangGraph",
+    "Flutter",
+    "Automation",
+    "Kang Taewook",
+    "Woogi",
+    "Seoul",
+  ],
+  authors: [{ name: "Kang Taewook", url: "https://woogi.is-a.dev" }],
+  creator: "Kang Taewook",
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "ko_KR",
     url: "https://woogi.is-a.dev",
-    title: "Woogi | Full Stack Developer",
-    description: "Full Stack Developer based in Seoul. I build accessible, pixel-perfect, and performant web experiences.",
-    siteName: "Woogi Portfolio",
+    title: "Kang Taewook | AX Engineer",
+    description:
+      "AI agents, PromptOps, RAG, automation pipelines, and Flutter multi-platform product operations.",
+    siteName: "Woogi AX Portfolio",
     images: [
       {
         url: "/og-image.png", // We might need to generate this or use a placeholder
         width: 1200,
         height: 630,
-        alt: "Woogi Portfolio",
+        alt: "Kang Taewook AX Portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Woogi | Full Stack Developer",
-    description: "Full Stack Developer based in Seoul. I build accessible, pixel-perfect, and performant web experiences.",
-    creator: "@woogi", // Update if user has a twitter handle, using generic for now
+    title: "Kang Taewook | AX Engineer",
+    description:
+      "AI agents, PromptOps, RAG, automation pipelines, and Flutter multi-platform product operations.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -68,7 +83,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="ko" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

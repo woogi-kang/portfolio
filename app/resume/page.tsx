@@ -1,118 +1,156 @@
-import { createClient } from "@/lib/supabase/server"
-import { ResumeItem } from "@/components/resume-item"
-import { Metadata } from "next"
+import Link from "next/link"
+import { ArrowDownToLine, ExternalLink } from "lucide-react"
+import type { Metadata } from "next"
+
+import { Button } from "@/components/ui/button"
+import { capabilities, profile, stackGroups, timeline } from "@/lib/portfolio-data"
 
 export const metadata: Metadata = {
-    title: "Resume",
-    description: "View my professional experience, education, and skills. Download my resume.",
+  title: "Resume",
+  description: "Kang Taewook resume focused on AX engineering, AI agents, automation, and Flutter product leadership.",
 }
 
-export const revalidate = 0
+const education = [
+  "계명대학교 게임모바일콘텐츠학과 (2014.09 - 2021.08)",
+  "Google Cloud Associate Cloud Engineer 취득 이력 (2020.03)",
+  "Flutter Korea 2022 Google I/O Extended 발표: Dart 3.0 변경점",
+  "경북 글로벌 이노베이션 스타트업 오디션 100인 선정 / 로컬크리에이터 1인 정부지원사업 선정 (2019.09)",
+]
 
-export default async function ResumePage() {
-    const supabase = await createClient()
-    const { data: resumeItems } = await supabase
-        .from("resume")
-        .select("*")
-        .order("start_date", { ascending: false })
-
-    const workExperience = resumeItems?.filter((item) => item.type === "work")
-    const education = resumeItems?.filter((item) => item.type === "education")
-
-    return (
-        <div className="container mx-auto max-w-4xl px-4 py-16 md:py-24">
-            <div className="flex flex-col gap-16">
-                <div className="flex flex-col gap-4 text-center">
-                    <h1 className="text-4xl font-bold tracking-tight md:text-6xl">
-                        My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-500">Journey</span>
-                    </h1>
-                    <p className="mx-auto max-w-2xl text-lg text-muted-foreground md:text-xl">
-                        A timeline of my professional experience and education.
-                    </p>
-                </div>
-
-                {workExperience && workExperience.length > 0 && (
-                    <div className="relative flex flex-col gap-10">
-                        <div className="flex items-center gap-4">
-                            <div className="h-px flex-1 bg-border" />
-                            <h2 className="text-2xl font-bold tracking-tight text-primary">Work Experience</h2>
-                            <div className="h-px flex-1 bg-border" />
-                        </div>
-                        <div className="relative border-l-2 border-muted pl-8 ml-4 md:ml-0 md:pl-0 md:border-l-0 md:space-y-10">
-                            {/* Vertical line for desktop */}
-                            <div className="hidden md:absolute md:left-1/2 md:top-0 md:bottom-0 md:-ml-[1px] md:block md:w-[2px] md:bg-muted" />
-
-                            {workExperience.map((item, index) => (
-                                <div key={item.id} className={`relative md:flex md:justify-between md:gap-8 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                                    {/* Timeline Dot */}
-                                    <div className="absolute -left-[41px] top-0 h-5 w-5 rounded-full border-4 border-background bg-primary md:left-1/2 md:-ml-[10px]" />
-
-                                    <div className="md:w-[45%]">
-                                        <ResumeItem
-                                            role={item.role}
-                                            company={item.company}
-                                            startDate={new Date(item.start_date).toLocaleDateString("en-US", {
-                                                month: "short",
-                                                year: "numeric",
-                                            })}
-                                            endDate={
-                                                item.end_date
-                                                    ? new Date(item.end_date).toLocaleDateString("en-US", {
-                                                        month: "short",
-                                                        year: "numeric",
-                                                    })
-                                                    : undefined
-                                            }
-                                            description={item.description}
-                                            skills={item.skills}
-                                            type="work"
-                                        />
-                                    </div>
-                                    <div className="hidden md:block md:w-[45%]" /> {/* Spacer */}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
-
-                {education && education.length > 0 && (
-                    <div className="relative flex flex-col gap-10">
-                        <div className="flex items-center gap-4">
-                            <div className="h-px flex-1 bg-border" />
-                            <h2 className="text-2xl font-bold tracking-tight text-primary">Education</h2>
-                            <div className="h-px flex-1 bg-border" />
-                        </div>
-                        <div className="grid gap-6 md:grid-cols-2">
-                            {education.map((item) => (
-                                <ResumeItem
-                                    key={item.id}
-                                    role={item.role}
-                                    company={item.company}
-                                    startDate={new Date(item.start_date).toLocaleDateString("en-US", {
-                                        month: "short",
-                                        year: "numeric",
-                                    })}
-                                    endDate={
-                                        item.end_date
-                                            ? new Date(item.end_date).toLocaleDateString("en-US", {
-                                                month: "short",
-                                                year: "numeric",
-                                            })
-                                            : undefined
-                                    }
-                                    description={item.description}
-                                    skills={item.skills}
-                                    type="education"
-                                />
-                            ))}
-                        </div>
-                    </div>
-                )}
-
-                {(!resumeItems || resumeItems.length === 0) && (
-                    <p className="text-center text-muted-foreground">No resume items found.</p>
-                )}
+export default function ResumePage() {
+  return (
+    <main className="bg-white dark:bg-slate-950">
+      <section className="border-b bg-[#f7f8f5] dark:bg-[#0d1117]">
+        <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
+          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
+                Resume
+              </p>
+              <h1 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl dark:text-white">
+                AX/AI Agent Engineering 중심의 경력 요약
+              </h1>
+              <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700 dark:text-slate-300">
+                Flutter 멀티플랫폼 제품 개발에서 출발해 PromptOps, RAG, 데이터 파이프라인, 사내 에이전트 플랫폼, 운영 자동화로 확장해 온 실무 6년차 Product Engineer입니다.
+              </p>
             </div>
+            <div className="flex flex-wrap gap-3">
+              <Button asChild className="rounded-md bg-slate-950 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950">
+                <Link href={profile.resumePdf}>
+                  <ArrowDownToLine className="h-4 w-4" />
+                  PDF Resume
+                </Link>
+              </Button>
+              <Button asChild variant="outline" className="rounded-md bg-white dark:bg-slate-950">
+                <Link href={profile.linkedin} target="_blank">
+                  LinkedIn <ExternalLink className="h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
         </div>
-    )
+      </section>
+
+      <section className="py-16 md:py-20">
+        <div className="mx-auto grid max-w-6xl gap-10 px-5 md:px-8 lg:grid-cols-[320px_1fr]">
+          <aside className="space-y-8 lg:sticky lg:top-24 lg:h-fit">
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
+                Contact
+              </h2>
+              <div className="mt-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                <p>{profile.email}</p>
+                <p>{profile.location}</p>
+                <Link href={profile.github} target="_blank" className="inline-flex items-center gap-1 hover:text-teal-700 dark:hover:text-teal-300">
+                  GitHub <ExternalLink className="h-3 w-3" />
+                </Link>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
+                Core Stack
+              </h2>
+              <div className="mt-4 space-y-5">
+                {stackGroups.map((group) => (
+                  <div key={group.title}>
+                    <h3 className="text-sm font-semibold text-slate-950 dark:text-white">{group.title}</h3>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {group.items.map((item) => (
+                        <span key={item} className="rounded-md bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </aside>
+
+          <div className="space-y-12">
+            <section>
+              <div className="flex items-center gap-4">
+                <h2 className="text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">Experience</h2>
+                <div className="h-px flex-1 bg-border" />
+              </div>
+              <div className="mt-6 space-y-4">
+                {timeline.map((item) => (
+                  <article key={`${item.period}-${item.company}`} className="rounded-md border p-5">
+                    <p className="font-mono text-sm text-slate-500 dark:text-slate-400">{item.period}</p>
+                    <h3 className="mt-3 text-xl font-semibold tracking-tight text-slate-950 dark:text-white">{item.role}</h3>
+                    <p className="mt-1 text-sm font-medium text-teal-700 dark:text-teal-300">{item.company}</p>
+                    <p className="mt-4 leading-7 text-slate-700 dark:text-slate-300">{item.body}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+
+            <section>
+              <div className="flex items-center gap-4">
+                <h2 className="text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">Capabilities</h2>
+                <div className="h-px flex-1 bg-border" />
+              </div>
+              <div className="mt-6 grid gap-4 md:grid-cols-2">
+                {capabilities.map((capability) => {
+                  const Icon = capability.icon
+                  return (
+                    <article key={capability.title} className="rounded-md border p-5">
+                      <div className="flex items-center gap-3">
+                        <Icon className="h-5 w-5 text-teal-700 dark:text-teal-300" />
+                        <h3 className="font-semibold text-slate-950 dark:text-white">{capability.title}</h3>
+                      </div>
+                      <ul className="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+                        {capability.items.map((item) => (
+                          <li key={item} className="flex gap-2">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </article>
+                  )
+                })}
+              </div>
+            </section>
+
+            <section>
+              <div className="flex items-center gap-4">
+                <h2 className="text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">Education & Credentials</h2>
+                <div className="h-px flex-1 bg-border" />
+              </div>
+              <ul className="mt-6 space-y-3 text-slate-700 dark:text-slate-300">
+                {education.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-teal-700 dark:bg-teal-300" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+  )
 }

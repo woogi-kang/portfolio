@@ -8,12 +8,12 @@ import { Metadata } from "next"
 export const revalidate = 60
 
 export const metadata: Metadata = {
-    title: "Blog",
-    description: "Read my thoughts on software development, technology, and my journey as a developer.",
+    title: "Writing",
+    description: "Writing about Flutter, product engineering, AI agents, and automation.",
 }
 
 export default async function PostsPage() {
-    const username = process.env.NEXT_PUBLIC_VELOG_USERNAME || 'velopert'
+    const username = process.env.NEXT_PUBLIC_VELOG_USERNAME || "woogi-dev"
     const posts = await getVelogPosts(username)
 
     return (
@@ -21,12 +21,10 @@ export default async function PostsPage() {
             <div className="flex flex-col gap-12 md:gap-16">
                 <div className="flex flex-col gap-4 text-center">
                     <h1 className="text-4xl font-bold tracking-tight md:text-6xl">
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">
-                            Insights
-                        </span>
+                        Writing
                     </h1>
                     <p className="mx-auto max-w-2xl text-lg text-muted-foreground md:text-xl">
-                        Thoughts, tutorials, and updates on web development and technology.
+                        Notes on Flutter, product engineering, AI agents, and automation.
                     </p>
                 </div>
                 <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">

@@ -5,12 +5,14 @@ export default function JsonLd() {
             {
                 "@type": "Person",
                 "@id": "https://woogi.is-a.dev/#person",
-                "name": "Woogi",
+                "name": "Kang Taewook",
+                "alternateName": "Woogi",
                 "url": "https://woogi.is-a.dev",
-                "jobTitle": "Full Stack Developer",
-                "description": "Full Stack Developer based in Seoul. I build accessible, pixel-perfect, and performant web experiences.",
+                "jobTitle": "AX Engineer / AI Agent & Automation Engineer",
+                "description": "Product engineer based in Seoul building AI agents, PromptOps systems, RAG products, automation pipelines, and Flutter multi-platform products.",
                 "sameAs": [
-                    "https://github.com/woogi-dev", // Assuming this based on username
+                    "https://github.com/woogi-kang",
+                    "https://www.linkedin.com/in/taewook-kang/",
                     "https://velog.io/@woogi-dev"
                 ]
             },
@@ -18,7 +20,7 @@ export default function JsonLd() {
                 "@type": "WebSite",
                 "@id": "https://woogi.is-a.dev/#website",
                 "url": "https://woogi.is-a.dev",
-                "name": "Woogi Portfolio",
+                "name": "Woogi AX Portfolio",
                 "publisher": {
                     "@id": "https://woogi.is-a.dev/#person"
                 }

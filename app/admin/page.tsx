@@ -1,7 +1,7 @@
 
 "use client"
 
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { useRouter } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
 import { Loader2, Plus, LogOut, Pencil, Trash2, X } from "lucide-react"
@@ -21,15 +21,48 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ImageUpload } from "@/components/image-upload"
 
+type ProjectItem = {
+    id: string
+    title: string
+    slug: string
+    description?: string | null
+    content?: string | null
+    tags?: string[] | null
+    demo_url?: string | null
+    repo_url?: string | null
+    cover_image?: string | null
+    images?: string[] | null
+}
+
+type ResumeItem = {
+    id: string
+    role: string
+    company: string
+    start_date: string
+    end_date?: string | null
+    description?: string | null
+    type: string
+    skills?: string[] | null
+}
+
+type PostItem = {
+    id: string
+    title: string
+    slug: string
+    excerpt?: string | null
+    content?: string | null
+    published: boolean
+}
+
 export default function AdminPage() {
     const [loading, setLoading] = useState(true)
     const router = useRouter()
-    const supabase = createClient()
+    const supabase = useMemo(() => createClient(), [])
 
     // Data Lists
-    const [projects, setProjects] = useState<any[]>([])
-    const [resumeItems, setResumeItems] = useState<any[]>([])
-    const [posts, setPosts] = useState<any[]>([])
+    const [projects, setProjects] = useState<ProjectItem[]>([])
+    const [resumeItems, setResumeItems] = useState<ResumeItem[]>([])
+    const [posts, setPosts] = useState<PostItem[]>([])
 
     // Editing State
     const [editingId, setEditingId] = useState<string | null>(null)
@@ -61,7 +94,7 @@ export default function AdminPage() {
     const [postContent, setPostContent] = useState("")
     const [postPublished, setPostPublished] = useState(false)
 
-    const fetchData = async () => {
+    const fetchData = useCallback(async () => {
         const { data: projectsData } = await supabase.from("projects").select("*").order("created_at", { ascending: false })
         const { data: resumeData } = await supabase.from("resume").select("*").order("start_date", { ascending: false })
         const { data: postsData } = await supabase.from("posts").select("*").order("created_at", { ascending: false })
@@ -69,7 +102,7 @@ export default function AdminPage() {
         if (projectsData) setProjects(projectsData)
         if (resumeData) setResumeItems(resumeData)
         if (postsData) setPosts(postsData)
-    }
+    }, [supabase])
 
     useEffect(() => {
         const checkUser = async () => {
@@ -84,7 +117,7 @@ export default function AdminPage() {
             }
         }
         checkUser()
-    }, [router, supabase])
+    }, [fetchData, router, supabase])
 
     const resetForms = () => {
         setEditingId(null)
@@ -114,7 +147,7 @@ export default function AdminPage() {
     }
 
     // --- Project Handlers ---
-    const handleEditProject = (project: any) => {
+    const handleEditProject = (project: ProjectItem) => {
         setEditingId(project.id)
         setProjectTitle(project.title)
         setProjectSlug(project.slug)
@@ -179,7 +212,7 @@ export default function AdminPage() {
     }
 
     // --- Resume Handlers ---
-    const handleEditResume = (item: any) => {
+    const handleEditResume = (item: ResumeItem) => {
         setEditingId(item.id)
         setResumeRole(item.role)
         setResumeCompany(item.company)
@@ -240,7 +273,7 @@ export default function AdminPage() {
     }
 
     // --- Post Handlers ---
-    const handleEditPost = (post: any) => {
+    const handleEditPost = (post: PostItem) => {
         setEditingId(post.id)
         setPostTitle(post.title)
         setPostSlug(post.slug)
@@ -711,4 +744,3 @@ export default function AdminPage() {
         </div>
     )
 }
-
