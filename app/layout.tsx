@@ -19,16 +19,17 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://woogi.is-a.dev"),
   title: {
-    default: "Kang Taewook | AX Engineer",
+    default: "Kang Taewook | AI Automation Engineer",
     template: "%s | Woogi",
   },
   description:
-    "AX Engineer and Product Engineer based in Seoul. I build AI agents, PromptOps systems, RAG products, automation pipelines, and Flutter multi-platform products.",
+    "AI Automation Engineer and Product Engineer based in Seoul. I build AI workflow automation, data pipelines, PromptOps workflows, and AI product operations.",
   keywords: [
-    "AX Engineer",
+    "AI Automation Engineer",
     "AI Agent Engineer",
     "PromptOps",
-    "RAG",
+    "Data Pipeline",
+    "LLM Evaluation",
     "MCP",
     "LangChain",
     "LangGraph",
@@ -44,24 +45,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     url: "https://woogi.is-a.dev",
-    title: "Kang Taewook | AX Engineer",
+    title: "Kang Taewook | AI Automation Engineer",
     description:
-      "AI agents, PromptOps, RAG, automation pipelines, and Flutter multi-platform product operations.",
-    siteName: "Woogi AX Portfolio",
+      "AI workflow automation, data pipelines, PromptOps workflows, automation, and product operations.",
+    siteName: "Woogi AI Automation Portfolio",
     images: [
       {
         url: "/og-image.png", // We might need to generate this or use a placeholder
         width: 1200,
         height: 630,
-        alt: "Kang Taewook AX Portfolio",
+        alt: "Kang Taewook AI Automation Portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kang Taewook | AX Engineer",
+    title: "Kang Taewook | AI Automation Engineer",
     description:
-      "AI agents, PromptOps, RAG, automation pipelines, and Flutter multi-platform product operations.",
+      "AI workflow automation, data pipelines, PromptOps workflows, automation, and product operations.",
     images: ["/og-image.png"],
   },
   robots: {

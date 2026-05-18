@@ -7,7 +7,7 @@ import { capabilities, profile, stackGroups, timeline } from "@/lib/portfolio-da
 
 export const metadata: Metadata = {
   title: "Resume",
-  description: "Kang Taewook resume focused on AX engineering, AI agents, automation, and Flutter product leadership.",
+  description: "Kang Taewook resume focused on AI automation, agent engineering, data pipelines, PromptOps, and product operations.",
 }
 
 const education = [
@@ -22,25 +22,31 @@ export default function ResumePage() {
     <main className="bg-white dark:bg-slate-950">
       <section className="border-b bg-[#f7f8f5] dark:bg-[#0d1117]">
         <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
-          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+          <div className="flex flex-col justify-between gap-8 xl:flex-row xl:items-end">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
                 Resume
               </p>
               <h1 className="mt-4 max-w-4xl text-3xl font-semibold tracking-tight text-slate-950 md:text-6xl dark:text-white">
-                <span className="block">AX/AI Agent</span>
-                <span className="block">Engineering 중심의</span>
+                <span className="block">AI Automation</span>
+                <span className="block">Agent Engineering 중심의</span>
                 <span className="block">경력 요약</span>
               </h1>
               <p className="mt-6 max-w-3xl break-words text-lg leading-8 text-slate-700 dark:text-slate-300">
-                Flutter 멀티플랫폼 제품 개발에서 출발해 PromptOps, RAG, 데이터 파이프라인, 사내 에이전트 플랫폼, 운영 자동화로 확장해 온 실무 6년차 Product Engineer입니다.
+                2025년 Claude Code 공개 이후 Claude/Codex/Gemini CLI 기반 환경에서 누적 약 100억 토큰 규모의 실험과 실무 적용을 반복하며, AI가 개인 생산성 도구를 넘어 조직의 업무 방식 자체를 바꾸려면 어떤 실행 환경이 필요한지 설계해 온 Product Engineer입니다.
               </p>
             </div>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3 xl:justify-end">
               <Button asChild className="rounded-md bg-slate-950 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950">
                 <Link href={profile.resumePdf}>
                   <ArrowDownToLine className="h-4 w-4" />
                   PDF Resume
+                </Link>
+              </Button>
+              <Button asChild variant="outline" className="rounded-md bg-white dark:bg-slate-950">
+                <Link href={profile.careerDescriptionPdf}>
+                  <ArrowDownToLine className="h-4 w-4" />
+                  Career PDF
                 </Link>
               </Button>
               <Button asChild variant="outline" className="rounded-md bg-white dark:bg-slate-950">

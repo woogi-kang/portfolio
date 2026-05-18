@@ -66,12 +66,12 @@ export function ContactForm() {
                     <Mail className="h-6 w-6 text-primary" />
                 </div>
                 <h1 className="mb-4 text-2xl font-bold tracking-tight sm:text-3xl md:text-5xl">
-                    <span className="block">AX/AI Agent</span>
+                    <span className="block">AI Automation</span>
                     <span className="block">프로젝트를 함께</span>
                     <span className="block">이야기해요</span>
                 </h1>
                 <p className="mx-auto max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl">
-                    AI 에이전트, RAG 제품, 자동화 파이프라인, Flutter 멀티플랫폼 제품 운영에 대해 함께 논의할 수 있습니다.
+                    AI Agent 운영 체계, 데이터 파이프라인, PromptOps, 자동화 파이프라인, 제품 운영 체계에 대해 함께 논의할 수 있습니다.
                 </p>
             </div>
 
@@ -134,7 +134,7 @@ export function ContactForm() {
                                     name="subject"
                                     value={formData.subject}
                                     onChange={handleChange}
-                                    placeholder="AI agent, RAG, automation..."
+                                    placeholder="AI agent, data pipeline, PromptOps..."
                                 />
                             </div>
 

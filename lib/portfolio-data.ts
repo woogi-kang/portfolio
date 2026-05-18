@@ -19,53 +19,54 @@ import {
 export const profile = {
   name: "Kang Taewook",
   handle: "Woogi",
-  role: "AX Engineer / AI Agent & Automation Engineer",
-  headline: "AI Agent와 자동화 시스템으로 팀의 반복 업무를 제품처럼 설계하고 운영합니다.",
+  role: "AI Automation Engineer / Agent Engineer",
+  headline: "비개발 직군도 함께 쓰는 AI 업무 운영 체계로 회사의 반복 업무를 자동화합니다.",
   summary:
-    "Flutter 멀티플랫폼 제품 개발에서 출발해 RAG, PromptOps, MCP, Tool Calling, 데이터 파이프라인, 사내 메신저 에이전트, 운영 자동화까지 확장해 온 Product Engineer입니다.",
+    "2025년 Claude Code 공개 이후 Claude/Codex/Gemini CLI 기반 환경에서 누적 약 100억 토큰 규모의 실험과 실무 적용을 반복하며, AI를 조직의 업무 방식으로 전환하는 실행 환경을 설계해 온 Product Engineer입니다. 사내 업무 요청을 task로 나누고 Agent/Skill 자산, 메신저 Agent 접점, 검증·기록 루틴을 묶어 비개발 직군도 함께 쓰는 업무 자동화 환경을 구축해 왔습니다.",
   location: "Seoul, Korea",
   email: "woogi.dev@gmail.com",
   github: "https://github.com/woogi-kang",
   linkedin: "https://www.linkedin.com/in/taewook-kang/",
   medium: "https://medium.com/@dev-woogi",
-  resumePdf: "/kang-taewook-resume-submission-2026.pdf",
+  resumePdf: "/wyatt-resume-kang-taewook.pdf",
+  careerDescriptionPdf: "/wyatt-career-description-kang-taewook.pdf",
 }
 
 export const metrics = [
   { label: "실무 경력", value: "6년차", detail: "2020.09 - 현재" },
-  { label: "Agent/Skill 운영", value: "25+ / 340+", detail: "도메인 에이전트와 팀 스킬" },
-  { label: "제품군 운영", value: "3 services x 3 platforms", detail: "Mobile, Desktop, Smart Glasses" },
-  { label: "운영 자동화", value: "AX 전환", detail: "개발, 운영, CS, 마케팅 병목 개선" },
+  { label: "Agent 자산 정리", value: "25+ / 394", detail: "도메인 Agent와 분류된 Skill" },
+  { label: "AI 업무 운영 체계", value: "사내 자동화 툴", detail: "Messenger, Task Board, Worker" },
+  { label: "자동화 범위", value: "Workflow + Data", detail: "사내 업무, 수집, 리포트, 콘텐츠" },
 ]
 
 export const focusAreas = [
   {
     icon: Bot,
-    title: "AI Agent Platform",
-    body: "Claude Code, Codex CLI, Gemini CLI, OpenClaw 환경별 Harness, Workflow, Agent, Skill, Slash Command를 설계하고 팀 문화로 정착시킵니다.",
-  },
-  {
-    icon: BrainCircuit,
-    title: "PromptOps & LLM Evaluation",
-    body: "시스템 프롬프트를 운영 자산으로 관리하기 위해 버전, 상태, 롤백, A/B 평가, 성과 스냅샷, 검증 하네스를 설계합니다.",
+    title: "Company-wide AI Workflow Automation",
+    body: "사내 업무 자동화 툴로 업무 요청과 실행 기록을 관리하고, 메신저 기반 Agent gateway를 Slack/Discord와 연결해 모든 회사 구성원이 메신저에서 도메인 특화 AI 에이전트를 호출하도록 설계합니다.",
   },
   {
     icon: Database,
-    title: "RAG & Data Pipeline",
-    body: "Vector DB, Vertex AI Embedding, LangChain/LangGraph, MCP, Tool Calling, Structured Output 기반 데이터 수집/검증/상담 서비스를 구축합니다.",
+    title: "Data Pipeline & Verification",
+    body: "병원 상세, 피부 시술, 이벤트·프로모션, 뷰티 제품, 리뷰, 채널·성과 데이터처럼 업무 도메인에 필요한 외부 데이터를 수집 대상으로 정의하고 checkpoint, retry, validation, export까지 닫아 현업 리포트와 대시보드에 쓸 수 있는 데이터 흐름으로 만듭니다.",
+  },
+  {
+    icon: BrainCircuit,
+    title: "PromptOps & Test and Learn",
+    body: "프롬프트를 version, status, metric, rollback이 있는 운영 자산으로 관리하고 A/B evaluation, quality score, factual/drift guard로 개선합니다.",
   },
   {
     icon: MonitorSmartphone,
-    title: "Product Shipping",
-    body: "Flutter 앱, 웹, 백엔드, 인프라, BLE 디바이스, Kiosk/OTA/ADB 운영 자동화까지 제품 출시와 운영 안정화를 함께 책임집니다.",
+    title: "AI Product Operations",
+    body: "AI 기능을 Admin, report, runbook, E2E, 평가 산출물, follow-up automation까지 포함한 제품 운영 흐름으로 연결합니다.",
   },
 ]
 
 export const operatingPrinciples = [
-  "AI 도구 도입보다 팀의 반복 업무가 줄어드는 운영 체계를 우선합니다.",
-  "프롬프트, 에이전트, 스킬, 검증 기준을 코드와 같은 운영 자산으로 관리합니다.",
-  "0 to 1 구축 후 배포, 현장 운영, 모니터링, 보정 루프까지 닫습니다.",
-  "개발 직군 밖의 기획, 디자인, CS, 마케팅 병목도 자동화 대상으로 봅니다.",
+  "AI 도구 도입보다 회사 업무의 반복 지점을 찾아 요청, 실행, 검증, 기록이 이어지는 운영 체계로 바꾸는 일을 우선합니다.",
+  "프롬프트, 에이전트, 스킬, 데이터 검증 기준을 코드와 같은 운영 자산으로 관리합니다.",
+  "데이터 수집은 checkpoint, retry, validation, export까지 닫아야 실제 업무에 쓸 수 있다고 봅니다.",
+  "개발 직군 밖의 전략, 운영, 리포트, 콘텐츠, 고객 접점 업무도 메신저 기반 Agent 접점으로 연결합니다.",
 ]
 
 export type CaseStudy = {
@@ -85,153 +86,154 @@ export type CaseStudy = {
 
 export const caseStudies: CaseStudy[] = [
   {
-    slug: "ax-agent-platform",
-    title: "Team AX Agent Platform",
-    eyebrow: "Plaad / AI Agent & Automation",
+    slug: "internal-automation-agent-workflow",
+    title: "Company-wide AI Workflow Automation",
+    eyebrow: "업무 요청·실행·승인·메신저 Agent 접점",
     period: "2026.01 - 현재",
     summary:
-      "Claude Code, Codex CLI, Gemini CLI, OpenClaw를 각 도구의 실행 모델에 맞게 Harness화하고, 에이전트/스킬/슬래시 커맨드를 팀이 재사용할 수 있는 작업 체계로 정리했습니다.",
+      "AI CLI 사용이 개발자 개인 프롬프트에 머무르지 않도록 사내 업무 자동화 툴과 agent/skill 자산 저장소를 정리하고, 메신저 기반 Agent gateway를 Slack/Discord와 연결해 모든 회사 구성원이 메신저에서 도메인 특화 AI 에이전트를 사용할 수 있는 업무 접점을 설계했습니다.",
     impact: [
-      "25개 이상 도메인 에이전트와 340개 이상 스킬을 팀 템플릿으로 공유",
-      "개발, 기획, 디자인, 콘텐츠, 마케팅, 리뷰, 법무, 재무 업무를 에이전트 워크플로우로 구조화",
-      "개인 생산성 도구가 아니라 팀 공통 운영 문화로 AX 사용 방식을 정착",
+      "비개발 직군도 메신저에서 사내 규칙, 서비스 위키, 운영 정책, 리포트 업무 에이전트를 호출할 수 있는 접점 설계",
+      "Claude Code, Codex CLI, Gemini CLI가 공유하는 agent/skill workspace 구성",
+      "사내 업무 자동화 툴과 task board로 task, run, approval, 산출물, worker heartbeat, audit event가 남는 실행 관리 체계 구성",
     ],
-    stack: ["Claude Code", "Codex CLI", "Gemini CLI", "OpenClaw", "MCP", "Slash Commands", "Subagents"],
+    stack: ["사내 업무 자동화 툴", "Agent/Skill Workspace", "Messenger Gateway", "Slack", "Discord", "Task Board", "Claude Code", "Codex CLI", "Gemini CLI", "FastAPI", "Docker"],
     icon: Workflow,
     sections: [
       {
         title: "Problem",
         body: [
-          "AI CLI 도구는 빠르게 도입되지만, 팀마다 사용 방식과 품질 기준이 달라지면 결과물이 일관되지 않습니다.",
-          "반복 업무를 줄이려면 프롬프트 몇 개가 아니라 역할, 입력 형식, 산출물 기준, 검증 루틴, 공유 방식을 함께 설계해야 했습니다.",
+          "AI CLI 도구는 개인 생산성에는 빠르게 효과가 있지만, 팀 단위로 쓰려면 사용 방식, 품질 기준, 결과물 형식, 검증 루틴이 흩어집니다.",
+          "특히 비개발 직군은 CLI나 개발 환경에 직접 접근하기 어렵기 때문에, 메신저처럼 익숙한 업무 접점에서 도메인 특화 AI 에이전트를 사용할 수 있어야 했습니다.",
         ],
       },
       {
         title: "Approach",
         body: [
-          "각 CLI 환경의 제약과 실행 모델에 맞춰 Harness, Agent, Skill, Command, Template을 분리했습니다.",
-          "작업을 plan, design, develop, QA, deploy, retro 단계로 쪼개고, 결과물을 리뷰 가능한 형태로 남기도록 워크플로우를 구성했습니다.",
+          "agent/skill 자산 저장소는 여러 AI CLI가 같은 규칙, agent, skill, command를 공유하게 하는 작업 자산 저장소로 정리했고, 메신저 기반 Agent gateway는 Slack/Discord 기반 접점으로 연결했습니다.",
+          "사내 업무 자동화 툴과 task board는 요청, 실행, 승인, 결과 기록, human review가 남는 업무 운영 시스템 역할을 하도록 구성했습니다.",
         ],
       },
       {
         title: "Result",
         body: [
-          "팀원이 같은 문제를 반복해서 설명하지 않아도 되는 공통 작업 인터페이스를 만들었습니다.",
-          "AX를 단기 실험이 아니라 제품 개발 프로세스의 일부로 운영할 수 있는 기반을 만들었습니다.",
+          "AI를 개발자 개인 CLI 사용이 아니라 모든 구성원이 각자 업무 맥락에서 호출할 수 있는 회사 공용 업무 접점으로 확장했습니다.",
+          "도메인별 에이전트, 실행 기록, 승인 흐름, 산출물 관리가 함께 남아 현업 확산 가능성과 운영 재현성을 높였습니다.",
         ],
       },
     ],
   },
   {
-    slug: "promptops-data-pipeline",
-    title: "PromptOps Data Pipeline",
-    eyebrow: "AI Data Collection / Evaluation Harness",
+    slug: "data-collection-verification-pipeline",
+    title: "Domain Data Collection and Verification Pipeline",
+    eyebrow: "Naver Place / Treatment / Promotion / Beauty Product Data",
     period: "2026",
     summary:
-      "병원/시술 데이터 수집 파이프라인에서 시스템 프롬프트를 버전 관리하고, MCP/Playwright/Structured Output 기반 검증 하네스로 수집 품질을 관리하는 구조를 설계했습니다.",
+      "네이버 플레이스 피부과 4,255건을 시작으로 병원 상세, 피부 시술, 이벤트·프로모션, 뷰티 제품, 리뷰, 채널·성과 데이터처럼 회사 업무 도메인에 필요한 외부 데이터를 수집·검증하기 위해 HTTP-only crawler, Playwright worker, Gemini/Codex CLI, Cloud SQL, R2, SQLite checkpoint를 조합한 데이터 파이프라인을 구축했습니다.",
     impact: [
-      "DB/YAML 기반 prompt versioning, active/testing/archive 상태, 롤백 API 설계",
-      "샘플링 검증, 전수 검증, 자동 승인/보정 흐름을 데이터 수집 파이프라인에 연결",
-      "운영자가 품질 이슈를 추적하고 프롬프트 변경 효과를 비교할 수 있는 구조 마련",
+      "4,255건 입력 데이터를 대상으로 place id search, home, information, photos, validation, export skill pipeline 설계",
+      "병원 상세, 피부 시술, 이벤트·프로모션, 뷰티 제품, 리뷰, 채널·성과 데이터를 업무 도메인별 수집 대상으로 정의",
+      "서울 1,723건을 6개 구역 split DB로 나누고 checkpoint, retry, merge, CSV/JSON export까지 운영",
+      "locate -> collect -> crosscheck -> R2 upload -> DB insert 흐름의 event pipeline과 monthly runbook 작성",
     ],
-    stack: ["PromptOps", "Claude Agent SDK", "MCP", "Playwright", "Structured Output", "PostgreSQL", "FastAPI"],
-    icon: ShieldCheck,
+    stack: ["Python", "Playwright", "httpx", "PostgreSQL", "SQLite", "Cloud SQL", "R2", "Gemini CLI"],
+    icon: Database,
     sections: [
       {
         title: "Problem",
         body: [
-          "크롤링과 LLM 추출이 결합된 데이터 파이프라인은 프롬프트 변경 하나로 품질이 흔들릴 수 있습니다.",
-          "운영자가 어떤 프롬프트가 언제 활성화되었고 어떤 데이터 품질을 냈는지 확인할 수 있어야 했습니다.",
+          "회사 업무 도메인에 필요한 데이터는 병원 상세, 피부 시술, 이벤트·프로모션, 뷰티 제품, 리뷰, 채널·성과 데이터처럼 출처와 형태가 계속 달라집니다.",
+          "외부 플랫폼 데이터는 중복, 동명 객체, DOM 변경, 일부 실패가 항상 발생하기 때문에 수집 결과가 현업 리포트에 쓰이려면 실패 재시도와 검증 가능성이 필요했습니다.",
         ],
       },
       {
         title: "Approach",
         body: [
-          "시스템 프롬프트, 병원별 프롬프트, 시술 상세 프롬프트를 분리하고 version, owner, status, metric, rollback 정보를 관리했습니다.",
-          "브라우저 기반 수집 결과를 구조화된 스키마로 검증하고, 원문/이미지/가격/시술명을 재확인하는 보정 흐름을 구성했습니다.",
+          "수집 단계를 skill 단위로 나누고, SQLite checkpoint와 split DB를 적용했습니다.",
+          "좌표 기반 matching, APOLLO_STATE parsing, structured validation, 실행 산출물 저장을 통해 데이터 품질을 추적했습니다.",
         ],
       },
       {
         title: "Result",
         body: [
-          "프롬프트를 감으로 수정하는 방식에서 벗어나, 운영 지표와 검증 결과를 기준으로 개선할 수 있는 구조를 만들었습니다.",
-          "데이터 파이프라인이 실패했을 때 원인 추적, 롤백, 보정이 가능한 운영 단위를 만들었습니다.",
+          "단발성 크롤링이 아니라 중단 후 재개, 실패 재시도, 병합, 보정, export가 가능한 운영 파이프라인을 만들었습니다.",
+          "수집 데이터를 리포트와 대시보드에 연결할 수 있는 형태로 정리했습니다.",
         ],
       },
     ],
   },
   {
     slug: "self-improving-social-agents",
-    title: "Self-Improving Social Outreach Agents",
-    eyebrow: "SNS Automation / Lead Generation",
+    title: "PromptOps and Content Test & Learn",
+    eyebrow: "Social/Content Automation / LLM Evaluation",
     period: "2026",
     summary:
-      "X, Threads, Instagram, Xiaohongshu 기반 의료관광 아웃리치에서 키워드/LLM 분류, Expert-to-Persona 생성, factual guard, self-evolution loop를 설계했습니다.",
+      "브랜드 콘텐츠 운영을 위해 검색, 수집, 분석, 콘텐츠 생성, 성과 측정, 프롬프트 개선, lesson 저장으로 이어지는 Test & Learn 구조를 설계했습니다.",
     impact: [
-      "성과 데이터 수집, A/B 평가, multi-LLM 개선안 생성, voting/debate, testing/adopt 루프 설계",
-      "브랜드 안전성과 사실 보존을 위해 factual/persona/drift guard 적용",
-      "자동 포스팅보다 human-in-the-loop 리뷰와 품질 개선 중심으로 운영 위험 관리",
+      "prompt versioning, active/testing 상태, A/B evaluator, quality score, bandit, drift monitor 구조 설계",
+      "metrics -> analyze -> generate -> vote -> debate -> adopt -> lesson으로 이어지는 개선 루프 구성",
+      "factual guard, persona guard, human review, rate limit, emergency halt로 브랜드 리스크 관리",
     ],
-    stack: ["Playwright", "Codex", "Gemini", "PostgreSQL", "LLM-as-Judge", "Thompson Sampling", "Rate Limiter"],
+    stack: ["PromptOps", "A/B Evaluation", "Codex", "Gemini", "PostgreSQL", "LLM-as-Judge", "Quality Guard"],
     icon: Repeat2,
     sections: [
       {
         title: "Problem",
         body: [
-          "SNS 자동화는 단순 생성량보다 사실성, 톤, 플랫폼별 맥락, 계정 안전성이 더 중요합니다.",
-          "운영자가 매번 캠페인 전략과 콘텐츠 변형을 수작업으로 관리하면 확장성이 떨어집니다.",
+          "LLM 콘텐츠 자동화는 생성량보다 사실성, 브랜드 톤, 성과 측정, 개선 루프가 중요합니다.",
+          "운영자가 매번 소재와 문구를 수작업으로 관리하면 확장성이 떨어집니다.",
         ],
       },
       {
         title: "Approach",
         body: [
-          "키워드 프리필터와 LLM 의도 분류로 후보를 줄이고, Expert Base에서 factual content를 만든 뒤 Persona Adaptation으로 플랫폼 톤을 조정했습니다.",
-          "성과 데이터를 바탕으로 prompt variant를 만들고 A/B 평가, voting/debate, lesson storage를 거쳐 다음 실행에 반영했습니다.",
+          "전문가 기반 콘텐츠 생성과 persona adaptation을 분리하고, 성과 데이터를 prompt variant와 lesson으로 되돌리는 구조를 만들었습니다.",
+          "개선안은 단일 응답에 의존하지 않고 평가와 승인 흐름을 거치도록 했습니다.",
         ],
       },
       {
         title: "Result",
         body: [
-          "SNS 운영을 무작위 자동화가 아니라 측정 가능한 실험과 개선 루프로 설계했습니다.",
-          "플랫폼 정책과 브랜드 리스크를 고려한 semi-automated outreach 기반을 만들었습니다.",
+          "브랜드 콘텐츠 운영을 감에 의존하는 생성 작업이 아니라 측정 가능한 LLM Test & Learn 프로세스로 전환했습니다.",
+          "사실성, 톤, drift, 성과를 함께 보는 품질 중심 자동화 구조를 만들었습니다.",
         ],
       },
     ],
   },
   {
-    slug: "ai-rag-consultation-products",
-    title: "AI Beauty & Health Consultation Products",
-    eyebrow: "RAG / Full-stack AI Product",
+    slug: "ai-product-quality-report-automation",
+    title: "AI Product Quality and Report Automation",
+    eyebrow: "CheckYourHospital Side Project / Memoriz",
     period: "2026",
     summary:
-      "뷰티/건강 상담 서비스에서 Next.js, FastAPI, GCP, Gemini, Vector DB, RAG, Tool Calling, SSE Streaming 기반 사용자 경험과 운영 도구를 개발했습니다.",
+      "개인 사이드 프로젝트 CheckYourHospital의 AI SEO/AEO 진단 서비스와 Memoriz의 AI album/search 기능에서 평가 데이터, 리포트, 품질 가드, Admin, E2E, follow-up automation까지 포함한 운영 품질 검증 체계를 구축했습니다.",
     impact: [
-      "상담형 AI 제품의 프론트엔드, 백엔드, 인프라, 데이터 흐름을 함께 설계",
-      "Vector DB와 semantic routing으로 지식 검색과 대화 흐름을 분리",
-      "Admin tooling, event pipeline, data correction flow까지 운영 관점에서 연결",
+      "병원 홈페이지를 7개 카테고리 48개 항목으로 진단하는 AI SEO/AEO scoring/report pipeline 설계",
+      "AI 추천 시뮬레이션, 다국어 매트릭스, 의료법 컴플라이언스, Naver Place 연동, PDF 리포트 생성 흐름 구축",
+      "AI 기능 변경 시 평가 데이터, 리포트 산출물, targeted test 갱신을 요구하는 guard script 적용",
     ],
-    stack: ["Next.js", "FastAPI", "Gemini", "Vertex AI Embedding", "Vector DB", "RAG", "GCP Cloud Run"],
-    icon: BrainCircuit,
+    stack: ["Next.js", "FastAPI", "Playwright", "Gemini", "GCP", "E2E", "Eval Reports", "PDF"],
+    icon: ShieldCheck,
     sections: [
       {
         title: "Problem",
         body: [
-          "상담형 AI 제품은 답변 생성뿐 아니라 지식 검색, 사용자 상태, 운영 정책, 데이터 품질이 함께 맞물려야 합니다.",
-          "프론트엔드 대화 UX와 백엔드 inference pipeline, 운영자 도구가 분리되면 제품 개선 속도가 느려집니다.",
+          "AI 기능은 모델, 프롬프트, 데이터, threshold가 바뀔 때 품질이 흔들립니다.",
+          "기능 구현만으로는 운영 중 품질 저하를 감지하기 어렵습니다.",
         ],
       },
       {
         title: "Approach",
         body: [
-          "RAG, tool calling, SSE streaming, admin workflow를 하나의 사용자/운영 흐름으로 연결했습니다.",
-          "Cloud Run, Cloud SQL, Redis, Secret Manager 기반으로 서비스 운영에 필요한 인프라를 함께 다뤘습니다.",
+          "AI 결과물을 리포트와 Admin에서 확인 가능하게 만들고, 평가 데이터, 리포트 산출물, targeted test를 기능 변경과 연결했습니다.",
+          "리드 캡처와 후속 자동화까지 제품 흐름 안에 포함했습니다.",
         ],
       },
       {
         title: "Result",
         body: [
-          "AI 기능을 데모가 아니라 운영 가능한 제품 흐름으로 묶었습니다.",
-          "데이터 수집, 상담 품질, 운영 보정이 이어지는 full-stack AI product 기반을 만들었습니다.",
+          "AI 기능을 데모가 아니라 고객에게 설명 가능한 리포트와 운영자가 검증 가능한 업무 흐름으로 만들었습니다.",
+          "품질 기준과 운영 산출물이 함께 남는 AI 제품 개발 프로세스를 만들었습니다.",
         ],
       },
     ],
@@ -318,22 +320,22 @@ export const capabilities = [
   {
     icon: GitBranch,
     title: "Agent Workflow Design",
-    items: ["Plan/Design/Develop/QA/Deploy workflow", "Subagent task decomposition", "Reusable team templates"],
+    items: ["Messenger-based agent access", "Task contract and approval gate", "Agent/skill/command templates"],
   },
   {
     icon: Gauge,
-    title: "Evaluation & Operations",
-    items: ["Prompt versioning", "A/B evaluation", "Structured output validation", "Rollback and audit logs"],
+    title: "LLM Test & Learn",
+    items: ["Prompt versioning", "A/B evaluation", "Quality score and factual guard", "Rollback and lesson storage"],
   },
   {
     icon: Radar,
     title: "Automation Surface",
-    items: ["Slack/Discord agents", "Kakao bot workflows", "Playwright/uiautomator2", "Crawler and admin tooling"],
+    items: ["Slack/Discord agent workflows", "Kakao workflows", "Playwright/httpx crawlers", "Admin and report tooling"],
   },
   {
     icon: Cloud,
-    title: "AI Product Infrastructure",
-    items: ["GCP Cloud Run/Cloud SQL", "PostgreSQL/Redis", "Vector DB/RAG", "SSE and tool calling"],
+    title: "Data Pipeline Infrastructure",
+    items: ["Cloud SQL/PostgreSQL", "SQLite checkpoint and retry", "R2/GCS output storage", "CSV/JSON export"],
   },
   {
     icon: Layers3,
@@ -343,16 +345,16 @@ export const capabilities = [
   {
     icon: Code2,
     title: "Full-stack Delivery",
-    items: ["Next.js/React/TypeScript", "FastAPI/Python", "Admin dashboards", "Monitoring and stabilization"],
+    items: ["Next.js/React/TypeScript", "FastAPI/Python", "Admin dashboards", "Monitoring and operational runbooks"],
   },
 ]
 
 export const timeline = [
   {
     period: "2026.01 - 현재",
-    role: "AX Engineer / AI Agent & Automation Engineer",
+    role: "AI Automation Engineer / Agent Engineer",
     company: "주식회사 플레드",
-    body: "AI Agent/Skill 플랫폼, PromptOps, RAG/Vector DB 기반 서비스, MCP/Tool Calling, 데이터 파이프라인, SNS/메신저 자동화, 프론트엔드/백엔드/인프라를 설계하고 구현.",
+    body: "AI Agent와 데이터 자동화로 개발, 운영, 마케팅, CS, 리포트 업무의 반복 구간을 줄이는 역할. 사내 업무 자동화 툴, agent/skill 자산 저장소, 메신저 기반 Agent 접점, task board를 운영·파일럿 단계로 나눠 설계하고 구현.",
   },
   {
     period: "2025.04 - 2025.12",
@@ -376,8 +378,8 @@ export const timeline = [
 
 export const stackGroups = [
   {
-    title: "AI/AX",
-    items: ["Claude Code", "Codex CLI", "Gemini CLI", "OpenClaw", "Multica", "MCP", "LangChain", "LangGraph", "PromptOps", "LLM Evaluation"],
+    title: "AI Automation",
+    items: ["사내 업무 자동화 툴", "Agent/Skill Workspace", "Messenger Gateway", "Claude Code", "Codex CLI", "Gemini CLI", "Task Board", "MCP", "PromptOps", "LLM Evaluation"],
   },
   {
     title: "Product Engineering",

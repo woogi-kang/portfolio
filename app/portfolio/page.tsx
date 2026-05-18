@@ -7,11 +7,11 @@ import { caseStudies } from "@/lib/portfolio-data"
 
 export const metadata: Metadata = {
   title: "Case Studies",
-  description: "AI agent, PromptOps, RAG, automation, Flutter multi-platform, and product operations case studies.",
+  description: "AI workflow automation, data pipeline, PromptOps, LLM evaluation, and AI product operations case studies.",
 }
 
 export default function PortfolioPage() {
-  const domains = ["AI Agent", "PromptOps", "RAG", "Automation", "Flutter", "Device Ops"]
+  const domains = ["AI Workflow", "Data Pipeline", "PromptOps", "LLM Evaluation", "Automation", "Product Ops"]
 
   return (
     <main className="bg-white dark:bg-slate-950">
@@ -24,11 +24,11 @@ export default function PortfolioPage() {
             <div>
               <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl dark:text-white">
                 <span className="block">운영 가능한</span>
-                <span className="block">AI/AX 시스템</span>
+                <span className="block">AI 자동화 시스템</span>
                 <span className="block">구축 사례</span>
               </h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700 dark:text-slate-300">
-                단순 데모나 개인 자동화가 아니라, 팀이 반복해서 쓰고 운영할 수 있는 에이전트, 데이터 파이프라인, 제품 출시/운영 자동화 중심으로 정리했습니다.
+                단순 데모나 개인 자동화가 아니라, 팀이 반복해서 쓰고 운영할 수 있는 Agent 운영 체계, 데이터 수집/검증 파이프라인, LLM Test & Learn, 제품 운영 자동화 중심으로 정리했습니다.
               </p>
             </div>
             <div className="rounded-md border bg-white p-5 dark:bg-slate-950">
@@ -100,7 +100,7 @@ export default function PortfolioPage() {
               더 자세한 경력 흐름은 이력서에서 확인할 수 있습니다.
             </h2>
             <p className="mt-2 text-slate-600 dark:text-slate-300">
-              제출용 이력서와 동일한 포지셔닝으로 AX/AI Agent 중심의 경력을 정리했습니다.
+              제출용 이력서와 동일한 포지셔닝으로 AI 자동화와 Agent Engineering 중심의 경력을 정리했습니다.
             </p>
           </div>
           <Button asChild className="w-fit rounded-md bg-slate-950 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950">

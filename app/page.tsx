@@ -16,9 +16,9 @@ import {
 } from "@/lib/portfolio-data"
 
 export const metadata: Metadata = {
-  title: "AX Engineer / AI Agent Portfolio",
+  title: "AI Automation Engineer / Agent Portfolio",
   description:
-    "Kang Taewook builds AI agent workflows, PromptOps systems, RAG products, automation pipelines, and Flutter multi-platform products.",
+    "Kang Taewook builds AI workflow automation, data pipelines, PromptOps workflows, and AI product operations.",
 }
 
 const featuredCaseStudies = caseStudies.slice(0, 4)
@@ -52,12 +52,12 @@ export default function Home() {
               {profile.role}
             </p>
             <h1 className="max-w-[22rem] text-3xl font-semibold leading-tight tracking-tight text-slate-950 sm:text-4xl md:max-w-4xl md:text-6xl dark:text-slate-50">
-              <span className="block">AI Agent와 자동화로</span>
-              <span className="block">팀이 일하는 방식을</span>
-              <span className="block">다시 설계합니다.</span>
+              <span className="block">AI Agent와</span>
+              <span className="block">데이터 파이프라인으로</span>
+              <span className="block">업무를 시스템화합니다.</span>
             </h1>
             <p className="mt-6 max-w-[22rem] text-base leading-8 text-slate-700 md:max-w-2xl md:text-xl dark:text-slate-200">
-              {profile.summary} 0 to 1 구축뿐 아니라 배포, 현장 운영, 모니터링, 안정화까지 이어지는 제품 개발을 지향합니다.
+              {profile.summary} 프롬프트 몇 개를 만드는 수준이 아니라, 업무 요청, 실행, 검증, 기록, 개선이 이어지는 자동화 프로세스를 설계합니다.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" className="rounded-md bg-slate-950 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950">
@@ -118,7 +118,7 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
-                Operating System
+                Workflow System
               </p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl dark:text-white">
                 프롬프트가 아니라 운영 가능한 업무 시스템을 만듭니다.
@@ -155,7 +155,7 @@ export default function Home() {
                 Selected Case Studies
               </p>
               <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl dark:text-white">
-                AX 전환, PromptOps, RAG 제품, 스마트 디바이스 운영까지 연결한 작업들
+                Agent 운영 체계, 데이터 파이프라인, LLM 실험, AI 제품 운영까지 연결한 작업들
               </h2>
             </div>
             <Button asChild variant="outline" className="w-fit rounded-md bg-white dark:bg-slate-950">
@@ -204,7 +204,7 @@ export default function Home() {
               </p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">
                 <span className="block">에이전트 개발을 넘어</span>
-                <span className="block">제품 운영 부담을 줄이는</span>
+                <span className="block">업무 운영 부담을 줄이는</span>
                 <span className="block">엔지니어</span>
               </h2>
             </div>
@@ -241,7 +241,7 @@ export default function Home() {
                 Career Timeline
               </p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">
-                Flutter 제품 개발에서 AX Engineering으로 확장
+                제품 개발에서 AI 업무 자동화로 확장
               </h2>
             </div>
             <div className="space-y-4">
@@ -267,8 +267,8 @@ export default function Home() {
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-300">Stack</p>
                 <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                  <span className="block">AI/AX, 제품 개발,</span>
-                  <span className="block">디바이스 운영을</span>
+                  <span className="block">Agent, 데이터,</span>
+                  <span className="block">제품 운영을</span>
                   <span className="block">한 흐름으로 다룹니다.</span>
                 </h2>
               </div>

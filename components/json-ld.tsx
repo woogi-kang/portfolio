@@ -8,8 +8,8 @@ export default function JsonLd() {
                 "name": "Kang Taewook",
                 "alternateName": "Woogi",
                 "url": "https://woogi.is-a.dev",
-                "jobTitle": "AX Engineer / AI Agent & Automation Engineer",
-                "description": "Product engineer based in Seoul building AI agents, PromptOps systems, RAG products, automation pipelines, and Flutter multi-platform products.",
+                "jobTitle": "AI Automation Engineer / Agent Engineer",
+                "description": "Product engineer based in Seoul building AI workflow automation, data pipelines, PromptOps workflows, and AI product operations.",
                 "sameAs": [
                     "https://github.com/woogi-kang",
                     "https://www.linkedin.com/in/taewook-kang/",
@@ -20,7 +20,7 @@ export default function JsonLd() {
                 "@type": "WebSite",
                 "@id": "https://woogi.is-a.dev/#website",
                 "url": "https://woogi.is-a.dev",
-                "name": "Woogi AX Portfolio",
+                "name": "Woogi AI Automation Portfolio",
                 "publisher": {
                     "@id": "https://woogi.is-a.dev/#person"
                 }

@@ -8,7 +8,7 @@ export function Footer() {
         <footer className="border-t py-6 md:py-0">
             <div className="container mx-auto px-4 flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
                 <p className="max-w-full break-words text-center text-sm leading-loose text-muted-foreground md:text-left">
-                    © {new Date().getFullYear()} {profile.name}. AX Engineer.
+                    © {new Date().getFullYear()} {profile.name}. AI Automation Engineer.
                 </p>
                 <div className="flex gap-4 text-sm text-muted-foreground">
                     <Link href={profile.github} target="_blank" className="hover:text-foreground">

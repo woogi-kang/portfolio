@@ -3,7 +3,7 @@ import { ContactForm } from "@/components/contact-form"
 
 export const metadata: Metadata = {
     title: "Contact",
-    description: "Contact Kang Taewook for AI agent, AX automation, RAG product, or Flutter multi-platform product work.",
+    description: "Contact Kang Taewook for AI agent systems, data pipelines, PromptOps, automation, or product operations work.",
 }
 
 export default function ContactPage() {
