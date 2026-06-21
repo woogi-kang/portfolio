@@ -19,12 +19,18 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://woogi.is-a.dev"),
   title: {
-    default: "Kang Taewook | AI Automation Engineer",
+    default: "Kang Taewook | AI Data Product Engineer",
     template: "%s | Woogi",
   },
   description:
-    "AI Automation Engineer and Product Engineer based in Seoul. I build AI workflow automation, data pipelines, PromptOps workflows, and AI product operations.",
+    "AI Data Product Engineer and Product Engineer based in Seoul. I build LLM data pipelines, catalog-like data layers, grounded AI services, evaluation workflows, and full-stack AI product operations.",
   keywords: [
+    "AI Data Product Engineer",
+    "LLM Data Pipeline",
+    "Catalog System",
+    "Structured Output",
+    "RAG",
+    "Grounded AI",
     "AI Automation Engineer",
     "AI Agent Engineer",
     "PromptOps",
@@ -45,24 +51,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     url: "https://woogi.is-a.dev",
-    title: "Kang Taewook | AI Automation Engineer",
+    title: "Kang Taewook | AI Data Product Engineer",
     description:
-      "AI workflow automation, data pipelines, PromptOps workflows, automation, and product operations.",
-    siteName: "Woogi AI Automation Portfolio",
+      "LLM data pipelines, catalog-like data layers, grounded AI services, evaluation workflows, and product operations.",
+    siteName: "Woogi AI Data Product Portfolio",
     images: [
       {
         url: "/og-image.png", // We might need to generate this or use a placeholder
         width: 1200,
         height: 630,
-        alt: "Kang Taewook AI Automation Portfolio",
+        alt: "Kang Taewook AI Data Product Portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kang Taewook | AI Automation Engineer",
+    title: "Kang Taewook | AI Data Product Engineer",
     description:
-      "AI workflow automation, data pipelines, PromptOps workflows, automation, and product operations.",
+      "LLM data pipelines, catalog-like data layers, grounded AI services, evaluation workflows, and product operations.",
     images: ["/og-image.png"],
   },
   robots: {

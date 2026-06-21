@@ -8,6 +8,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const routes = [
         "",
         "/portfolio",
+        "/portfolio/alwayz-shopport-ai-data",
+        "/portfolio/moais-ai-llm",
+        "/portfolio/overdare-ai-agent",
         "/posts",
         "/resume",
         "/contact",

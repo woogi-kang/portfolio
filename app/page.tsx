@@ -16,12 +16,19 @@ import {
 } from "@/lib/portfolio-data"
 
 export const metadata: Metadata = {
-  title: "AI Automation Engineer / Agent Portfolio",
+  title: "AI Data Product Engineer / LLM Pipeline Portfolio",
   description:
-    "Kang Taewook builds AI workflow automation, data pipelines, PromptOps workflows, and AI product operations.",
+    "Kang Taewook builds LLM data pipelines, catalog-like data layers, grounded AI services, and full-stack AI product workflows.",
 }
 
-const featuredCaseStudies = caseStudies.slice(0, 4)
+const featuredCaseStudies = [
+  "llm-structured-extraction-catalog-pipeline",
+  "evidence-gated-ai-recommendation-pipeline",
+  "ai-product-quality-report-automation",
+  "data-collection-verification-pipeline",
+]
+  .map((slug) => caseStudies.find((project) => project.slug === slug))
+  .filter((project): project is (typeof caseStudies)[number] => Boolean(project))
 
 export default function Home() {
   return (
@@ -52,21 +59,23 @@ export default function Home() {
               {profile.role}
             </p>
             <h1 className="max-w-[22rem] text-3xl font-semibold leading-tight tracking-tight text-slate-950 sm:text-4xl md:max-w-4xl md:text-6xl dark:text-slate-50">
-              <span className="block">AI Agent와</span>
-              <span className="block">데이터 파이프라인으로</span>
-              <span className="block">업무를 시스템화합니다.</span>
+              <span className="block">LLM 데이터 파이프라인과</span>
+              <span className="block">AI 제품 경험으로</span>
+              <span className="block">비정형 데이터를 구조화합니다.</span>
             </h1>
             <p className="mt-6 max-w-[22rem] text-base leading-8 text-slate-700 md:max-w-2xl md:text-xl dark:text-slate-200">
-              {profile.summary} 프롬프트 몇 개를 만드는 수준이 아니라, 업무 요청, 실행, 검증, 기록, 개선이 이어지는 자동화 프로세스를 설계합니다.
+              {profile.summary} 프롬프트 몇 개를 만드는 수준이 아니라, 데이터 수집, 구조화, 검증, 검색, 추천, 운영 로그가 이어지는 제품 시스템을 설계합니다.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" className="rounded-md bg-slate-950 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950">
-                <Link href="/portfolio">
-                  Case Studies <ArrowRight className="h-4 w-4" />
+                <Link href="/portfolio/alwayz-shopport-ai-data">
+                  Shopport-fit Portfolio <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="rounded-md bg-white/80 dark:bg-slate-950/60">
-                <Link href="/resume">Resume</Link>
+                <Link href="/portfolio">
+                  Case Studies <ArrowRight className="h-4 w-4" />
+                </Link>
               </Button>
               <Button asChild size="lg" variant="ghost" className="rounded-md">
                 <Link href={`mailto:${profile.email}`}>
@@ -121,7 +130,7 @@ export default function Home() {
                 Workflow System
               </p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl dark:text-white">
-                프롬프트가 아니라 운영 가능한 업무 시스템을 만듭니다.
+                프롬프트가 아니라 신뢰 가능한 데이터 계층과 제품 루프를 만듭니다.
               </h2>
               <div className="mt-6 space-y-3">
                 {operatingPrinciples.map((principle) => (
@@ -155,7 +164,7 @@ export default function Home() {
                 Selected Case Studies
               </p>
               <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl dark:text-white">
-                Agent 운영 체계, 데이터 파이프라인, LLM 실험, AI 제품 운영까지 연결한 작업들
+                LLM 속성 추출, 데이터 검증, AI 추천, 리포트 제품까지 연결한 작업들
               </h2>
             </div>
             <Button asChild variant="outline" className="w-fit rounded-md bg-white dark:bg-slate-950">
@@ -203,8 +212,8 @@ export default function Home() {
                 Capability Map
               </p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">
-                <span className="block">에이전트 개발을 넘어</span>
-                <span className="block">업무 운영 부담을 줄이는</span>
+                <span className="block">AI 기능 구현을 넘어</span>
+                <span className="block">데이터와 품질을 함께 설계하는</span>
                 <span className="block">엔지니어</span>
               </h2>
             </div>
@@ -241,7 +250,7 @@ export default function Home() {
                 Career Timeline
               </p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">
-                제품 개발에서 AI 업무 자동화로 확장
+                제품 개발에서 AI Data Product로 확장
               </h2>
             </div>
             <div className="space-y-4">

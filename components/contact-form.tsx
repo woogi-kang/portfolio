@@ -66,12 +66,12 @@ export function ContactForm() {
                     <Mail className="h-6 w-6 text-primary" />
                 </div>
                 <h1 className="mb-4 text-2xl font-bold tracking-tight sm:text-3xl md:text-5xl">
-                    <span className="block">AI Automation</span>
+                    <span className="block">AI Data Product</span>
                     <span className="block">프로젝트를 함께</span>
                     <span className="block">이야기해요</span>
                 </h1>
                 <p className="mx-auto max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl">
-                    AI Agent 운영 체계, 데이터 파이프라인, PromptOps, 자동화 파이프라인, 제품 운영 체계에 대해 함께 논의할 수 있습니다.
+                    LLM 데이터 파이프라인, AI Agent 운영 체계, PromptOps, grounded AI service, 제품 운영 체계에 대해 함께 논의할 수 있습니다.
                 </p>
             </div>
 

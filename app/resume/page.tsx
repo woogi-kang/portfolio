@@ -7,7 +7,7 @@ import { capabilities, profile, stackGroups, timeline } from "@/lib/portfolio-da
 
 export const metadata: Metadata = {
   title: "Resume",
-  description: "Kang Taewook resume focused on AI automation, agent engineering, data pipelines, PromptOps, and product operations.",
+  description: "Kang Taewook resume focused on AI data product engineering, LLM pipelines, catalog-like data layers, grounded AI services, and product operations.",
 }
 
 const education = [
@@ -28,12 +28,12 @@ export default function ResumePage() {
                 Resume
               </p>
               <h1 className="mt-4 max-w-4xl text-3xl font-semibold tracking-tight text-slate-950 md:text-6xl dark:text-white">
-                <span className="block">AI Automation</span>
-                <span className="block">Agent Engineering 중심의</span>
+                <span className="block">AI Data Product</span>
+                <span className="block">LLM Pipeline 중심의</span>
                 <span className="block">경력 요약</span>
               </h1>
               <p className="mt-6 max-w-3xl break-words text-lg leading-8 text-slate-700 dark:text-slate-300">
-                2025년 Claude Code 공개 이후 Claude/Codex/Gemini CLI 기반 환경에서 누적 약 100억 토큰 규모의 실험과 실무 적용을 반복하며, AI가 개인 생산성 도구를 넘어 조직의 업무 방식 자체를 바꾸려면 어떤 실행 환경이 필요한지 설계해 온 Product Engineer입니다.
+                웹, 이미지, OCR, 위치, 리뷰성 텍스트 같은 비정형 도메인 데이터를 수집·구조화·검증하고 RAG, Vector DB, Tool Calling, PromptOps, 평가 하네스, AI 상담·검색·추천 서비스로 연결해 온 Product Engineer입니다.
               </p>
             </div>
             <div className="flex flex-wrap gap-3 xl:justify-end">
@@ -46,7 +46,7 @@ export default function ResumePage() {
               <Button asChild variant="outline" className="rounded-md bg-white dark:bg-slate-950">
                 <Link href={profile.careerDescriptionPdf}>
                   <ArrowDownToLine className="h-4 w-4" />
-                  Career PDF
+                  Base Resume
                 </Link>
               </Button>
               <Button asChild variant="outline" className="rounded-md bg-white dark:bg-slate-950">

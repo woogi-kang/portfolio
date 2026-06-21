@@ -6,7 +6,6 @@ import {
   Database,
   Gauge,
   Glasses,
-  GitBranch,
   Layers3,
   MonitorSmartphone,
   Radar,
@@ -19,54 +18,54 @@ import {
 export const profile = {
   name: "Kang Taewook",
   handle: "Woogi",
-  role: "AI Automation Engineer / Agent Engineer",
-  headline: "비개발 직군도 함께 쓰는 AI 업무 운영 체계로 회사의 반복 업무를 자동화합니다.",
+  role: "AI Data Product Engineer / Product Engineer",
+  headline: "비정형 도메인 데이터를 LLM 파이프라인과 AI 제품 경험으로 연결합니다.",
   summary:
-    "2025년 Claude Code 공개 이후 Claude/Codex/Gemini CLI 기반 환경에서 누적 약 100억 토큰 규모의 실험과 실무 적용을 반복하며, AI를 조직의 업무 방식으로 전환하는 실행 환경을 설계해 온 Product Engineer입니다. 사내 업무 요청을 task로 나누고 Agent/Skill 자산, 메신저 Agent 접점, 검증·기록 루틴을 묶어 비개발 직군도 함께 쓰는 업무 자동화 환경을 구축해 왔습니다.",
+    "Flutter 기반 멀티플랫폼 제품 개발에서 출발해 AI Data Product, LLM Pipeline, AX/AI Agent Engineering까지 확장해 온 Product Engineer입니다. 웹, 이미지, OCR, 위치, 리뷰성 텍스트 같은 비정형 도메인 데이터를 수집·구조화·검증하고 RAG, Vector DB, Tool Calling, PromptOps, 평가 하네스, AI 상담·검색·추천 서비스로 연결해 왔습니다.",
   location: "Seoul, Korea",
   email: "woogi.dev@gmail.com",
   github: "https://github.com/woogi-kang",
   linkedin: "https://www.linkedin.com/in/taewook-kang/",
   medium: "https://medium.com/@dev-woogi",
-  resumePdf: "/wyatt-resume-kang-taewook.pdf",
-  careerDescriptionPdf: "/wyatt-career-description-kang-taewook.pdf",
+  resumePdf: "/alwayz-shopport-product-engineer-ai-data-resume-kang-taewook.pdf",
+  careerDescriptionPdf: "/kang-taewook-resume-submission-2026.pdf",
 }
 
 export const metrics = [
   { label: "실무 경력", value: "6년차", detail: "2020.09 - 현재" },
-  { label: "Agent 자산 정리", value: "25+ / 394", detail: "도메인 Agent와 분류된 Skill" },
-  { label: "AI 업무 운영 체계", value: "사내 자동화 툴", detail: "Messenger, Task Board, Worker" },
-  { label: "자동화 범위", value: "Workflow + Data", detail: "사내 업무, 수집, 리포트, 콘텐츠" },
+  { label: "AI 데이터 제품", value: "Catalog-like", detail: "Entity, Attribute, Alias, Search" },
+  { label: "LLM 파이프라인", value: "Structured", detail: "Extraction, Grounding, Evaluation" },
+  { label: "제품 표면", value: "Full-stack", detail: "App, API, Worker, Report" },
 ]
 
 export const focusAreas = [
   {
-    icon: Bot,
-    title: "Company-wide AI Workflow Automation",
-    body: "사내 업무 자동화 툴로 업무 요청과 실행 기록을 관리하고, 메신저 기반 Agent gateway를 Slack/Discord와 연결해 모든 회사 구성원이 메신저에서 도메인 특화 AI 에이전트를 호출하도록 설계합니다.",
-  },
-  {
     icon: Database,
-    title: "Data Pipeline & Verification",
-    body: "병원 상세, 피부 시술, 이벤트·프로모션, 뷰티 제품, 리뷰, 채널·성과 데이터처럼 업무 도메인에 필요한 외부 데이터를 수집 대상으로 정의하고 checkpoint, retry, validation, export까지 닫아 현업 리포트와 대시보드에 쓸 수 있는 데이터 흐름으로 만듭니다.",
+    title: "LLM Data Pipeline and Catalog Layer",
+    body: "웹 페이지, 이미지, OCR, DOM snapshot, 리뷰성 텍스트를 수집하고 entity, attribute, alias, embedding, search index로 구조화해 AI 검색·추천·상담이 재사용할 수 있는 데이터 계층으로 만듭니다.",
   },
   {
     icon: BrainCircuit,
-    title: "PromptOps & Test and Learn",
-    body: "프롬프트를 version, status, metric, rollback이 있는 운영 자산으로 관리하고 A/B evaluation, quality score, factual/drift guard로 개선합니다.",
+    title: "Grounded AI Service and Agent UX",
+    body: "RAG/HybridSearch, Google Search Grounding, Tool Calling, source metadata, token usage log, SSE streaming을 결합해 출처와 실패 케이스를 추적할 수 있는 AI 상담·검색 UX를 구현합니다.",
+  },
+  {
+    icon: Gauge,
+    title: "Quality, Evaluation, and Guardrails",
+    body: "Prompt versioning, A/B evaluation, factual guard, drift guard, confidence threshold, human review queue로 모델·프롬프트·검색 전략 변경의 품질 리스크를 관리합니다.",
   },
   {
     icon: MonitorSmartphone,
-    title: "AI Product Operations",
-    body: "AI 기능을 Admin, report, runbook, E2E, 평가 산출물, follow-up automation까지 포함한 제품 운영 흐름으로 연결합니다.",
+    title: "Full-stack Product Shipping",
+    body: "Next.js, FastAPI, PostgreSQL, Redis, GCP, Flutter 기반으로 AI 기능을 API, worker, admin/report, app/web UI, monitoring이 있는 제품 구조로 구현합니다.",
   },
 ]
 
 export const operatingPrinciples = [
-  "AI 도구 도입보다 회사 업무의 반복 지점을 찾아 요청, 실행, 검증, 기록이 이어지는 운영 체계로 바꾸는 일을 우선합니다.",
-  "프롬프트, 에이전트, 스킬, 데이터 검증 기준을 코드와 같은 운영 자산으로 관리합니다.",
-  "데이터 수집은 checkpoint, retry, validation, export까지 닫아야 실제 업무에 쓸 수 있다고 봅니다.",
-  "개발 직군 밖의 전략, 운영, 리포트, 콘텐츠, 고객 접점 업무도 메신저 기반 Agent 접점으로 연결합니다.",
+  "LLM 기능은 좋은 프롬프트보다 신뢰 가능한 데이터 계층, 실패 처리, 평가 루프가 먼저라고 봅니다.",
+  "데이터 수집은 checkpoint, retry, validation, export까지 닫혀야 제품과 의사결정에 쓸 수 있습니다.",
+  "AI가 추측해도 되는 영역과 source-of-truth가 필요한 영역을 분리하고, 불확실성은 human review나 fallback으로 처리합니다.",
+  "기술 선택보다 사용자 경험, 데이터 품질, 운영 비용, 실험 속도가 실제 제품 임팩트를 만든다고 봅니다.",
 ]
 
 export type CaseStudy = {
@@ -85,6 +84,84 @@ export type CaseStudy = {
 }
 
 export const caseStudies: CaseStudy[] = [
+  {
+    slug: "llm-structured-extraction-catalog-pipeline",
+    title: "LLM Structured Extraction and Catalog Pipeline",
+    eyebrow: "Entity / Attribute / Alias / Search Data Layer",
+    period: "2026",
+    summary:
+      "병원·미용·뷰티 도메인에서 웹 페이지, 이미지, OCR, ARIA snapshot, DOM 후보를 수집하고 Gemini/Claude Structured Output으로 도메인 엔티티와 속성을 추출하는 데이터 파이프라인을 구축했습니다.",
+    impact: [
+      "Playwright snapshot, screenshot, DOM 후보를 Gemini에 전달해 crawl structure를 생성하고 selector validation과 실패 피드백 재시도를 연결",
+      "Claude API wrapper에 Pydantic schema 기반 structured output, 동시성 제어, timeout/retry, token/cost tracking 적용",
+      "표준 시술/병원 엔티티, 다국어 번역, alias coverage, search dictionary를 AI 상담의 RAG/HybridSearch와 연결",
+    ],
+    stack: ["Playwright", "Gemini", "Claude", "Pydantic", "Structured Output", "PostgreSQL", "Search Alias", "RAG"],
+    icon: Database,
+    sections: [
+      {
+        title: "Problem",
+        body: [
+          "도메인 데이터는 웹 페이지, 이미지, OCR, 리뷰성 텍스트, 다국어 별칭처럼 형태가 흩어져 있어 LLM 서비스가 바로 신뢰하고 쓰기 어렵습니다.",
+          "수집 대상 페이지마다 DOM 구조가 다르고, LLM 추출 결과도 schema, selector, 비용, 실패 재시도 기준이 없으면 운영 파이프라인으로 반복 실행하기 어렵습니다.",
+        ],
+      },
+      {
+        title: "Approach",
+        body: [
+          "Playwright로 ARIA snapshot, screenshot, DOM 후보를 수집하고 Gemini/Claude Structured Output으로 crawl structure와 이벤트·시술 속성을 추출했습니다.",
+          "Pydantic schema, selector validation, retry, checkpoint, token/cost tracking을 함께 설계해 LLM extraction을 일회성 프롬프트가 아니라 반복 가능한 데이터 파이프라인으로 만들었습니다.",
+          "표준 엔티티, 다국어 번역, alias coverage, search dictionary를 정리해 AI 상담과 검색이 재사용할 수 있는 데이터 계층으로 연결했습니다.",
+        ],
+      },
+      {
+        title: "Result",
+        body: [
+          "비정형 도메인 데이터를 AI 제품이 사용할 수 있는 entity, attribute, alias, search index 단위로 정리했습니다.",
+          "쇼포트의 상품/시각/판매/체감 속성 추출과 유사한 문제를 병원·미용 도메인에서 먼저 다뤄본 경험입니다.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "evidence-gated-ai-recommendation-pipeline",
+    title: "Evidence-gated AI Memory and Recommendation Pipeline",
+    eyebrow: "Memoriz / Place Evidence / Taste Graph / Recommendation",
+    period: "2026",
+    summary:
+      "Memoriz에서 사진, GPS, OCR, 일정 context를 바탕으로 장소 후보와 확정 장소를 분리하고, 확정된 데이터만 제목/요약, taste profile, recommendation seed, KPI 집계로 승격하는 AI 품질 정책을 설계했습니다.",
+    impact: [
+      "LLM이 장소명을 단독 생성하지 않도록 source-of-truth와 evidence-gated policy 설계",
+      "후보, 확정, area/container fallback을 분리해 hallucination과 과도한 provider search 비용을 제어",
+      "확정 장소만 taste profile, recommendation seed, 첫 추천 CTA, KPI report로 승격",
+    ],
+    stack: ["FastAPI", "Flutter", "Gemini", "Pydantic", "pgvector", "RAG", "KPI Report", "Human Review"],
+    icon: ShieldCheck,
+    sections: [
+      {
+        title: "Problem",
+        body: [
+          "사진과 위치만으로 정확한 장소를 맞추는 문제는 음식점, 카페, 복합건물처럼 오답 비용이 높은 케이스가 많습니다.",
+          "AI가 그럴듯한 이름을 만들어내면 사용자 기록과 추천 seed까지 오염될 수 있어 source-of-truth와 후보 데이터를 엄격히 분리해야 했습니다.",
+        ],
+      },
+      {
+        title: "Approach",
+        body: [
+          "OCR, 간판, 영수증, 예약, 메뉴판, 일정 context처럼 검색어를 만들 수 있는 evidence가 있을 때만 provider search를 허용했습니다.",
+          "확정 장소가 없으면 title/summary 생성을 보류하고, 불확실한 식당·카페·복합건물은 area/container fallback으로 처리했습니다.",
+          "확정된 장소만 취향 그래프와 추천 seed로 승격하고, 첫 추천 CTA와 KPI report에서 노출/클릭/저장 흐름을 추적했습니다.",
+        ],
+      },
+      {
+        title: "Result",
+        body: [
+          "AI 추천의 품질을 모델 응답이 아니라 데이터 신뢰도, 사용자 확인, fallback 정책으로 관리하는 구조를 만들었습니다.",
+          "커머스 카탈로그에서도 후기, 상세페이지, 가격, 이미지, 후보 상품명이 섞일 때 같은 source-of-truth 정책이 중요하다고 봅니다.",
+        ],
+      },
+    ],
+  },
   {
     slug: "internal-automation-agent-workflow",
     title: "Company-wide AI Workflow Automation",
@@ -318,24 +395,24 @@ export const caseStudies: CaseStudy[] = [
 
 export const capabilities = [
   {
-    icon: GitBranch,
-    title: "Agent Workflow Design",
-    items: ["Messenger-based agent access", "Task contract and approval gate", "Agent/skill/command templates"],
+    icon: Database,
+    title: "Catalog-like Data Layer",
+    items: ["Entity and attribute extraction", "Alias and multilingual search dictionary", "Embedding/search document design"],
   },
   {
     icon: Gauge,
-    title: "LLM Test & Learn",
-    items: ["Prompt versioning", "A/B evaluation", "Quality score and factual guard", "Rollback and lesson storage"],
+    title: "LLM Quality Loop",
+    items: ["Prompt versioning", "A/B evaluation", "Factual and drift guard", "Human review and fallback policy"],
   },
   {
     icon: Radar,
-    title: "Automation Surface",
-    items: ["Slack/Discord agent workflows", "Kakao workflows", "Playwright/httpx crawlers", "Admin and report tooling"],
+    title: "Grounded AI Service",
+    items: ["RAG/HybridSearch", "Google Search Grounding", "Tool Calling and source metadata", "SSE streaming UX"],
   },
   {
     icon: Cloud,
     title: "Data Pipeline Infrastructure",
-    items: ["Cloud SQL/PostgreSQL", "SQLite checkpoint and retry", "R2/GCS output storage", "CSV/JSON export"],
+    items: ["Cloud SQL/PostgreSQL", "SQLite checkpoint and retry", "Playwright/httpx crawlers", "CSV/JSON export"],
   },
   {
     icon: Layers3,
@@ -352,9 +429,9 @@ export const capabilities = [
 export const timeline = [
   {
     period: "2026.01 - 현재",
-    role: "AI Automation Engineer / Agent Engineer",
+    role: "AI Data Product / Agent Engineer",
     company: "주식회사 플레드",
-    body: "AI Agent와 데이터 자동화로 개발, 운영, 마케팅, CS, 리포트 업무의 반복 구간을 줄이는 역할. 사내 업무 자동화 툴, agent/skill 자산 저장소, 메신저 기반 Agent 접점, task board를 운영·파일럿 단계로 나눠 설계하고 구현.",
+    body: "AI Agent와 데이터 자동화로 개발, 운영, 마케팅, CS, 리포트 업무의 반복 구간을 줄이는 역할. 병원·미용·뷰티 도메인의 웹/이미지/OCR/리뷰성 데이터를 수집·구조화·검증하고 AI 상담, RAG/HybridSearch, grounded web search, report/admin 운영 흐름으로 연결.",
   },
   {
     period: "2025.04 - 2025.12",
@@ -378,16 +455,16 @@ export const timeline = [
 
 export const stackGroups = [
   {
-    title: "AI Automation",
-    items: ["사내 업무 자동화 툴", "Agent/Skill Workspace", "Messenger Gateway", "Claude Code", "Codex CLI", "Gemini CLI", "Task Board", "MCP", "PromptOps", "LLM Evaluation"],
+    title: "AI/LLM/Data",
+    items: ["Gemini", "Claude", "OpenAI API", "Structured Output", "Tool Calling", "RAG", "Vector DB", "PromptOps", "LLM Evaluation"],
+  },
+  {
+    title: "Data Pipeline",
+    items: ["Python", "FastAPI", "Pydantic", "PostgreSQL", "SQLite checkpoint", "Redis", "Playwright", "httpx", "CSV/JSON export"],
   },
   {
     title: "Product Engineering",
-    items: ["Next.js", "React", "TypeScript", "FastAPI", "Python", "PostgreSQL", "Redis", "GCP", "Firebase"],
-  },
-  {
-    title: "App & Device",
-    items: ["Flutter", "Dart", "Riverpod", "Melos", "BLE", "GATT", "Kiosk Mode", "OTA", "ADB"],
+    items: ["Next.js", "React", "TypeScript", "Flutter", "Dart", "Riverpod", "GCP", "Firebase", "Docker"],
   },
   {
     title: "Quality & Automation",
