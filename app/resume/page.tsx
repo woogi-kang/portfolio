@@ -2,12 +2,13 @@ import Link from "next/link"
 import { ArrowDownToLine, ExternalLink } from "lucide-react"
 import type { Metadata } from "next"
 
+import { Reveal } from "@/components/motion-reveal"
 import { Button } from "@/components/ui/button"
 import { capabilities, profile, stackGroups, timeline } from "@/lib/portfolio-data"
 
 export const metadata: Metadata = {
   title: "Resume",
-  description: "Kang Taewook resume focused on AI data product engineering, LLM pipelines, catalog-like data layers, grounded AI services, and product operations.",
+  description: "Kang Taewook resume focused on AI data product engineering, LLM pipelines, catalog data layers, grounded AI services, and product operations.",
 }
 
 const education = [
@@ -19,73 +20,65 @@ const education = [
 
 export default function ResumePage() {
   return (
-    <main className="bg-white dark:bg-slate-950">
-      <section className="border-b bg-[#f7f8f5] dark:bg-[#0d1117]">
-        <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
-          <div className="flex flex-col justify-between gap-8 xl:flex-row xl:items-end">
+    <main className="bg-background">
+      <section className="border-b bg-[#111812] text-[#f3f2e9]">
+        <div className="mx-auto max-w-6xl px-5 py-14 md:px-8 md:py-20">
+          <Reveal className="flex flex-col justify-between gap-8 xl:flex-row xl:items-end">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
-                Resume
-              </p>
-              <h1 className="mt-4 max-w-4xl text-3xl font-semibold tracking-tight text-slate-950 md:text-6xl dark:text-white">
-                <span className="block">AI Data Product</span>
-                <span className="block">LLM Pipeline 중심의</span>
-                <span className="block">경력 요약</span>
+              <p className="font-mono text-xs text-[#f2d27b]">RESUME</p>
+              <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold leading-tight md:text-6xl">
+                AI Data Product와 LLM Pipeline 중심의 경력
               </h1>
-              <p className="mt-6 max-w-3xl break-words text-lg leading-8 text-slate-700 dark:text-slate-300">
-                웹, 이미지, OCR, 위치, 리뷰성 텍스트 같은 비정형 도메인 데이터를 수집·구조화·검증하고 RAG, Vector DB, Tool Calling, PromptOps, 평가 하네스, AI 상담·검색·추천 서비스로 연결해 온 Product Engineer입니다.
+              <p className="mt-6 max-w-3xl break-words text-lg leading-8 text-[#dbe3dc]">
+                비정형 도메인 데이터를 수집하고 검증해 RAG, Vector DB, Tool Calling, PromptOps, 평가 하네스, AI 상담·검색·추천 서비스에 연결해 온 Product Engineer입니다.
               </p>
             </div>
             <div className="flex flex-wrap gap-3 xl:justify-end">
-              <Button asChild className="rounded-md bg-slate-950 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950">
+              <Button asChild className="bg-[#f3f2e9] text-[#111812] hover:bg-white">
                 <Link href={profile.resumePdf}>
                   <ArrowDownToLine className="h-4 w-4" />
                   PDF Resume
                 </Link>
               </Button>
-              <Button asChild variant="outline" className="rounded-md bg-white dark:bg-slate-950">
+              <Button asChild variant="outline" className="border-white/20 bg-transparent text-[#f3f2e9] hover:bg-white/10 hover:text-white">
                 <Link href={profile.careerDescriptionPdf}>
                   <ArrowDownToLine className="h-4 w-4" />
                   Base Resume
                 </Link>
               </Button>
-              <Button asChild variant="outline" className="rounded-md bg-white dark:bg-slate-950">
+              <Button asChild variant="outline" className="border-white/20 bg-transparent text-[#f3f2e9] hover:bg-white/10 hover:text-white">
                 <Link href={profile.linkedin} target="_blank">
                   LinkedIn <ExternalLink className="h-4 w-4" />
                 </Link>
               </Button>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <section className="py-16 md:py-20">
         <div className="mx-auto grid max-w-6xl gap-10 px-5 md:px-8 lg:grid-cols-[320px_1fr]">
           <aside className="space-y-8 lg:sticky lg:top-24 lg:h-fit">
-            <div>
-              <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
-                Contact
-              </h2>
-              <div className="mt-4 space-y-2 text-sm text-slate-700 dark:text-slate-300">
+            <Reveal>
+              <p className="font-mono text-xs text-muted-foreground">CONTACT</p>
+              <div className="mt-4 space-y-2 text-sm text-muted-foreground">
                 <p>{profile.email}</p>
                 <p>{profile.location}</p>
-                <Link href={profile.github} target="_blank" className="inline-flex items-center gap-1 hover:text-teal-700 dark:hover:text-teal-300">
+                <Link href={profile.github} target="_blank" className="inline-flex items-center gap-1 hover:text-foreground">
                   GitHub <ExternalLink className="h-3 w-3" />
                 </Link>
               </div>
-            </div>
+            </Reveal>
 
-            <div>
-              <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
-                Core Stack
-              </h2>
+            <Reveal>
+              <p className="font-mono text-xs text-muted-foreground">CORE STACK</p>
               <div className="mt-4 space-y-5">
                 {stackGroups.map((group) => (
                   <div key={group.title}>
-                    <h3 className="text-sm font-semibold text-slate-950 dark:text-white">{group.title}</h3>
+                    <h3 className="text-sm font-semibold">{group.title}</h3>
                     <div className="mt-2 flex flex-wrap gap-2">
                       {group.items.map((item) => (
-                        <span key={item} className="max-w-full rounded-md bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                        <span key={item} className="max-w-full border px-2 py-1 text-xs text-muted-foreground">
                           {item}
                         </span>
                       ))}
@@ -93,68 +86,66 @@ export default function ResumePage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </Reveal>
           </aside>
 
-          <div className="space-y-12">
+          <div className="space-y-14">
             <section>
-              <div className="flex items-center gap-4">
-                <h2 className="text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">Experience</h2>
-                <div className="h-px flex-1 bg-border" />
-              </div>
-              <div className="mt-6 space-y-4">
-                {timeline.map((item) => (
-                  <article key={`${item.period}-${item.company}`} className="min-w-0 overflow-hidden rounded-md border p-5">
-                    <p className="font-mono text-sm text-slate-500 dark:text-slate-400">{item.period}</p>
-                    <h3 className="mt-3 break-words text-xl font-semibold tracking-tight text-slate-950 dark:text-white">{item.role}</h3>
-                    <p className="mt-1 text-sm font-medium text-teal-700 dark:text-teal-300">{item.company}</p>
-                    <p className="mt-4 break-words leading-7 text-slate-700 dark:text-slate-300">{item.body}</p>
-                  </article>
+              <Reveal>
+                <p className="font-mono text-xs text-muted-foreground">EXPERIENCE</p>
+              </Reveal>
+              <div className="mt-6 border-t">
+                {timeline.map((item, index) => (
+                  <Reveal key={`${item.period}-${item.company}`} delay={index * 0.04}>
+                    <article className="grid gap-4 border-b py-6 md:grid-cols-[170px_1fr]">
+                      <p className="font-mono text-sm text-muted-foreground">{item.period}</p>
+                      <div>
+                        <h3 className="break-words text-xl font-semibold tracking-normal">{item.role}</h3>
+                        <p className="mt-1 text-sm font-medium text-muted-foreground">{item.company}</p>
+                        <p className="mt-4 break-words leading-7 text-muted-foreground">{item.body}</p>
+                      </div>
+                    </article>
+                  </Reveal>
                 ))}
               </div>
             </section>
 
             <section>
-              <div className="flex items-center gap-4">
-                <h2 className="text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">Capabilities</h2>
-                <div className="h-px flex-1 bg-border" />
-              </div>
-              <div className="mt-6 grid gap-4 md:grid-cols-2">
-                {capabilities.map((capability) => {
+              <Reveal>
+                <p className="font-mono text-xs text-muted-foreground">CAPABILITIES</p>
+              </Reveal>
+              <div className="mt-6 grid gap-px border bg-border md:grid-cols-2">
+                {capabilities.map((capability, index) => {
                   const Icon = capability.icon
                   return (
-                    <article key={capability.title} className="min-w-0 overflow-hidden rounded-md border p-5">
+                    <Reveal key={capability.title} delay={index * 0.03} className="bg-card p-5">
                       <div className="flex items-center gap-3">
-                        <Icon className="h-5 w-5 text-teal-700 dark:text-teal-300" />
-                        <h3 className="font-semibold text-slate-950 dark:text-white">{capability.title}</h3>
+                        <Icon className="h-5 w-5" />
+                        <h3 className="font-semibold">{capability.title}</h3>
                       </div>
-                      <ul className="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+                      <ul className="mt-4 space-y-2 text-sm leading-6 text-muted-foreground">
                         {capability.items.map((item) => (
-                          <li key={item} className="flex gap-2">
-                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
-                            <span className="break-words">{item}</span>
-                          </li>
+                          <li key={item}>{item}</li>
                         ))}
                       </ul>
-                    </article>
+                    </Reveal>
                   )
                 })}
               </div>
             </section>
 
             <section>
-              <div className="flex items-center gap-4">
-                <h2 className="text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">Education & Credentials</h2>
-                <div className="h-px flex-1 bg-border" />
-              </div>
-              <ul className="mt-6 space-y-3 text-slate-700 dark:text-slate-300">
-                {education.map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-teal-700 dark:bg-teal-300" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <Reveal>
+                <p className="font-mono text-xs text-muted-foreground">EDUCATION & CREDENTIALS</p>
+                <ul className="mt-6 space-y-3 text-muted-foreground">
+                  {education.map((item, index) => (
+                    <li key={item} className="grid grid-cols-[2rem_1fr] gap-3">
+                      <span className="font-mono text-xs">{String(index + 1).padStart(2, "0")}</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
             </section>
           </div>
         </div>

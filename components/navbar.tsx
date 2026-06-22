@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Bot, Menu } from "lucide-react"
+import { Braces, Menu } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
@@ -38,23 +38,26 @@ export function Navbar() {
     const [isOpen, setIsOpen] = React.useState(false)
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/70">
-            <div className="container mx-auto px-4 flex h-14 items-center">
+        <header className="sticky top-0 z-50 w-full border-b bg-background">
+            <div className="mx-auto flex h-14 max-w-7xl items-center px-4 md:px-8">
                 <div className="mr-4 hidden md:flex">
-                    <Link href="/" className="mr-6 flex items-center space-x-2">
-                        <Bot className="h-5 w-5 text-teal-700 dark:text-teal-300" />
-                        <span className="hidden font-bold sm:inline-block">
-                            Woogi AI
+                    <Link href="/" className="mr-8 flex items-center gap-3">
+                        <span className="flex size-8 items-center justify-center border bg-foreground text-background">
+                            <Braces className="h-4 w-4" />
+                        </span>
+                        <span className="leading-tight">
+                            <span className="block text-sm font-semibold">Kang Taewook</span>
+                            <span className="block text-[11px] text-muted-foreground">AI Data Product Engineer</span>
                         </span>
                     </Link>
-                    <nav className="flex items-center space-x-6 text-sm font-medium">
+                    <nav className="flex items-center gap-1 text-sm font-medium">
                         {routes.map((route) => (
                             <Link
                                 key={route.href}
                                 href={route.href}
                                 className={cn(
-                                    "transition-colors hover:text-foreground/80",
-                                    pathname === route.href ? "text-foreground" : "text-foreground/60"
+                                    "px-3 py-2 transition-colors hover:text-foreground",
+                                    pathname === route.href ? "text-foreground" : "text-muted-foreground"
                                 )}
                             >
                                 {route.label}
@@ -78,8 +81,8 @@ export function Navbar() {
                             className="flex items-center"
                             onClick={() => setIsOpen(false)}
                         >
-                            <Bot className="mr-2 h-4 w-4 text-teal-700 dark:text-teal-300" />
-                            <span className="font-bold">Woogi AI</span>
+                            <Braces className="mr-2 h-4 w-4" />
+                            <span className="font-bold">Kang Taewook</span>
                         </Link>
                         <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
                             <div className="flex flex-col space-y-3">

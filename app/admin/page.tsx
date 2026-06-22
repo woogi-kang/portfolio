@@ -383,7 +383,6 @@ export default function AdminPage() {
                                         <Input
                                             value={projectTitle}
                                             onChange={(e) => setProjectTitle(e.target.value)}
-                                            placeholder="프로젝트 이름"
                                             required
                                         />
                                     </div>
@@ -392,7 +391,6 @@ export default function AdminPage() {
                                         <Input
                                             value={projectSlug}
                                             onChange={(e) => setProjectSlug(e.target.value)}
-                                            placeholder="project-name"
                                             required
                                         />
                                     </div>
@@ -403,7 +401,6 @@ export default function AdminPage() {
                                     <Textarea
                                         value={projectDesc}
                                         onChange={(e) => setProjectDesc(e.target.value)}
-                                        placeholder="프로젝트에 대한 간단한 설명을 작성하세요..."
                                         className="min-h-[100px]"
                                     />
                                 </div>
@@ -413,7 +410,6 @@ export default function AdminPage() {
                                     <Textarea
                                         value={projectContent}
                                         onChange={(e) => setProjectContent(e.target.value)}
-                                        placeholder="# 프로젝트 상세 정보&#10;&#10;마크다운 형식으로 상세한 프로젝트 정보를 작성하세요..."
                                         className="min-h-[200px] font-mono text-sm"
                                     />
                                     <p className="text-xs text-muted-foreground">
@@ -452,7 +448,6 @@ export default function AdminPage() {
                                     <Input
                                         value={projectTags}
                                         onChange={(e) => setProjectTags(e.target.value)}
-                                        placeholder="React, Next.js, TypeScript"
                                     />
                                 </div>
 
@@ -462,7 +457,6 @@ export default function AdminPage() {
                                         <Input
                                             value={projectDemo}
                                             onChange={(e) => setProjectDemo(e.target.value)}
-                                            placeholder="https://..."
                                         />
                                     </div>
                                     <div className="space-y-2">
@@ -470,7 +464,6 @@ export default function AdminPage() {
                                         <Input
                                             value={projectRepo}
                                             onChange={(e) => setProjectRepo(e.target.value)}
-                                            placeholder="https://github.com/..."
                                         />
                                     </div>
                                 </div>
@@ -533,7 +526,6 @@ export default function AdminPage() {
                                         <Input
                                             value={resumeRole}
                                             onChange={(e) => setResumeRole(e.target.value)}
-                                            placeholder="소프트웨어 엔지니어"
                                             required
                                         />
                                     </div>
@@ -542,7 +534,6 @@ export default function AdminPage() {
                                         <Input
                                             value={resumeCompany}
                                             onChange={(e) => setResumeCompany(e.target.value)}
-                                            placeholder="회사명"
                                             required
                                         />
                                     </div>
@@ -585,7 +576,6 @@ export default function AdminPage() {
                                     <Textarea
                                         value={resumeDesc}
                                         onChange={(e) => setResumeDesc(e.target.value)}
-                                        placeholder="담당 업무나 활동 내용을 설명하세요..."
                                         className="min-h-[100px]"
                                     />
                                 </div>
@@ -595,7 +585,6 @@ export default function AdminPage() {
                                     <Input
                                         value={resumeSkills}
                                         onChange={(e) => setResumeSkills(e.target.value)}
-                                        placeholder="리더십, 매니지먼트, ..."
                                     />
                                 </div>
 
@@ -658,7 +647,6 @@ export default function AdminPage() {
                                         <Input
                                             value={postTitle}
                                             onChange={(e) => setPostTitle(e.target.value)}
-                                            placeholder="포스트 제목"
                                             required
                                         />
                                     </div>
@@ -667,7 +655,6 @@ export default function AdminPage() {
                                         <Input
                                             value={postSlug}
                                             onChange={(e) => setPostSlug(e.target.value)}
-                                            placeholder="post-slug"
                                             required
                                         />
                                     </div>
@@ -678,7 +665,6 @@ export default function AdminPage() {
                                     <Textarea
                                         value={postExcerpt}
                                         onChange={(e) => setPostExcerpt(e.target.value)}
-                                        placeholder="간단한 요약..."
                                     />
                                 </div>
 
@@ -688,7 +674,6 @@ export default function AdminPage() {
                                         className="min-h-[300px] font-mono"
                                         value={postContent}
                                         onChange={(e) => setPostContent(e.target.value)}
-                                        placeholder="# 제목&#10;&#10;내용을 작성하세요..."
                                     />
                                 </div>
 

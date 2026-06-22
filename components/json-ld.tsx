@@ -9,7 +9,7 @@ export default function JsonLd() {
                 "alternateName": "Woogi",
                 "url": "https://woogi.is-a.dev",
                 "jobTitle": "AI Data Product Engineer / Product Engineer",
-                "description": "Product engineer based in Seoul building LLM data pipelines, catalog-like data layers, grounded AI services, evaluation workflows, and AI product operations.",
+                "description": "Product engineer based in Seoul building LLM data pipelines, catalog data layers, grounded AI services, evaluation workflows, and practical AI product operations.",
                 "sameAs": [
                     "https://github.com/woogi-kang",
                     "https://www.linkedin.com/in/taewook-kang/",

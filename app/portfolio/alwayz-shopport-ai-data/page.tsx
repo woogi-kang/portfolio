@@ -12,19 +12,20 @@ import {
 } from "lucide-react"
 import type { Metadata } from "next"
 
+import { Reveal } from "@/components/motion-reveal"
 import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
   title: "Alwayz Shopport AI & Data Portfolio",
   description:
-    "Kang Taewook's targeted portfolio for Alwayz Shopport Product Engineer (AI & Data), covering LLM extraction, catalog-like data pipelines, grounded AI services, and recommendation quality.",
+    "Kang Taewook's targeted portfolio for Alwayz Shopport Product Engineer (AI & Data), covering LLM extraction, catalog data pipelines, grounded AI services, and recommendation quality.",
 }
 
 const fitSignals = [
   {
     icon: Database,
     title: "Catalog-like Data Layer",
-    body: "웹 페이지, 이미지, OCR, DOM snapshot, 리뷰성 텍스트를 entity, attribute, alias, search index로 구조화해 AI 제품이 재사용할 수 있는 데이터 계층으로 만듭니다.",
+    body: "웹 페이지, 이미지, OCR, DOM snapshot, 리뷰 텍스트를 entity, attribute, alias, search index로 정리해 AI 제품이 같은 데이터를 안정적으로 재사용할 수 있게 합니다.",
   },
   {
     icon: BrainCircuit,
@@ -39,7 +40,7 @@ const fitSignals = [
   {
     icon: ShieldCheck,
     title: "Recommendation Quality",
-    body: "Memoriz에서 LLM이 추측하지 않도록 evidence-gated policy를 설계하고, 확정된 데이터만 추천 seed와 KPI로 승격했습니다.",
+    body: "Memoriz에서 LLM이 추측으로 장소를 만들지 않도록 근거 기반 품질 정책을 설계하고, 확인된 데이터만 추천 seed와 KPI에 반영했습니다.",
   },
 ]
 
@@ -66,25 +67,25 @@ const cases = [
     title: "Entity, Alias, Search Dictionary Layer",
     subtitle: "Jisooknows AI Chat / Grounding",
     summary:
-      "표준 시술/병원 엔티티, 다국어 번역, alias coverage, search dictionary를 정리하고 AI 상담의 RAG/HybridSearch, Google Search Grounding, source metadata와 연결했습니다.",
+      "표준 시술/병원 엔티티, 다국어 번역, alias coverage, search dictionary를 정리하고 AI 상담의 RAG/HybridSearch, Google Search Grounding, source metadata에서 함께 쓰도록 구성했습니다.",
     proof: [
       "표준 엔티티와 다국어 alias를 search dictionary로 분리",
       "clinic RAG와 Google Search Grounding을 질문 유형에 따라 분기",
       "tool calls, web references, token usage logs를 메시지 단위로 저장",
     ],
     shopport:
-      "같은 상품이 여러 플랫폼에서 다른 이름, 이미지, 설명으로 판매되는 문제는 entity/alias/search 계층이 먼저 안정화되어야 AI Agent 추천 품질로 이어집니다.",
+      "같은 상품이 플랫폼마다 다른 이름, 이미지, 설명으로 판매될 때는 entity/alias/search 구조가 먼저 안정화되어야 AI Agent 추천 품질도 좋아집니다.",
     stack: ["RAG", "HybridSearch", "Search Alias", "Google Search Grounding", "Tool Calling", "Token Logs"],
   },
   {
     icon: ShieldCheck,
     label: "03",
-    title: "Evidence-gated Recommendation Pipeline",
-    subtitle: "Memoriz / Place Evidence / Taste Graph",
+    title: "근거 기반 Recommendation Pipeline",
+    subtitle: "Memoriz / Place Verification / Taste Graph",
     summary:
-      "사진, GPS, OCR, 일정 context를 바탕으로 장소 후보와 확정 장소를 분리하고, 확정된 데이터만 title/summary, taste profile, recommendation seed, KPI 집계로 승격했습니다.",
+      "사진, GPS, OCR, 일정 context를 바탕으로 장소 후보와 확정 장소를 분리하고, 확인된 데이터만 title/summary, taste profile, recommendation seed, KPI 집계에 사용했습니다.",
     proof: [
-      "LLM이 장소명을 단독 생성하지 않도록 source-of-truth rule 설계",
+      "LLM이 장소명을 임의로 만들지 않도록 원천 데이터 기준 설계",
       "후보, 확정, area/container fallback을 분리해 hallucination과 비용 제어",
       "confirmed place 기반 taste profile, recommendation seed, first CTA funnel, KPI report 구성",
     ],
@@ -98,7 +99,7 @@ const cases = [
     title: "AI Visibility and Report Product",
     subtitle: "CheckYourHospital / AI SEO-AEO",
     summary:
-      "병원 홈페이지를 7개 카테고리 48개 항목으로 진단하고, AI 검색 mention, machine readability, GEO/AEO score, 의료법 compliance, PDF report를 하나의 제품 흐름으로 연결했습니다.",
+      "병원 홈페이지를 7개 카테고리 48개 항목으로 진단하고, AI 검색 mention, machine readability, GEO/AEO score, 의료법 compliance, PDF report를 하나의 제품 흐름으로 묶었습니다.",
     proof: [
       "Playwright crawler와 FastAPI worker로 48개 진단 항목 병렬 실행",
       "AI recommendation simulation과 AI SOV snapshot으로 mention rate와 source URLs 집계",
@@ -115,186 +116,168 @@ const visualProofs = [
     title: "AI Workflow Control",
     image: "/company-os-dashboard-desktop.png",
     alt: "AI workflow dashboard showing work queue and provider runs",
-    body: "요청, 실행, 승인, 산출물, evidence를 남기는 AI workflow 운영 화면입니다.",
+    body: "요청, 실행, 승인, 산출물, 근거 자료를 남기는 AI workflow 운영 화면입니다.",
   },
   {
     title: "Worker Run Status",
     image: "/company-os-worker-status-desktop.png",
     alt: "Worker status panel showing provider execution states",
-    body: "provider별 실행 상태와 실패 추적을 분리해 운영 리스크를 줄이는 구조입니다.",
+    body: "provider별 실행 상태와 실패 원인을 따로 추적해 운영 리스크를 줄이는 구조입니다.",
   },
   {
     title: "Memory Search Reuse",
     image: "/memoriz-natural-search-reuse.png",
     alt: "Memoriz natural search screen using stored memory records",
-    body: "구조화된 기록을 자연어 검색과 추천 UX로 다시 사용하는 AI product loop입니다.",
+    body: "구조화된 기록을 자연어 검색과 추천 UX에서 다시 활용하는 흐름입니다.",
   },
   {
     title: "Evaluation Report",
     image: "/checkyourhospital-psf-validation-table.png",
     alt: "CheckYourHospital validation table for AI search readiness diagnosis",
-    body: "진단, 평가, 리포트, 제품 반영을 하나의 검증 구조로 닫는 방식입니다.",
+    body: "진단, 평가, 리포트, 제품 반영을 한 흐름에서 관리하는 방식입니다.",
   },
 ]
 
 const contributionPlan = [
   "상품 상세페이지, 이미지, 후기, 판매 문구에서 추출할 product/visual/sales/perceived attribute schema 정의",
-  "LLM extraction 결과를 validation, confidence, source URL, raw evidence와 함께 저장하는 catalog pipeline 설계",
-  "동일 상품/유사 상품의 entity resolution을 alias, image/text evidence, platform-specific metadata로 분리",
-  "AI 쇼핑 Agent 응답을 recommendation, rationale, evidence, uncertainty, next question 구조로 나누고 eval set으로 회귀 관리",
+  "LLM extraction 결과를 validation, confidence, source URL, raw source와 함께 저장하는 catalog pipeline 설계",
+  "동일 상품/유사 상품의 entity resolution을 alias, image/text source, platform-specific metadata 기준으로 분리",
+  "AI 쇼핑 Agent 응답을 recommendation, rationale, source, uncertainty, next question으로 나누고 eval set으로 회귀 관리",
 ]
 
 export default function AlwayzShopportPortfolioPage() {
   return (
-    <main className="bg-white [overflow-wrap:anywhere] dark:bg-slate-950">
-      <section className="border-b bg-[#f4f7f4] dark:bg-[#0d1210]">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
-          <div className="min-w-0">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-300">
-              Alwayz Shopport AI & Data Portfolio
-            </p>
-            <h1 className="mt-5 max-w-4xl text-3xl font-semibold leading-tight tracking-tight text-slate-950 sm:text-4xl md:text-6xl dark:text-white">
-              <span className="block">흩어진 도메인 데이터를</span>
-              <span className="block">LLM 속성 추출과</span>
-              <span className="block">AI Agent가 쓰는</span>
-              <span className="block">카탈로그 계층으로 바꿉니다.</span>
+    <main className="bg-background [overflow-wrap:anywhere]">
+      <section className="border-b bg-[#111812] text-[#f3f2e9]">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+          <Reveal>
+            <p className="font-mono text-xs text-[#f2d27b]">ALWAYZ SHOPPORT FIT</p>
+            <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold leading-tight md:text-6xl">
+              흩어진 상품 데이터를 AI Agent가 믿고 쓸 수 있게 정리합니다.
             </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700 dark:text-slate-300">
-              쇼포트의 차세대 커머스 카탈로그 시스템과 AI 쇼핑 Agent에 맞춰, LLM extraction, entity/alias/search data layer, grounded AI service, evidence-gated recommendation 경험을 정리했습니다.
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-[#dbe3dc]">
+              쇼포트의 커머스 카탈로그 시스템과 AI 쇼핑 Agent에 맞춰 LLM extraction, entity/alias/search data layer, 근거 기반 추천 경험을 정리했습니다.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="rounded-md bg-slate-950 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950">
+              <Button asChild size="lg" className="bg-[#f3f2e9] text-[#111812] hover:bg-white">
                 <Link href="/alwayz-shopport-product-engineer-ai-data-resume-kang-taewook.pdf">
                   <FileText className="h-4 w-4" />
                   Resume PDF
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-md bg-white/80 dark:bg-slate-950/60">
+              <Button asChild size="lg" variant="outline" className="border-white/20 bg-transparent text-[#f3f2e9] hover:bg-white/10 hover:text-white">
                 <Link href="/portfolio">
-                  All case studies <ArrowRight className="h-4 w-4" />
+                  전체 작업 보기 <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
             </div>
-          </div>
-
-          <div className="min-w-0 overflow-hidden rounded-md border bg-white p-3 dark:bg-slate-950">
+          </Reveal>
+          <Reveal delay={0.1} className="overflow-hidden border border-white/10 bg-white">
             <Image
               src="/company-os-dashboard-desktop.png"
-              alt="AI workflow dashboard showing queue, provider runs, approval gates, and evidence vault"
+              alt="AI workflow dashboard showing queue, provider runs, approval gates, and reference vault"
               width={1440}
               height={1000}
               priority
-              className="aspect-[16/11] w-full rounded-sm bg-white object-contain object-left-top"
+              className="aspect-[16/11] w-full object-contain object-left-top"
             />
-            <div className="mt-3 grid gap-3 text-sm text-slate-700 dark:text-slate-300 md:grid-cols-3">
-              <div className="rounded-md bg-slate-100 px-3 py-2 dark:bg-slate-900">LLM extraction</div>
-              <div className="rounded-md bg-slate-100 px-3 py-2 dark:bg-slate-900">Catalog layer</div>
-              <div className="rounded-md bg-slate-100 px-3 py-2 dark:bg-slate-900">Eval loop</div>
-            </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      <section className="border-b bg-white py-12 dark:bg-slate-950 md:py-16">
-        <div className="mx-auto grid max-w-7xl gap-4 px-5 md:grid-cols-2 md:px-8 lg:grid-cols-4">
-          {fitSignals.map((signal) => {
+      <section className="border-b py-12 md:py-16">
+        <div className="mx-auto grid max-w-7xl gap-px border bg-border px-0 md:grid-cols-4">
+          {fitSignals.map((signal, index) => {
             const Icon = signal.icon
             return (
-              <article key={signal.title} className="min-w-0 overflow-hidden rounded-md border p-5">
-                <Icon className="h-6 w-6 text-emerald-700 dark:text-emerald-300" />
-                <h2 className="mt-4 text-lg font-semibold text-slate-950 dark:text-white">{signal.title}</h2>
-                <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{signal.body}</p>
-              </article>
+              <Reveal key={signal.title} delay={index * 0.04} className="bg-card p-5 md:p-6">
+                <Icon className="h-6 w-6" />
+                <h2 className="mt-5 text-xl font-semibold tracking-normal">{signal.title}</h2>
+                <p className="mt-4 text-sm leading-7 text-muted-foreground">{signal.body}</p>
+              </Reveal>
             )
           })}
         </div>
       </section>
 
-      <section className="bg-[#f8faf7] py-14 dark:bg-[#0d1117] md:py-20">
+      <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-300">
-              Case Evidence
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl dark:text-white">
-              쇼포트 문제와 직접 맞닿는 네 가지 경험
+          <Reveal>
+            <p className="font-mono text-xs text-muted-foreground">FIT MATRIX</p>
+            <h2 className="mt-4 max-w-3xl text-balance text-3xl font-semibold leading-tight md:text-5xl">
+              쇼포트 문제와 바로 맞닿는 네 가지 사례
             </h2>
-          </div>
-
-          <div className="mt-10 grid gap-5 lg:grid-cols-2">
-            {cases.map((item) => {
+          </Reveal>
+          <div className="mt-10 border-t">
+            {cases.map((item, index) => {
               const Icon = item.icon
               return (
-                <article key={item.title} className="min-w-0 overflow-hidden rounded-md border bg-white p-6 dark:bg-slate-950">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="font-mono text-sm text-slate-500 dark:text-slate-400">{item.label}</p>
-                      <p className="mt-4 text-sm font-semibold text-emerald-700 dark:text-emerald-300">{item.subtitle}</p>
-                      <h3 className="mt-2 text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">{item.title}</h3>
+                <Reveal key={item.title} delay={index * 0.04}>
+                  <article className="grid gap-6 border-b py-7 md:grid-cols-[72px_1fr_1.1fr]">
+                    <div className="flex items-center gap-3 md:block">
+                      <span className="font-mono text-sm text-muted-foreground">{item.label}</span>
+                      <Icon className="mt-0 h-5 w-5 md:mt-6" />
                     </div>
-                    <Icon className="h-6 w-6 shrink-0 text-emerald-700 dark:text-emerald-300" />
-                  </div>
-                  <p className="mt-5 text-sm leading-6 text-slate-700 dark:text-slate-300">{item.summary}</p>
-                  <ul className="mt-5 space-y-2">
-                    {item.proof.map((proof) => (
-                      <li key={proof} className="flex gap-2 text-sm text-slate-700 dark:text-slate-300">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
-                        <span>{proof}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="mt-5 rounded-md bg-emerald-50 p-4 text-sm leading-6 text-emerald-950 dark:bg-emerald-950/30 dark:text-emerald-100">
-                    {item.shopport}
-                  </p>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {item.stack.map((tech) => (
-                      <span key={tech} className="rounded-md bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </article>
+                    <div>
+                      <p className="text-sm text-muted-foreground">{item.subtitle}</p>
+                      <h3 className="mt-2 text-2xl font-semibold tracking-normal">{item.title}</h3>
+                      <p className="mt-4 text-sm leading-7 text-muted-foreground">{item.summary}</p>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {item.stack.slice(0, 6).map((tech) => (
+                          <span key={tech} className="border px-2 py-1 text-xs text-muted-foreground">{tech}</span>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <p className="font-mono text-xs text-muted-foreground">SHOPPORT FIT</p>
+                      <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.shopport}</p>
+                      <ul className="mt-5 space-y-2 text-sm leading-6">
+                        {item.proof.slice(0, 2).map((proof) => (
+                          <li key={proof} className="flex gap-2 text-muted-foreground">
+                            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-foreground" />
+                            <span>{proof}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </article>
+                </Reveal>
               )
             })}
           </div>
         </div>
       </section>
 
-      <section className="border-y bg-white py-14 dark:bg-slate-950 md:py-20">
-        <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-300">
-                Contribution Angle
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl dark:text-white">
-                쇼포트에 합류하면 바로 기여할 수 있는 방향
-              </h2>
-            </div>
-            <div className="space-y-3">
-              {contributionPlan.map((item) => (
-                <p key={item} className="border-l-2 border-emerald-700 pl-4 leading-7 text-slate-700 dark:text-slate-300">
-                  {item}
-                </p>
-              ))}
-            </div>
+      <section className="border-y bg-card py-16 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[360px_1fr]">
+          <Reveal>
+            <p className="font-mono text-xs text-muted-foreground">FIRST CONTRIBUTION</p>
+            <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight md:text-5xl">
+              합류 직후 먼저 잡을 수 있는 일
+            </h2>
+          </Reveal>
+          <div className="grid gap-px border bg-border">
+            {contributionPlan.map((item, index) => (
+              <Reveal key={item} delay={index * 0.04} className="grid gap-4 bg-background p-5 md:grid-cols-[64px_1fr]">
+                <span className="font-mono text-sm text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
+                <p className="leading-7 text-muted-foreground">{item}</p>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-[#f8faf7] py-14 dark:bg-[#0d1117] md:py-20">
+      <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-300">
-              Visual Proof
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl dark:text-white">
-              운영 가능한 AI 제품으로 닫은 결과물
+          <Reveal>
+            <p className="font-mono text-xs text-muted-foreground">VISUAL PROOF</p>
+            <h2 className="mt-4 max-w-3xl text-balance text-3xl font-semibold leading-tight md:text-5xl">
+              운영까지 이어진 AI 제품 화면
             </h2>
-          </div>
+          </Reveal>
           <div className="mt-10 grid gap-5 md:grid-cols-2">
-            {visualProofs.map((proof) => (
-              <article key={proof.title} className="overflow-hidden rounded-md border bg-white dark:bg-slate-950">
+            {visualProofs.map((proof, index) => (
+              <Reveal key={proof.title} delay={index * 0.04} className="overflow-hidden border bg-card">
                 <Image
                   src={proof.image}
                   alt={proof.alt}
@@ -304,10 +287,10 @@ export default function AlwayzShopportPortfolioPage() {
                   className="aspect-[16/10] w-full bg-white object-contain object-left-top"
                 />
                 <div className="border-t p-5">
-                  <h3 className="text-lg font-semibold text-slate-950 dark:text-white">{proof.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{proof.body}</p>
+                  <h3 className="text-lg font-semibold tracking-normal">{proof.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{proof.body}</p>
                 </div>
-              </article>
+              </Reveal>
             ))}
           </div>
         </div>

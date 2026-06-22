@@ -1,155 +1,165 @@
+import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, BrainCircuit, Filter } from "lucide-react"
+import { ArrowRight, BrainCircuit, FileText, SearchCheck } from "lucide-react"
 import type { Metadata } from "next"
 
+import { Reveal } from "@/components/motion-reveal"
 import { Button } from "@/components/ui/button"
 import { caseStudies } from "@/lib/portfolio-data"
 
 export const metadata: Metadata = {
   title: "Case Studies",
-  description: "LLM data pipeline, catalog-like data layer, grounded AI service, evaluation, and AI product operations case studies.",
+  description: "Case studies on LLM data pipelines, catalog data layers, grounded AI services, evaluation, and AI product operations.",
 }
 
-export default function PortfolioPage() {
-  const domains = ["LLM Extraction", "Catalog Layer", "RAG/Grounding", "Evaluation", "Recommendation", "Product Ops"]
+const targetedPortfolios = [
+  {
+    href: "/portfolio/alwayz-shopport-ai-data",
+    label: "Alwayz Shopport",
+    title: "Product Engineer (AI & Data)",
+    focus: "상품 속성 추출, 카탈로그 데이터 구조, 근거 기반 쇼핑 Agent",
+  },
+  {
+    href: "/portfolio/moais-ai-llm",
+    label: "MOAIS",
+    title: "AI/LLM Engineer",
+    focus: "RAG, 장기 메모리, 개인화 AI 코칭, 평가 루프",
+  },
+  {
+    href: "/portfolio/overdare-ai-agent",
+    label: "OVERDARE",
+    title: "Senior Software Engineer (AI Agent)",
+    focus: "Agent 실행 구조, UGC 워크플로우, 도구 계약, 품질 기준",
+  },
+]
 
+const artifacts = [
+  "/company-os-dashboard-desktop.png",
+  "/memoriz-natural-search-reuse.png",
+  "/checkyourhospital-psf-validation-table.png",
+]
+
+export default function PortfolioPage() {
   return (
-    <main className="bg-white dark:bg-slate-950">
-      <section className="border-b bg-[#f7f8f5] dark:bg-[#0d1117]">
-        <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-20">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
-            Portfolio
-          </p>
-          <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_420px] lg:items-end">
-            <div>
-              <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl dark:text-white">
-                <span className="block">LLM 데이터 파이프라인과</span>
-                <span className="block">AI 제품 운영 시스템</span>
-                <span className="block">구축 사례</span>
-              </h1>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700 dark:text-slate-300">
-                단순 데모나 개인 자동화가 아니라, 제품이 반복해서 사용할 수 있는 entity/attribute/alias 데이터 계층, LLM extraction, grounded AI service, evaluation, report/admin 운영 흐름 중심으로 정리했습니다.
-              </p>
-            </div>
-            <div className="rounded-md border bg-white p-5 dark:bg-slate-950">
-              <div className="flex items-center gap-2 text-sm font-semibold text-slate-950 dark:text-white">
-                <Filter className="h-4 w-4 text-teal-700 dark:text-teal-300" />
-                Focus domains
+    <main className="bg-background">
+      <section className="border-b bg-[#111812] text-[#f3f2e9]">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+          <Reveal>
+            <p className="font-mono text-xs text-[#f2d27b]">EVIDENCE LIBRARY</p>
+            <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold leading-tight md:text-6xl">
+              케이스 스터디를 실제 화면과 검증 흐름 중심으로 정리했습니다.
+            </h1>
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-[#dbe3dc]">
+              LLM 추출, 카탈로그 데이터 구조, 근거 기반 AI 서비스, 평가, 제품 운영을 실제 산출물 기준으로 훑어볼 수 있게 묶었습니다.
+            </p>
+          </Reveal>
+          <Reveal delay={0.1} className="grid grid-cols-3 gap-2">
+            {artifacts.map((src, index) => (
+              <div key={src} className="overflow-hidden border border-white/10 bg-white">
+                <Image
+                  src={src}
+                  alt={`Portfolio artifact ${index + 1}`}
+                  width={900}
+                  height={700}
+                  className="aspect-[4/3] w-full object-contain object-left-top"
+                  priority={index === 0}
+                />
               </div>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {domains.map((domain) => (
-                  <span key={domain} className="rounded-md bg-slate-100 px-3 py-1 text-sm text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                    {domain}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
+            ))}
+          </Reveal>
         </div>
       </section>
 
-      <section className="py-16 md:py-20">
+      <section className="border-b py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <Link
-            href="/portfolio/alwayz-shopport-ai-data"
-            className="group mb-6 grid gap-5 rounded-md border bg-[#eef4f0] p-6 transition-colors hover:border-emerald-700 dark:bg-[#101916] dark:hover:border-emerald-300 md:grid-cols-[1fr_auto] md:items-center"
-          >
-            <div className="min-w-0">
-              <div className="flex flex-wrap items-center gap-3">
-                <BrainCircuit className="h-5 w-5 text-emerald-700 dark:text-emerald-300" />
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700 dark:text-emerald-300">
-                  Targeted Portfolio
-                </p>
-              </div>
-              <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">
-                Alwayz Shopport Product Engineer (AI & Data) 제출용 포트폴리오
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-slate-700 dark:text-slate-300">
-                LLM 기반 상품 속성 추출, catalog-like data layer, grounded AI Agent, evidence-gated recommendation 관점으로 별도 정리했습니다.
-              </p>
-            </div>
-            <ArrowRight className="h-5 w-5 text-slate-500 transition-transform group-hover:translate-x-1 dark:text-slate-400" />
-          </Link>
+          <Reveal className="grid gap-px border bg-border md:grid-cols-3">
+            {targetedPortfolios.map((portfolio, index) => (
+              <Link key={portfolio.href} href={portfolio.href} className="group bg-card p-5 transition-colors hover:bg-background md:p-6">
+                <div className="flex items-center justify-between gap-4">
+                  <p className="font-mono text-xs text-muted-foreground">{String(index + 1).padStart(2, "0")}</p>
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </div>
+                <p className="mt-5 text-sm font-semibold">{portfolio.label}</p>
+                <h2 className="mt-2 text-2xl font-semibold tracking-normal">{portfolio.title}</h2>
+                <p className="mt-4 text-sm leading-7 text-muted-foreground">{portfolio.focus}</p>
+              </Link>
+            ))}
+          </Reveal>
+        </div>
+      </section>
 
-          <Link
-            href="/portfolio/moais-ai-llm"
-            className="group mb-6 grid gap-5 rounded-md border bg-[#eef4f0] p-6 transition-colors hover:border-emerald-700 dark:bg-[#101916] dark:hover:border-emerald-300 md:grid-cols-[1fr_auto] md:items-center"
-          >
-            <div className="min-w-0">
-              <div className="flex flex-wrap items-center gap-3">
-                <BrainCircuit className="h-5 w-5 text-emerald-700 dark:text-emerald-300" />
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700 dark:text-emerald-300">
-                  Targeted Portfolio
-                </p>
-              </div>
-              <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">
-                MOAIS AI/LLM Engineer 제출용 포트폴리오
+      <section className="py-16 md:py-24">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <Reveal className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+            <div>
+              <p className="font-mono text-xs text-muted-foreground">CASE STUDIES</p>
+              <h2 className="mt-4 max-w-3xl text-balance text-3xl font-semibold leading-tight md:text-5xl">
+                어떤 문제를 맡았고, 무엇을 만들었는지 한눈에 비교합니다.
               </h2>
-              <p className="mt-3 text-sm leading-6 text-slate-700 dark:text-slate-300">
-                RAG, 장기 메모리, PromptOps, LangChain/LangGraph, AI 코칭 운영 루프 중심으로 별도 정리했습니다.
-              </p>
             </div>
-            <ArrowRight className="h-5 w-5 text-slate-500 transition-transform group-hover:translate-x-1 dark:text-slate-400" />
-          </Link>
+            <Button asChild className="w-fit">
+              <Link href="/resume">
+                이력서 보기 <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </Reveal>
 
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="mt-10 border-t">
             {caseStudies.map((project, index) => {
               const Icon = project.icon
               return (
-                <Link
-                  key={project.slug}
-                  href={`/portfolio/${project.slug}`}
-                  className="group min-w-0 overflow-hidden rounded-md border p-6 transition-colors hover:border-teal-700 dark:hover:border-teal-300"
-                >
-                  <div className="flex items-start justify-between gap-4">
+                <Reveal key={project.slug} delay={index * 0.025}>
+                  <Link
+                    href={`/portfolio/${project.slug}`}
+                    className="group grid gap-5 border-b py-6 transition-colors hover:bg-card md:grid-cols-[72px_1.1fr_1.4fr_190px] md:px-4"
+                  >
+                    <div className="flex items-center gap-3 md:block">
+                      <p className="font-mono text-sm text-muted-foreground">{String(index + 1).padStart(2, "0")}</p>
+                      <Icon className="mt-0 h-5 w-5 md:mt-6" />
+                    </div>
                     <div>
-                      <p className="font-mono text-sm text-slate-500 dark:text-slate-400">
-                        {String(index + 1).padStart(2, "0")} / {project.period}
-                      </p>
-                      <p className="mt-4 text-sm font-medium text-teal-700 dark:text-teal-300">{project.eyebrow}</p>
-                      <h2 className="mt-2 break-words text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">{project.title}</h2>
+                      <p className="font-mono text-xs text-muted-foreground">{project.period}</p>
+                      <h3 className="mt-2 text-xl font-semibold tracking-normal">{project.title}</h3>
+                      <p className="mt-2 text-sm text-muted-foreground">{project.eyebrow}</p>
                     </div>
-                    <Icon className="h-6 w-6 shrink-0 text-slate-500 transition-colors group-hover:text-teal-700 dark:text-slate-400 dark:group-hover:text-teal-300" />
-                  </div>
-                  <p className="mt-5 break-words text-sm leading-6 text-slate-600 dark:text-slate-300">{project.summary}</p>
-                  <ul className="mt-5 space-y-2">
-                    {project.impact.slice(0, 2).map((impact) => (
-                      <li key={impact} className="flex gap-2 text-sm text-slate-700 dark:text-slate-300">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
-                        <span>{impact}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-6 flex items-center justify-between gap-4">
-                    <div className="flex min-w-0 flex-wrap gap-2 overflow-hidden">
-                      {project.stack.slice(0, 4).map((tech) => (
-                        <span key={tech} className="max-w-full rounded-md bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                          {tech}
-                        </span>
-                      ))}
+                    <div>
+                      <p className="text-sm leading-7 text-muted-foreground">{project.summary}</p>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {project.stack.slice(0, 5).map((tech) => (
+                          <span key={tech} className="border px-2 py-1 text-xs text-muted-foreground">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                    <ArrowRight className="h-4 w-4 shrink-0 text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-teal-700 dark:group-hover:text-teal-300" />
-                  </div>
-                </Link>
+                    <div className="flex items-center justify-between gap-4 md:justify-end">
+                      <span className="inline-flex items-center gap-2 text-sm font-medium">
+                        자세히 보기 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </div>
+                  </Link>
+                </Reveal>
               )
             })}
           </div>
         </div>
       </section>
 
-      <section className="border-t bg-[#f7f8f5] py-16 dark:bg-[#0d1117]">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-5 px-5 md:flex-row md:items-center md:px-8">
+      <section className="border-t bg-card py-16">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 md:grid-cols-[1fr_auto] md:items-center md:px-8">
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">
-              더 자세한 경력 흐름은 이력서에서 확인할 수 있습니다.
+            <div className="flex items-center gap-3">
+              <BrainCircuit className="h-5 w-5" />
+              <SearchCheck className="h-5 w-5" />
+              <FileText className="h-5 w-5" />
+            </div>
+            <h2 className="mt-4 max-w-3xl text-2xl font-semibold tracking-normal">
+              전체 경력 흐름과 제출용 PDF는 이력서 페이지에 모아두었습니다.
             </h2>
-            <p className="mt-2 text-slate-600 dark:text-slate-300">
-              제출용 이력서와 동일한 포지셔닝으로 AI Data Product, LLM Pipeline, Product Engineering 중심의 경력을 정리했습니다.
-            </p>
           </div>
-          <Button asChild className="w-fit rounded-md bg-slate-950 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950">
+          <Button asChild className="w-fit">
             <Link href="/resume">
-              Resume <ArrowRight className="h-4 w-4" />
+              이력서와 PDF 보기 <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
         </div>

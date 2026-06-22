@@ -1,13 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { Mail, Send, Loader2, CheckCircle2 } from "lucide-react"
+import { Send, Loader2, CheckCircle2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export function ContactForm() {
     const [formData, setFormData] = useState({
@@ -59,40 +58,39 @@ export function ContactForm() {
     }
 
     return (
-        <div>
-            {/* Header */}
-            <div className="mb-12 text-center">
-                <div className="mb-4 inline-flex items-center justify-center rounded-full bg-primary/10 p-3">
-                    <Mail className="h-6 w-6 text-primary" />
-                </div>
-                <h1 className="mb-4 text-2xl font-bold tracking-tight sm:text-3xl md:text-5xl">
-                    <span className="block">AI Data Product</span>
-                    <span className="block">프로젝트를 함께</span>
-                    <span className="block">이야기해요</span>
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+            <div>
+                <p className="font-mono text-xs text-muted-foreground">CONTACT</p>
+                <h1 className="mt-5 text-balance text-4xl font-semibold leading-tight md:text-6xl">
+                    AI Data Product 프로젝트를 함께 이야기해 주세요.
                 </h1>
-                <p className="mx-auto max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl">
-                    LLM 데이터 파이프라인, AI Agent 운영 체계, PromptOps, grounded AI service, 제품 운영 체계에 대해 함께 논의할 수 있습니다.
+                <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
+                    LLM 데이터 파이프라인, AI Agent 운영, PromptOps, 근거 기반 AI 서비스처럼 함께 풀어볼 문제가 있다면 배경과 목표를 남겨주세요.
                 </p>
+                <div className="mt-8 border-t pt-5 text-sm text-muted-foreground">
+                    <p>Direct email</p>
+                    <a href="mailto:woogi.dev@gmail.com" className="mt-1 inline-block font-medium text-foreground hover:underline">
+                        woogi.dev@gmail.com
+                    </a>
+                </div>
             </div>
 
-            {/* Contact Form */}
-            <Card className="min-w-0 overflow-hidden">
-                <CardHeader>
-                    <CardTitle>Send me a message</CardTitle>
-                    <CardDescription>
-                        필요한 배경과 목표를 남겨주시면 확인 후 회신하겠습니다.
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
+            <div className="border bg-card p-5 md:p-6">
+                <div className="mb-6">
+                    <h2 className="text-2xl font-semibold tracking-normal">Send a message</h2>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                        필요한 배경과 목표를 확인한 뒤 회신하겠습니다.
+                    </p>
+                </div>
                     {success ? (
                         <div className="flex flex-col items-center justify-center py-12 text-center">
                             <CheckCircle2 className="mb-4 h-16 w-16 text-green-500" />
                             <h3 className="mb-2 text-2xl font-bold">Message Sent!</h3>
                             <p className="mb-6 text-muted-foreground">
-                                Thank you for reaching out. I will get back to you soon.
+                                메시지를 받았습니다. 확인 후 회신하겠습니다.
                             </p>
                             <Button onClick={() => setSuccess(false)} variant="outline">
-                                Send Another Message
+                                다른 메시지 보내기
                             </Button>
                         </div>
                     ) : (
@@ -107,7 +105,6 @@ export function ContactForm() {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleChange}
-                                        placeholder="Your name"
                                         required
                                     />
                                 </div>
@@ -121,7 +118,6 @@ export function ContactForm() {
                                         type="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        placeholder="your.email@example.com"
                                         required
                                     />
                                 </div>
@@ -134,8 +130,8 @@ export function ContactForm() {
                                     name="subject"
                                     value={formData.subject}
                                     onChange={handleChange}
-                                    placeholder="AI agent, data pipeline, PromptOps..."
                                 />
+                                <p className="text-xs text-muted-foreground">예: AI Agent, 데이터 파이프라인, PromptOps</p>
                             </div>
 
                             <div className="space-y-2">
@@ -147,10 +143,10 @@ export function ContactForm() {
                                     name="message"
                                     value={formData.message}
                                     onChange={handleChange}
-                                    placeholder="해결하려는 문제와 제품/운영 맥락을 알려주세요."
                                     className="min-h-[200px]"
                                     required
                                 />
+                                <p className="text-xs text-muted-foreground">해결하려는 문제와 제품·운영 맥락을 알려주세요.</p>
                             </div>
 
                             {error && (
@@ -174,20 +170,6 @@ export function ContactForm() {
                             </Button>
                         </form>
                     )}
-                </CardContent>
-            </Card>
-
-            {/* Additional Contact Info */}
-            <div className="mt-12 text-center">
-                <p className="break-words text-sm text-muted-foreground">
-                    You can also reach me directly at{" "}
-                    <a
-                        href="mailto:woogi.dev@gmail.com"
-                        className="font-medium text-primary hover:underline"
-                    >
-                        woogi.dev@gmail.com
-                    </a>
-                </p>
             </div>
         </div>
     )

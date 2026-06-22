@@ -15,7 +15,7 @@ import {
 } from "lucide-react"
 import type { Metadata } from "next"
 
-import { Badge } from "@/components/ui/badge"
+import { Reveal } from "@/components/motion-reveal"
 import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ const fitSignals = [
   {
     icon: Bot,
     title: "Agent Execution Layer",
-    body: "자연어 요청을 task, tool call, approval, run log, verification으로 나누는 실행 계층을 설계했습니다.",
+    body: "자연어 요청을 task, tool call, approval, run log, verification으로 나누어 실행 흐름을 관리하도록 설계했습니다.",
   },
   {
     icon: Gamepad2,
@@ -38,12 +38,12 @@ const fitSignals = [
   {
     icon: BrainCircuit,
     title: "AI Product Quality",
-    body: "LLM 결과물을 structured output, eval report, guard script, human review 대상으로 관리합니다.",
+    body: "LLM 결과물을 structured output, eval report, guard script, human review 기준으로 관리합니다.",
   },
   {
     icon: MonitorSmartphone,
     title: "Complex Product Surface",
-    body: "Flutter 멀티플랫폼, BLE, 실시간 통신, 현장 운영 자동화를 제품 출시와 운영까지 연결했습니다.",
+    body: "Flutter 멀티플랫폼, BLE, 실시간 통신, 현장 운영 자동화를 제품 출시와 운영까지 이어갔습니다.",
   },
 ]
 
@@ -61,7 +61,7 @@ const cases = [
       "25+ 도메인 Agent와 340+ Skill 자산을 여러 CLI가 공유할 수 있도록 workspace화",
     ],
     overdare:
-      "OVERDARE Studio의 AI Agent도 tool call, 실패 복구, human review, execution trace가 필요합니다. 이 경험은 제작 Agent를 답변 기능이 아니라 운영 가능한 실행 계층으로 설계하는 기반입니다.",
+      "OVERDARE Studio의 AI Agent도 tool call, 실패 복구, human review, execution trace가 필요합니다. 이 경험은 제작 Agent를 단순 답변 기능이 아니라 실제 실행 흐름으로 설계하는 데 맞닿아 있습니다.",
     stack: ["Codex CLI", "Claude Code", "Gemini CLI", "FastAPI", "Next.js", "PostgreSQL", "Redis"],
   },
   {
@@ -90,7 +90,7 @@ const cases = [
     proof: [
       "Technical SEO, Content, International, Authority, AI/AEO, Machine Readability, Medical Compliance 7개 카테고리 진단",
       "의료법 critical issue가 있으면 전체 점수를 제한하는 gating rule과 PDF report pipeline 구성",
-      "AEO source pool analyzer, AI SOV snapshot, review semantic analyzer처럼 반복 측정 가능한 AI 품질 표면 설계",
+      "AEO source pool analyzer, AI SOV snapshot, review semantic analyzer처럼 반복 측정 가능한 AI 품질 지표 설계",
     ],
     overdare:
       "AI 기능은 생성만으로 끝나면 품질이 흔들립니다. Studio Agent도 사용자의 의도 반영도, 실행 가능성, 누락된 rule/asset, regression case를 평가하는 루프가 필요합니다.",
@@ -102,14 +102,14 @@ const cases = [
     title: "Complex Product Engineering",
     subtitle: "Smart Glasses / OTT / Realtime Apps",
     summary:
-      "AI 스마트 안경 제품군과 여러 Flutter 프로젝트에서 앱, 실시간 통신, 디바이스, 운영 도구가 함께 움직이는 제품 표면을 다뤘습니다.",
+      "AI 스마트 안경 제품군과 여러 Flutter 프로젝트에서 앱, 실시간 통신, 디바이스, 운영 도구가 함께 움직이는 제품을 다뤘습니다.",
     proof: [
       "OWL, C-Biz, C-Sound의 Mobile/Desktop/Smart Glasses 앱 구조 설계와 Flutter 제품 리드",
       "BLE Central/Peripheral, GATT, MTU, 청크 메시징, STT, WebSocket, Kiosk Mode, OTA, ADB Factory 운영",
       "OTT, TV 앱, 채팅, 실시간 주문 동기화, DRM/Video Player 안정화 프로젝트 경험",
     ],
     overdare:
-      "OVERDARE는 AI Agent뿐 아니라 모바일 UGC, 채팅, 아바타, 크리에이터 경제가 결합된 제품입니다. 넓은 제품 표면을 끝까지 운영한 경험이 Agent 기능의 실제 출시 리스크를 줄입니다.",
+      "OVERDARE는 AI Agent뿐 아니라 모바일 UGC, 채팅, 아바타, 크리에이터 경제가 결합된 제품입니다. 여러 제품 영역을 끝까지 운영해 본 경험은 Agent 기능의 출시 리스크를 줄이는 데 도움이 됩니다.",
     stack: ["Flutter", "Riverpod", "BLE", "WebSocket", "STT", "Kiosk", "OTA", "Sentry"],
   },
 ]
@@ -120,7 +120,7 @@ const visualProofs = [
     subtitle: "Company OS",
     image: "/company-os-worker-status-desktop.png",
     alt: "Company OS provider run status panel showing Codex and Claude execution states",
-    body: "Agent 실행을 provider별 상태, 승인 대기, 증거 첨부 단위로 추적하는 운영 화면입니다.",
+    body: "Agent 실행을 provider별 상태, 승인 대기, 첨부 자료 단위로 추적하는 운영 화면입니다.",
   },
   {
     title: "AI Draft Review",
@@ -134,14 +134,14 @@ const visualProofs = [
     subtitle: "Memoriz",
     image: "/memoriz-natural-search-reuse.png",
     alt: "Memoriz mobile screen showing natural language search over past memory records",
-    body: "저장된 기록을 자연어 검색과 추천 이벤트로 다시 활용하는 AI product loop입니다.",
+    body: "저장된 기록을 자연어 검색과 추천 이벤트에서 다시 활용하는 흐름입니다.",
   },
   {
     title: "Evaluation Loop",
     subtitle: "CheckYourHospital",
     image: "/checkyourhospital-psf-validation-table.png",
     alt: "CheckYourHospital problem solution fit validation table for AI search readiness diagnosis",
-    body: "문제 정의, 검증 단계, 제품 반영을 하나의 리포트/평가 구조로 닫는 방식입니다.",
+    body: "문제 정의, 검증 단계, 제품 반영을 한 리포트 안에서 함께 관리하는 방식입니다.",
   },
 ]
 
@@ -154,206 +154,159 @@ const operatingChecks = [
 
 export default function OverdarePortfolioPage() {
   return (
-    <main className="bg-white dark:bg-slate-950">
-      <section className="border-b bg-[#f7f8f5] dark:bg-[#0d1117]">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
-          <div className="min-w-0">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
-              OVERDARE AI Agent Portfolio
-            </p>
-            <h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl dark:text-white">
-              UGC 제작 의도를 실행 가능한 Agent workflow로 바꾸는 엔지니어링
+    <main className="bg-background">
+      <section className="border-b bg-[#111812] text-[#f3f2e9]">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+          <Reveal>
+            <p className="font-mono text-xs text-[#f2d27b]">OVERDARE AI AGENT FIT</p>
+            <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold leading-tight md:text-6xl">
+              UGC 제작 의도를 실행 가능한 Agent workflow로 풀어냅니다.
             </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700 dark:text-slate-300">
-              게임 제작 기반 이해, AI Agent 실행 계층, 평가/리포트 자동화, 복잡한 제품 운영 경험을 OVERDARE Studio의 AI Agent 고도화 관점으로 정리했습니다.
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-[#dbe3dc]">
+              게임 제작 기반 이해, Agent 실행 구조, 평가/리포트 자동화, 복잡한 제품 운영 경험을 OVERDARE Studio 관점으로 정리했습니다.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="rounded-md bg-slate-950 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950">
+              <Button asChild size="lg" className="bg-[#f3f2e9] text-[#111812] hover:bg-white">
                 <Link href="/overdare-resume-kang-taewook.pdf">
                   <FileText className="h-4 w-4" />
                   Resume PDF
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-md bg-white/80 dark:bg-slate-950/60">
+              <Button asChild size="lg" variant="outline" className="border-white/20 bg-transparent text-[#f3f2e9] hover:bg-white/10 hover:text-white">
                 <Link href="/overdare-cover-letter-career-description-kang-taewook.pdf">
                   Supporting document <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
             </div>
-          </div>
-
-          <div className="min-w-0 overflow-hidden rounded-md border bg-white p-3 dark:bg-slate-950">
+          </Reveal>
+          <Reveal delay={0.1} className="overflow-hidden border border-white/10 bg-white">
             <Image
               src="/company-os-dashboard-desktop.png"
-              alt="Company OS dashboard showing work queue, approval gates, provider runs, and evidence vault"
+              alt="Company OS dashboard showing work queue, approval gates, provider runs, and reference vault"
               width={1440}
               height={1000}
               priority
-              className="aspect-[16/11] w-full rounded-sm object-cover object-left-top"
+              className="aspect-[16/11] w-full object-contain object-left-top"
             />
-            <div className="mt-3 grid gap-3 text-sm text-slate-700 dark:text-slate-300 md:grid-cols-3">
-              <div className="rounded-md bg-slate-100 px-3 py-2 dark:bg-slate-900">Task queue</div>
-              <div className="rounded-md bg-slate-100 px-3 py-2 dark:bg-slate-900">Approval gate</div>
-              <div className="rounded-md bg-slate-100 px-3 py-2 dark:bg-slate-900">Evidence vault</div>
-            </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      <section className="border-b bg-white py-12 dark:bg-slate-950 md:py-16">
-        <div className="mx-auto grid max-w-7xl gap-4 px-5 md:grid-cols-2 md:px-8 lg:grid-cols-4">
-          {fitSignals.map((signal) => {
+      <section className="border-b py-12 md:py-16">
+        <div className="mx-auto grid max-w-7xl gap-px border bg-border px-0 md:grid-cols-4">
+          {fitSignals.map((signal, index) => {
             const Icon = signal.icon
             return (
-              <article key={signal.title} className="min-w-0 overflow-hidden rounded-md border p-5">
-                <Icon className="h-6 w-6 text-teal-700 dark:text-teal-300" />
-                <h2 className="mt-4 text-lg font-semibold text-slate-950 dark:text-white">{signal.title}</h2>
-                <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{signal.body}</p>
-              </article>
+              <Reveal key={signal.title} delay={index * 0.04} className="bg-card p-5 md:p-6">
+                <Icon className="h-6 w-6" />
+                <h2 className="mt-5 text-xl font-semibold tracking-normal">{signal.title}</h2>
+                <p className="mt-4 text-sm leading-7 text-muted-foreground">{signal.body}</p>
+              </Reveal>
             )
           })}
         </div>
       </section>
 
-      <section className="bg-[#eef3f0] py-14 dark:bg-[#101918] md:py-20">
+      <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <div className="grid gap-10 lg:grid-cols-[360px_1fr]">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
-                Evidence Map
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl dark:text-white">
-                제출용 문서의 주장을 실제 프로젝트 증거로 연결
-              </h2>
-              <p className="mt-5 text-sm leading-7 text-slate-700 dark:text-slate-300">
-                공개 가능한 범위에서 문제, 구현 표면, 검증 방식, OVERDARE 적용 가능성을 분리했습니다.
-              </p>
-            </div>
-            <div className="grid gap-5">
-              {cases.map((item) => {
-                const Icon = item.icon
-                return (
-                  <article key={item.title} className="min-w-0 overflow-hidden rounded-md border bg-white p-6 dark:bg-slate-950">
-                    <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
-                      <div className="min-w-0">
-                        <div className="flex flex-wrap items-center gap-3">
-                          <span className="font-mono text-sm text-slate-500 dark:text-slate-400">{item.label}</span>
-                          <Badge variant="outline" className="rounded-md">
-                            {item.subtitle}
-                          </Badge>
-                        </div>
-                        <h3 className="mt-3 text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">{item.title}</h3>
-                        <p className="mt-3 text-sm leading-6 text-slate-700 dark:text-slate-300">{item.summary}</p>
-                      </div>
-                      <Icon className="h-7 w-7 shrink-0 text-teal-700 dark:text-teal-300" />
+          <Reveal>
+            <p className="font-mono text-xs text-muted-foreground">EVIDENCE MAP</p>
+            <h2 className="mt-4 max-w-3xl text-balance text-3xl font-semibold leading-tight md:text-5xl">
+              제출용 문서의 주장을 실제 프로젝트로 뒷받침합니다.
+            </h2>
+          </Reveal>
+          <div className="mt-10 border-t">
+            {cases.map((item, index) => {
+              const Icon = item.icon
+              return (
+                <Reveal key={item.title} delay={index * 0.04}>
+                  <article className="grid gap-6 border-b py-7 md:grid-cols-[72px_1fr_1.1fr]">
+                    <div className="flex items-center gap-3 md:block">
+                      <span className="font-mono text-sm text-muted-foreground">{item.label}</span>
+                      <Icon className="mt-0 h-5 w-5 md:mt-6" />
                     </div>
-
-                    <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_0.9fr]">
-                      <div>
-                        <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
-                          Proof
-                        </p>
-                        <ul className="mt-3 space-y-3">
-                          {item.proof.map((proof) => (
-                            <li key={proof} className="flex gap-3 text-sm leading-6 text-slate-700 dark:text-slate-300">
-                              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-amber-600 dark:text-amber-400" />
-                              <span>{proof}</span>
-                            </li>
-                          ))}
-                        </ul>
+                    <div>
+                      <p className="text-sm text-muted-foreground">{item.subtitle}</p>
+                      <h3 className="mt-2 text-2xl font-semibold tracking-normal">{item.title}</h3>
+                      <p className="mt-4 text-sm leading-7 text-muted-foreground">{item.summary}</p>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {item.stack.slice(0, 6).map((tech) => (
+                          <span key={tech} className="border px-2 py-1 text-xs text-muted-foreground">{tech}</span>
+                        ))}
                       </div>
-                      <div>
-                        <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
-                          OVERDARE 연결
-                        </p>
-                        <p className="mt-3 text-sm leading-6 text-slate-700 dark:text-slate-300">{item.overdare}</p>
-                        <div className="mt-4 flex flex-wrap gap-2">
-                          {item.stack.map((tech) => (
-                            <span key={tech} className="rounded-md bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
+                    </div>
+                    <div>
+                      <p className="font-mono text-xs text-muted-foreground">OVERDARE FIT</p>
+                      <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.overdare}</p>
+                      <ul className="mt-5 space-y-2 text-sm leading-6">
+                        {item.proof.slice(0, 2).map((proof) => (
+                          <li key={proof} className="flex gap-2 text-muted-foreground">
+                            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-foreground" />
+                            <span>{proof}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </article>
-                )
-              })}
-            </div>
+                </Reveal>
+              )
+            })}
           </div>
         </div>
       </section>
 
-      <section className="border-y bg-white py-14 dark:bg-slate-950 md:py-20">
+      <section className="border-y bg-card py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
-              Visual Proof
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl dark:text-white">
-              이미지 하나마다 증명할 역할을 분명히 분리
+          <Reveal>
+            <p className="font-mono text-xs text-muted-foreground">VISUAL PROOF</p>
+            <h2 className="mt-4 max-w-3xl text-balance text-3xl font-semibold leading-tight md:text-5xl">
+              각 화면이 보여주는 역할을 분리했습니다.
             </h2>
-            <p className="mt-5 max-w-3xl text-sm leading-7 text-slate-700 dark:text-slate-300">
-              단순 스크린샷 모음이 아니라, OVERDARE AI Agent 포지션에서 중요한 실행 제어, human review, memory reuse, evaluation loop를 각각 보여주도록 정리했습니다.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              <Badge variant="outline" className="rounded-md">Structured output</Badge>
-              <Badge variant="outline" className="rounded-md">Human review</Badge>
-              <Badge variant="outline" className="rounded-md">Eval report</Badge>
-              <Badge variant="outline" className="rounded-md">Regression guard</Badge>
-            </div>
-          </div>
-
+          </Reveal>
           <div className="mt-10 grid gap-5 md:grid-cols-2">
-            {visualProofs.map((proof) => (
-              <article key={proof.title} className="min-w-0 overflow-hidden rounded-md border bg-[#f7f8f5] dark:bg-[#0d1117]">
-                <div className="border-b bg-white p-5 dark:bg-slate-950">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <Badge variant="outline" className="rounded-md">
-                      {proof.subtitle}
-                    </Badge>
-                    <h3 className="text-lg font-semibold text-slate-950 dark:text-white">{proof.title}</h3>
-                  </div>
-                  <p className="mt-3 text-sm leading-6 text-slate-700 dark:text-slate-300">{proof.body}</p>
+            {visualProofs.map((proof, index) => (
+              <Reveal key={proof.title} delay={index * 0.04} className="overflow-hidden border bg-background">
+                <div className="border-b p-5">
+                  <p className="font-mono text-xs text-muted-foreground">{proof.subtitle}</p>
+                  <h3 className="mt-2 text-lg font-semibold tracking-normal">{proof.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{proof.body}</p>
                 </div>
-                <div className="bg-slate-100 p-3 dark:bg-slate-900">
-                  <Image
-                    src={proof.image}
-                    alt={proof.alt}
-                    width={proof.image.includes("memoriz") ? 866 : 1440}
-                    height={proof.image.includes("memoriz") ? 1744 : 900}
-                    className="aspect-[4/3] w-full rounded-sm bg-white object-contain dark:bg-slate-950"
-                  />
-                </div>
-              </article>
+                <Image
+                  src={proof.image}
+                  alt={proof.alt}
+                  width={proof.image.includes("memoriz") ? 866 : 1440}
+                  height={proof.image.includes("memoriz") ? 1744 : 900}
+                  className="aspect-[4/3] w-full bg-white object-contain object-left-top"
+                />
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-[#f7f8f5] py-14 dark:bg-[#0d1117] md:py-20">
-        <div className="mx-auto max-w-5xl px-5 md:px-8">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
-            How I Would Start
-          </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl dark:text-white">
-            OVERDARE Studio AI Agent에서 먼저 정리할 실행 체크
-          </h2>
-          <div className="mt-8 grid gap-3">
+      <section className="py-16 md:py-24">
+        <div className="mx-auto grid max-w-5xl gap-10 px-5 md:px-8 lg:grid-cols-[320px_1fr]">
+          <Reveal>
+            <p className="font-mono text-xs text-muted-foreground">FIRST CONTRIBUTION</p>
+            <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight md:text-5xl">
+              OVERDARE Studio AI Agent에서 먼저 점검할 일
+            </h2>
+          </Reveal>
+          <div className="grid gap-px border bg-border">
             {operatingChecks.map((check, index) => (
-              <div key={check} className="grid gap-3 rounded-md border bg-white p-4 dark:bg-slate-950 md:grid-cols-[64px_1fr] md:items-center">
-                <span className="font-mono text-sm text-slate-500 dark:text-slate-400">{String(index + 1).padStart(2, "0")}</span>
-                <p className="text-sm leading-6 text-slate-700 dark:text-slate-300">{check}</p>
-              </div>
+              <Reveal key={check} delay={index * 0.04} className="grid gap-4 bg-card p-5 md:grid-cols-[64px_1fr]">
+                <span className="font-mono text-sm text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
+                <p className="leading-7 text-muted-foreground">{check}</p>
+              </Reveal>
             ))}
           </div>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Button asChild className="rounded-md bg-slate-950 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950">
+          <div className="lg:col-start-2 flex flex-wrap gap-3">
+            <Button asChild>
               <Link href="/portfolio">
-                Back to all case studies <ArrowRight className="h-4 w-4" />
+                전체 작업 보기 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild variant="outline" className="rounded-md bg-white dark:bg-slate-950">
+            <Button asChild variant="outline" className="bg-background">
               <Link href="mailto:woogi.dev@gmail.com">woogi.dev@gmail.com</Link>
             </Button>
           </div>

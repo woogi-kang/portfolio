@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ArrowRight, Github, Linkedin, Mail, MapPin } from "lucide-react"
 import type { Metadata } from "next"
 
+import { Reveal } from "@/components/motion-reveal"
 import { Button } from "@/components/ui/button"
 import {
   capabilities,
@@ -18,7 +19,7 @@ import {
 export const metadata: Metadata = {
   title: "AI Data Product Engineer / LLM Pipeline Portfolio",
   description:
-    "Kang Taewook builds LLM data pipelines, catalog-like data layers, grounded AI services, and full-stack AI product workflows.",
+    "Kang Taewook designs LLM data pipelines, catalog data layers, grounded AI services, and practical AI product workflows.",
 }
 
 const featuredCaseStudies = [
@@ -30,54 +31,57 @@ const featuredCaseStudies = [
   .map((slug) => caseStudies.find((project) => project.slug === slug))
   .filter((project): project is (typeof caseStudies)[number] => Boolean(project))
 
+const artifactImages = [
+  {
+    title: "작업 흐름 관리",
+    src: "/company-os-dashboard-desktop.png",
+    alt: "AI workflow dashboard with work queue and reference controls",
+  },
+  {
+    title: "사람이 검토하는 AI 초안",
+    src: "/memoriz-ai-draft-review.png",
+    alt: "Memoriz mobile AI draft review before saving a record",
+  },
+  {
+    title: "품질 평가 리포트",
+    src: "/checkyourhospital-psf-validation-table.png",
+    alt: "AI search readiness evaluation report table",
+  },
+]
+
 export default function Home() {
   return (
-    <main>
-      <section className="relative overflow-hidden border-b bg-[#f7f8f5] dark:bg-[#0d1117]">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,42,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.08)_1px,transparent_1px)] bg-[size:44px_44px] opacity-50 dark:opacity-20" />
-        <div className="absolute inset-y-0 right-0 hidden w-[42%] bg-[#dfe8e4] md:block dark:bg-[#16211f]" />
-        <Image
-          src="/profile.jpg"
-          alt="Kang Taewook profile"
-          width={496}
-          height={638}
-          priority
-          className="absolute bottom-0 right-8 hidden h-[84%] w-auto object-contain md:block lg:right-20"
-        />
-        <div className="relative mx-auto grid max-w-7xl gap-12 px-5 py-16 md:grid-cols-[1fr_360px] md:px-8 md:py-20 lg:py-24">
-          <div className="min-w-0 max-w-3xl">
-            <div className="mb-6 flex flex-wrap items-center gap-3 text-sm font-medium text-slate-600 dark:text-slate-300">
-              <span className="rounded-md border border-slate-300 bg-white/70 px-3 py-1 dark:border-slate-700 dark:bg-slate-950/70">
-                실무 6년차 Product Engineer
-              </span>
+    <main className="bg-background">
+      <section className="relative overflow-hidden border-b bg-[#111812] text-[#f3f2e9]">
+        <div className="absolute inset-0 evidence-grid text-white/35" />
+        <div className="relative mx-auto grid min-h-[calc(100dvh-3.5rem)] max-w-7xl items-center gap-10 px-5 py-12 md:px-8 lg:grid-cols-[0.92fr_1.08fr] lg:py-16">
+          <Reveal className="min-w-0">
+            <div className="mb-6 flex flex-wrap items-center gap-3 text-sm text-[#c9d5cb]">
+              <span className="border border-white/15 px-3 py-1">6년차 Product Engineer</span>
               <span className="inline-flex items-center gap-1">
                 <MapPin className="h-4 w-4" />
                 {profile.location}
               </span>
             </div>
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
-              {profile.role}
-            </p>
-            <h1 className="max-w-[22rem] text-3xl font-semibold leading-tight tracking-tight text-slate-950 sm:text-4xl md:max-w-4xl md:text-6xl dark:text-slate-50">
-              <span className="block">LLM 데이터 파이프라인과</span>
-              <span className="block">AI 제품 경험으로</span>
-              <span className="block">비정형 데이터를 구조화합니다.</span>
+            <p className="font-mono text-xs text-[#f2d27b]">{profile.role}</p>
+            <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold leading-[1.08] tracking-normal sm:text-5xl lg:text-7xl">
+              흩어진 데이터를 AI 제품에서 바로 쓸 수 있게 정리합니다.
             </h1>
-            <p className="mt-6 max-w-[22rem] text-base leading-8 text-slate-700 md:max-w-2xl md:text-xl dark:text-slate-200">
-              {profile.summary} 프롬프트 몇 개를 만드는 수준이 아니라, 데이터 수집, 구조화, 검증, 검색, 추천, 운영 로그가 이어지는 제품 시스템을 설계합니다.
+            <p className="mt-6 max-w-2xl text-base leading-8 text-[#dbe3dc] md:text-lg">
+              웹, 이미지, OCR, 위치, 리뷰 텍스트를 수집하고 검증해 RAG, 추천, 리포트, Agent UX에 필요한 데이터 흐름으로 정리합니다.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="rounded-md bg-slate-950 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950">
-                <Link href="/portfolio/alwayz-shopport-ai-data">
-                  Shopport-fit Portfolio <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-md bg-white/80 dark:bg-slate-950/60">
+              <Button asChild size="lg" className="bg-[#f3f2e9] text-[#111812] hover:bg-white">
                 <Link href="/portfolio">
-                  Case Studies <ArrowRight className="h-4 w-4" />
+                  작업 살펴보기 <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="ghost" className="rounded-md">
+              <Button asChild size="lg" variant="outline" className="border-white/20 bg-transparent text-[#f3f2e9] hover:bg-white/10 hover:text-white">
+                <Link href="/portfolio/alwayz-shopport-ai-data">
+                  맞춤 포트폴리오 <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="ghost" className="text-[#f3f2e9] hover:bg-white/10 hover:text-white">
                 <Link href={`mailto:${profile.email}`}>
                   <Mail className="h-4 w-4" />
                   Contact
@@ -85,217 +89,242 @@ export default function Home() {
               </Button>
             </div>
             <div className="mt-8 flex items-center gap-3">
-              <Button asChild size="icon" variant="outline" className="rounded-md bg-white/80 dark:bg-slate-950/60">
+              <Button asChild size="icon" variant="outline" className="border-white/20 bg-transparent text-[#f3f2e9] hover:bg-white/10 hover:text-white">
                 <Link href={profile.github} target="_blank" aria-label="GitHub">
                   <Github className="h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild size="icon" variant="outline" className="rounded-md bg-white/80 dark:bg-slate-950/60">
+              <Button asChild size="icon" variant="outline" className="border-white/20 bg-transparent text-[#f3f2e9] hover:bg-white/10 hover:text-white">
                 <Link href={profile.linkedin} target="_blank" aria-label="LinkedIn">
                   <Linkedin className="h-4 w-4" />
                 </Link>
               </Button>
             </div>
-          </div>
-          <div className="relative mx-auto min-h-[300px] w-full max-w-[260px] md:hidden">
-            <Image
-              src="/profile.jpg"
-              alt="Kang Taewook profile"
-              width={496}
-              height={638}
-              priority
-              className="absolute bottom-0 left-1/2 h-full w-auto -translate-x-1/2 object-contain"
-            />
-          </div>
+          </Reveal>
+
+          <Reveal delay={0.12} className="min-w-0">
+            <div className="relative mx-auto w-full max-w-[520px] overflow-hidden border border-white/10 bg-[#1a211b] lg:mx-0 lg:justify-self-end">
+              <div className="absolute inset-0 evidence-grid text-white/20" />
+              <Image
+                src="/profile.jpg"
+                alt={`${profile.name} profile photo`}
+                width={496}
+                height={638}
+                priority
+                className="relative mx-auto h-[420px] w-auto object-contain object-bottom pt-8 sm:h-[520px] lg:h-[600px]"
+              />
+              <div className="relative border-t border-white/10 bg-[#111812]/95 p-5">
+                <p className="font-mono text-xs text-[#f2d27b]">PROFILE</p>
+                <h2 className="mt-2 text-2xl font-semibold tracking-normal">{profile.name}</h2>
+                <p className="mt-2 text-sm leading-6 text-[#c9d5cb]">{profile.headline}</p>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      <section className="border-b bg-white dark:bg-slate-950">
-        <div className="mx-auto grid max-w-7xl gap-px border-x bg-border px-0 md:grid-cols-4">
+      <section className="border-b bg-background">
+        <div className="mx-auto grid max-w-7xl border-x md:grid-cols-4">
           {metrics.map((metric) => (
-            <div key={metric.label} className="bg-white p-5 dark:bg-slate-950 md:p-6">
-              <p className="text-sm text-slate-500 dark:text-slate-400">{metric.label}</p>
-              <p className="mt-2 text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">{metric.value}</p>
-              <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{metric.detail}</p>
+            <div key={metric.label} className="border-b p-5 md:border-b-0 md:border-r md:p-6 last:md:border-r-0">
+              <p className="text-sm text-muted-foreground">{metric.label}</p>
+              <p className="mt-2 text-2xl font-semibold tracking-normal">{metric.value}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{metric.detail}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="bg-white py-20 dark:bg-slate-950">
-        <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
-                Workflow System
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl dark:text-white">
-                프롬프트가 아니라 신뢰 가능한 데이터 계층과 제품 루프를 만듭니다.
-              </h2>
-              <div className="mt-6 space-y-3">
-                {operatingPrinciples.map((principle) => (
-                  <p key={principle} className="border-l-2 border-teal-600 pl-4 text-slate-700 dark:text-slate-300">
-                    {principle}
-                  </p>
-                ))}
-              </div>
+      <section className="py-16 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 md:px-8 lg:grid-cols-[0.78fr_1.22fr]">
+          <Reveal>
+            <p className="font-mono text-xs text-muted-foreground">OPERATING THESIS</p>
+            <h2 className="mt-4 max-w-xl text-balance text-3xl font-semibold leading-tight md:text-5xl">
+              좋은 프롬프트보다 먼저 데이터, 실패 처리, 평가 루프를 설계합니다.
+            </h2>
+            <div className="mt-8 space-y-4">
+              {operatingPrinciples.map((principle, index) => (
+                <div key={principle} className="grid grid-cols-[2.5rem_1fr] gap-4 border-t pt-4">
+                  <span className="font-mono text-xs text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
+                  <p className="leading-7 text-muted-foreground">{principle}</p>
+                </div>
+              ))}
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {focusAreas.map((area) => {
-                const Icon = area.icon
-                return (
-                  <article key={area.title} className="min-w-0 overflow-hidden rounded-md border bg-[#fbfcf8] p-5 dark:bg-slate-900/60">
-                    <Icon className="h-6 w-6 text-teal-700 dark:text-teal-300" />
-                    <h3 className="mt-5 break-words text-lg font-semibold text-slate-950 dark:text-white">{area.title}</h3>
-                    <p className="mt-3 break-words text-sm leading-6 text-slate-600 dark:text-slate-300">{area.body}</p>
-                  </article>
-                )
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
+          </Reveal>
 
-      <section className="border-y bg-[#eef3f0] py-20 dark:bg-[#101918]">
-        <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
-                Selected Case Studies
-              </p>
-              <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight text-slate-950 md:text-4xl dark:text-white">
-                LLM 속성 추출, 데이터 검증, AI 추천, 리포트 제품까지 연결한 작업들
-              </h2>
-            </div>
-            <Button asChild variant="outline" className="w-fit rounded-md bg-white dark:bg-slate-950">
-              <Link href="/portfolio">
-                View all work <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
-            {featuredCaseStudies.map((project) => {
-              const Icon = project.icon
+          <div className="grid gap-px border bg-border sm:grid-cols-2">
+            {focusAreas.map((area, index) => {
+              const Icon = area.icon
               return (
-                <Link
-                  key={project.slug}
-                  href={`/portfolio/${project.slug}`}
-                  className="group min-w-0 overflow-hidden rounded-md border bg-white p-6 transition-colors hover:border-teal-700 dark:bg-slate-950 dark:hover:border-teal-300"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-sm font-medium text-teal-700 dark:text-teal-300">{project.eyebrow}</p>
-                      <h3 className="mt-3 break-words text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">{project.title}</h3>
-                    </div>
-                    <Icon className="h-6 w-6 shrink-0 text-slate-500 transition-colors group-hover:text-teal-700 dark:text-slate-400 dark:group-hover:text-teal-300" />
-                  </div>
-                  <p className="mt-4 line-clamp-3 break-words text-sm leading-6 text-slate-600 dark:text-slate-300">{project.summary}</p>
-                  <div className="mt-5 flex min-w-0 flex-wrap gap-2 overflow-hidden">
-                    {project.stack.slice(0, 5).map((tech) => (
-                      <span key={tech} className="max-w-full rounded-md bg-slate-100 px-2 py-1 text-xs text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </Link>
+                <Reveal key={area.title} delay={index * 0.04} className="bg-card p-5 md:p-6">
+                  <Icon className="h-6 w-6 text-foreground" />
+                  <h3 className="mt-5 text-xl font-semibold tracking-normal">{area.title}</h3>
+                  <p className="mt-4 text-sm leading-7 text-muted-foreground">{area.body}</p>
+                </Reveal>
               )
             })}
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-20 dark:bg-slate-950">
+      <section className="border-y bg-[#ece9dd] py-16 dark:bg-[#1d261f] md:py-24">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <div className="grid gap-10 lg:grid-cols-[360px_1fr]">
+          <Reveal className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
-                Capability Map
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">
-                <span className="block">AI 기능 구현을 넘어</span>
-                <span className="block">데이터와 품질을 함께 설계하는</span>
-                <span className="block">엔지니어</span>
+              <p className="font-mono text-xs text-muted-foreground">SELECTED EVIDENCE</p>
+              <h2 className="mt-4 max-w-3xl text-balance text-3xl font-semibold leading-tight md:text-5xl">
+                실제 화면과 검증 흐름으로 남긴 작업들
               </h2>
             </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              {capabilities.map((capability) => {
-                const Icon = capability.icon
-                return (
-                  <article key={capability.title} className="min-w-0 overflow-hidden rounded-md border p-5">
-                    <div className="flex items-center gap-3">
-                      <Icon className="h-5 w-5 text-teal-700 dark:text-teal-300" />
-                      <h3 className="font-semibold text-slate-950 dark:text-white">{capability.title}</h3>
+            <Button asChild variant="outline" className="w-fit bg-background">
+              <Link href="/portfolio">
+                전체 작업 보기 <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </Reveal>
+
+          <div className="mt-10 grid gap-px overflow-hidden border bg-border">
+            {featuredCaseStudies.map((project, index) => {
+              const Icon = project.icon
+              return (
+                <Reveal key={project.slug} delay={index * 0.04}>
+                  <Link
+                    href={`/portfolio/${project.slug}`}
+                    className="group grid gap-5 bg-background p-5 transition-colors hover:bg-card md:grid-cols-[72px_1fr_190px] md:p-6"
+                  >
+                    <div className="flex items-center gap-3 md:block">
+                      <p className="font-mono text-xs text-muted-foreground">{String(index + 1).padStart(2, "0")}</p>
+                      <Icon className="mt-0 h-5 w-5 text-foreground md:mt-6" />
                     </div>
-                    <ul className="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300">
-                      {capability.items.map((item) => (
-                        <li key={item} className="flex gap-2">
-                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
-                          <span className="break-words">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </article>
-                )
-              })}
-            </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">{project.eyebrow}</p>
+                      <h3 className="mt-2 text-2xl font-semibold tracking-normal">{project.title}</h3>
+                      <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">{project.summary}</p>
+                    </div>
+                    <div className="flex items-end justify-between gap-4 md:flex-col md:items-start md:justify-center">
+                      <div className="flex flex-wrap gap-2">
+                        {project.stack.slice(0, 3).map((tech) => (
+                          <span key={tech} className="border px-2 py-1 text-xs text-muted-foreground">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </Link>
+                </Reveal>
+              )
+            })}
           </div>
         </div>
       </section>
 
-      <section className="border-y bg-[#f7f8f5] py-20 dark:bg-[#0d1117]">
-        <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <div className="grid gap-10 lg:grid-cols-[360px_1fr]">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">
-                Career Timeline
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">
-                제품 개발에서 AI Data Product로 확장
-              </h2>
-            </div>
-            <div className="space-y-4">
-              {timeline.map((item) => (
-                <article key={`${item.period}-${item.company}`} className="grid min-w-0 gap-4 overflow-hidden rounded-md border bg-white p-5 dark:bg-slate-950 md:grid-cols-[180px_1fr]">
-                  <p className="font-mono text-sm text-slate-500 dark:text-slate-400">{item.period}</p>
+      <section className="py-16 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 md:px-8 lg:grid-cols-[360px_1fr]">
+          <Reveal>
+            <p className="font-mono text-xs text-muted-foreground">ARTIFACTS</p>
+            <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight md:text-5xl">
+              설명보다 화면과 운영 흐름으로 보여줍니다.
+            </h2>
+            <p className="mt-5 leading-7 text-muted-foreground">
+              AI 기능은 데모에서 끝나지 않습니다. 실행 관리, 사람의 검토, 품질 리포트까지 이어져야 실제 제품에서 버틸 수 있습니다.
+            </p>
+          </Reveal>
+          <div className="grid gap-5 md:grid-cols-3">
+            {artifactImages.map((artifact, index) => (
+              <Reveal key={artifact.title} delay={index * 0.05} className="overflow-hidden border bg-card">
+                <Image
+                  src={artifact.src}
+                  alt={artifact.alt}
+                  width={1200}
+                  height={800}
+                  className="aspect-[4/3] w-full bg-white object-contain object-left-top"
+                />
+                <div className="border-t p-4">
+                  <p className="font-mono text-xs text-muted-foreground">{String(index + 1).padStart(2, "0")}</p>
+                  <h3 className="mt-2 font-semibold">{artifact.title}</h3>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y bg-card py-16 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 md:px-8 lg:grid-cols-[360px_1fr]">
+          <Reveal>
+            <p className="font-mono text-xs text-muted-foreground">CAPABILITY MAP</p>
+            <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight md:text-5xl">
+              AI 기능만이 아니라 데이터와 품질까지 함께 설계합니다.
+            </h2>
+          </Reveal>
+          <div className="grid gap-px border bg-border md:grid-cols-2">
+            {capabilities.map((capability, index) => {
+              const Icon = capability.icon
+              return (
+                <Reveal key={capability.title} delay={index * 0.03} className="bg-background p-5">
+                  <div className="flex items-center gap-3">
+                    <Icon className="h-5 w-5" />
+                    <h3 className="font-semibold">{capability.title}</h3>
+                  </div>
+                  <ul className="mt-4 space-y-2 text-sm leading-6 text-muted-foreground">
+                    {capability.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </Reveal>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 md:px-8 lg:grid-cols-[360px_1fr]">
+          <Reveal>
+            <p className="font-mono text-xs text-muted-foreground">CAREER ARC</p>
+            <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight md:text-5xl">
+              제품 개발 경험을 AI 데이터 제품으로 확장했습니다.
+            </h2>
+          </Reveal>
+          <div className="border-t">
+            {timeline.map((item, index) => (
+              <Reveal key={`${item.period}-${item.company}`} delay={index * 0.04}>
+                <article className="grid gap-4 border-b py-6 md:grid-cols-[190px_1fr]">
+                  <p className="font-mono text-sm text-muted-foreground">{item.period}</p>
                   <div>
-                    <h3 className="break-words text-lg font-semibold text-slate-950 dark:text-white">{item.role}</h3>
-                    <p className="mt-1 text-sm font-medium text-teal-700 dark:text-teal-300">{item.company}</p>
-                    <p className="mt-3 break-words text-sm leading-6 text-slate-600 dark:text-slate-300">{item.body}</p>
+                    <h3 className="text-xl font-semibold tracking-normal">{item.role}</h3>
+                    <p className="mt-1 text-sm font-medium text-muted-foreground">{item.company}</p>
+                    <p className="mt-4 max-w-3xl text-sm leading-7 text-muted-foreground">{item.body}</p>
                   </div>
                 </article>
-              ))}
-            </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-20 dark:bg-slate-950">
-        <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <div className="rounded-md border bg-slate-950 p-8 text-white md:p-10">
-            <div className="grid gap-8 lg:grid-cols-[1fr_420px] lg:items-center">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-300">Stack</p>
-                <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                  <span className="block">Agent, 데이터,</span>
-                  <span className="block">제품 운영을</span>
-                  <span className="block">한 흐름으로 다룹니다.</span>
-                </h2>
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                {stackGroups.map((group) => (
-                  <div key={group.title}>
-                    <h3 className="text-sm font-semibold text-amber-300">{group.title}</h3>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {group.items.map((item) => (
-                        <span key={item} className="rounded-md bg-white/10 px-2 py-1 text-xs text-slate-200">
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+      <section className="bg-[#111812] py-16 text-[#f3f2e9] md:py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+          <Reveal>
+            <p className="font-mono text-xs text-[#f2d27b]">STACK</p>
+            <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight md:text-5xl">
+              Agent, 데이터, 제품 운영을 한 흐름으로 다룹니다.
+            </h2>
+          </Reveal>
+          <div className="grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2">
+            {stackGroups.map((group, index) => (
+              <Reveal key={group.title} delay={index * 0.04} className="bg-[#111812] p-5">
+                <h3 className="text-sm font-semibold text-[#f2d27b]">{group.title}</h3>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <span key={item} className="border border-white/10 px-2 py-1 text-xs text-[#dbe3dc]">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>

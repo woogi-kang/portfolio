@@ -19,9 +19,9 @@ export const profile = {
   name: "Kang Taewook",
   handle: "Woogi",
   role: "AI Data Product Engineer / Product Engineer",
-  headline: "비정형 도메인 데이터를 LLM 파이프라인과 AI 제품 경험으로 연결합니다.",
+  headline: "비정형 도메인 데이터를 LLM 파이프라인과 제품 경험으로 연결합니다.",
   summary:
-    "Flutter 기반 멀티플랫폼 제품 개발에서 출발해 AI Data Product, LLM Pipeline, AX/AI Agent Engineering까지 확장해 온 Product Engineer입니다. 웹, 이미지, OCR, 위치, 리뷰성 텍스트 같은 비정형 도메인 데이터를 수집·구조화·검증하고 RAG, Vector DB, Tool Calling, PromptOps, 평가 하네스, AI 상담·검색·추천 서비스로 연결해 왔습니다.",
+    "Flutter 기반 멀티플랫폼 제품 개발에서 출발해 AI 데이터 제품, LLM 파이프라인, AX/AI Agent 영역으로 확장해 온 Product Engineer입니다. 웹, 이미지, OCR, 위치, 리뷰 텍스트처럼 형태가 제각각인 데이터를 수집하고 검증해 RAG, Vector DB, Tool Calling, PromptOps, 평가 하네스, AI 상담·검색·추천 서비스에 연결해 왔습니다.",
   location: "Seoul, Korea",
   email: "woogi.dev@gmail.com",
   github: "https://github.com/woogi-kang",
@@ -33,39 +33,39 @@ export const profile = {
 
 export const metrics = [
   { label: "실무 경력", value: "6년차", detail: "2020.09 - 현재" },
-  { label: "AI 데이터 제품", value: "Catalog-like", detail: "Entity, Attribute, Alias, Search" },
+  { label: "AI 데이터 제품", value: "Catalog Data", detail: "Entity, Attribute, Alias, Search" },
   { label: "LLM 파이프라인", value: "Structured", detail: "Extraction, Grounding, Evaluation" },
-  { label: "제품 표면", value: "Full-stack", detail: "App, API, Worker, Report" },
+  { label: "제품 구현", value: "Full-stack", detail: "App, API, Worker, Report" },
 ]
 
 export const focusAreas = [
   {
     icon: Database,
     title: "LLM Data Pipeline and Catalog Layer",
-    body: "웹 페이지, 이미지, OCR, DOM snapshot, 리뷰성 텍스트를 수집하고 entity, attribute, alias, embedding, search index로 구조화해 AI 검색·추천·상담이 재사용할 수 있는 데이터 계층으로 만듭니다.",
+    body: "웹 페이지, 이미지, OCR, DOM snapshot, 리뷰 텍스트를 모아 entity, attribute, alias, embedding, search index로 정리합니다. AI 검색·추천·상담이 같은 데이터를 안정적으로 재사용할 수 있게 만드는 일에 집중합니다.",
   },
   {
     icon: BrainCircuit,
     title: "Grounded AI Service and Agent UX",
-    body: "RAG/HybridSearch, Google Search Grounding, Tool Calling, source metadata, token usage log, SSE streaming을 결합해 출처와 실패 케이스를 추적할 수 있는 AI 상담·검색 UX를 구현합니다.",
+    body: "RAG/HybridSearch, Google Search Grounding, Tool Calling, source metadata, token usage log, SSE streaming을 묶어 답변 근거와 실패 케이스가 남는 AI 상담·검색 UX를 구현합니다.",
   },
   {
     icon: Gauge,
     title: "Quality, Evaluation, and Guardrails",
-    body: "Prompt versioning, A/B evaluation, factual guard, drift guard, confidence threshold, human review queue로 모델·프롬프트·검색 전략 변경의 품질 리스크를 관리합니다.",
+    body: "Prompt versioning, A/B evaluation, factual guard, drift guard, confidence threshold, human review queue를 통해 모델·프롬프트·검색 전략이 바뀔 때 생기는 품질 리스크를 관리합니다.",
   },
   {
     icon: MonitorSmartphone,
     title: "Full-stack Product Shipping",
-    body: "Next.js, FastAPI, PostgreSQL, Redis, GCP, Flutter 기반으로 AI 기능을 API, worker, admin/report, app/web UI, monitoring이 있는 제품 구조로 구현합니다.",
+    body: "Next.js, FastAPI, PostgreSQL, Redis, GCP, Flutter를 사용해 AI 기능을 API, worker, admin/report, app/web UI, monitoring까지 이어지는 제품 구조로 구현합니다.",
   },
 ]
 
 export const operatingPrinciples = [
-  "LLM 기능은 좋은 프롬프트보다 신뢰 가능한 데이터 계층, 실패 처리, 평가 루프가 먼저라고 봅니다.",
-  "데이터 수집은 checkpoint, retry, validation, export까지 닫혀야 제품과 의사결정에 쓸 수 있습니다.",
-  "AI가 추측해도 되는 영역과 source-of-truth가 필요한 영역을 분리하고, 불확실성은 human review나 fallback으로 처리합니다.",
-  "기술 선택보다 사용자 경험, 데이터 품질, 운영 비용, 실험 속도가 실제 제품 임팩트를 만든다고 봅니다.",
+  "LLM 기능은 좋은 프롬프트만으로 안정화되지 않습니다. 먼저 믿을 수 있는 데이터 구조, 실패 처리, 평가 루프가 필요합니다.",
+  "데이터 수집은 checkpoint, retry, validation, export까지 이어져야 제품과 의사결정에 실제로 쓰일 수 있습니다.",
+  "AI가 추론해도 되는 영역과 반드시 원천 데이터가 필요한 영역을 나누고, 불확실한 결과는 human review나 fallback으로 처리합니다.",
+  "기술 선택 자체보다 사용자 경험, 데이터 품질, 운영 비용, 실험 속도가 제품 성과를 만든다고 봅니다.",
 ]
 
 export type CaseStudy = {
@@ -90,11 +90,11 @@ export const caseStudies: CaseStudy[] = [
     eyebrow: "Entity / Attribute / Alias / Search Data Layer",
     period: "2026",
     summary:
-      "병원·미용·뷰티 도메인에서 웹 페이지, 이미지, OCR, ARIA snapshot, DOM 후보를 수집하고 Gemini/Claude Structured Output으로 도메인 엔티티와 속성을 추출하는 데이터 파이프라인을 구축했습니다.",
+      "병원·미용·뷰티 도메인에서 웹 페이지, 이미지, OCR, ARIA snapshot, DOM 후보를 수집하고 Gemini/Claude Structured Output으로 엔티티와 속성을 추출하는 데이터 파이프라인을 구축했습니다.",
     impact: [
-      "Playwright snapshot, screenshot, DOM 후보를 Gemini에 전달해 crawl structure를 생성하고 selector validation과 실패 피드백 재시도를 연결",
-      "Claude API wrapper에 Pydantic schema 기반 structured output, 동시성 제어, timeout/retry, token/cost tracking 적용",
-      "표준 시술/병원 엔티티, 다국어 번역, alias coverage, search dictionary를 AI 상담의 RAG/HybridSearch와 연결",
+      "Playwright snapshot, screenshot, DOM 후보를 Gemini에 전달해 crawl structure를 만들고 selector validation과 실패 피드백 재시도를 적용",
+      "Claude API wrapper에 Pydantic schema 기반 structured output, 동시성 제어, timeout/retry, token/cost tracking을 적용",
+      "표준 시술/병원 엔티티, 다국어 번역, alias coverage, search dictionary를 AI 상담의 RAG/HybridSearch에서 재사용하도록 정리",
     ],
     stack: ["Playwright", "Gemini", "Claude", "Pydantic", "Structured Output", "PostgreSQL", "Search Alias", "RAG"],
     icon: Database,
@@ -103,37 +103,37 @@ export const caseStudies: CaseStudy[] = [
         title: "Problem",
         body: [
           "도메인 데이터는 웹 페이지, 이미지, OCR, 리뷰성 텍스트, 다국어 별칭처럼 형태가 흩어져 있어 LLM 서비스가 바로 신뢰하고 쓰기 어렵습니다.",
-          "수집 대상 페이지마다 DOM 구조가 다르고, LLM 추출 결과도 schema, selector, 비용, 실패 재시도 기준이 없으면 운영 파이프라인으로 반복 실행하기 어렵습니다.",
+          "수집 대상 페이지마다 DOM 구조가 다르고, LLM 추출 결과도 schema, selector, 비용, 실패 재시도 기준이 없으면 반복 운영하기 어렵습니다.",
         ],
       },
       {
         title: "Approach",
         body: [
           "Playwright로 ARIA snapshot, screenshot, DOM 후보를 수집하고 Gemini/Claude Structured Output으로 crawl structure와 이벤트·시술 속성을 추출했습니다.",
-          "Pydantic schema, selector validation, retry, checkpoint, token/cost tracking을 함께 설계해 LLM extraction을 일회성 프롬프트가 아니라 반복 가능한 데이터 파이프라인으로 만들었습니다.",
-          "표준 엔티티, 다국어 번역, alias coverage, search dictionary를 정리해 AI 상담과 검색이 재사용할 수 있는 데이터 계층으로 연결했습니다.",
+          "Pydantic schema, selector validation, retry, checkpoint, token/cost tracking을 함께 설계해 LLM extraction을 일회성 프롬프트가 아니라 다시 돌릴 수 있는 데이터 파이프라인으로 만들었습니다.",
+          "표준 엔티티, 다국어 번역, alias coverage, search dictionary를 정리해 AI 상담과 검색에서 같은 데이터를 재사용할 수 있게 했습니다.",
         ],
       },
       {
         title: "Result",
         body: [
           "비정형 도메인 데이터를 AI 제품이 사용할 수 있는 entity, attribute, alias, search index 단위로 정리했습니다.",
-          "쇼포트의 상품/시각/판매/체감 속성 추출과 유사한 문제를 병원·미용 도메인에서 먼저 다뤄본 경험입니다.",
+          "상품/시각/판매/체감 속성 추출과 비슷한 문제를 병원·미용 도메인에서 먼저 다뤄본 사례입니다.",
         ],
       },
     ],
   },
   {
     slug: "evidence-gated-ai-recommendation-pipeline",
-    title: "Evidence-gated AI Memory and Recommendation Pipeline",
-    eyebrow: "Memoriz / Place Evidence / Taste Graph / Recommendation",
+    title: "근거 기반 AI Memory and Recommendation Pipeline",
+    eyebrow: "Memoriz / Place Verification / Taste Graph / Recommendation",
     period: "2026",
     summary:
-      "Memoriz에서 사진, GPS, OCR, 일정 context를 바탕으로 장소 후보와 확정 장소를 분리하고, 확정된 데이터만 제목/요약, taste profile, recommendation seed, KPI 집계로 승격하는 AI 품질 정책을 설계했습니다.",
+      "Memoriz에서 사진, GPS, OCR, 일정 context를 바탕으로 장소 후보와 확정 장소를 분리하고, 확인된 데이터만 제목/요약, taste profile, recommendation seed, KPI 집계에 사용하도록 품질 정책을 설계했습니다.",
     impact: [
-      "LLM이 장소명을 단독 생성하지 않도록 source-of-truth와 evidence-gated policy 설계",
-      "후보, 확정, area/container fallback을 분리해 hallucination과 과도한 provider search 비용을 제어",
-      "확정 장소만 taste profile, recommendation seed, 첫 추천 CTA, KPI report로 승격",
+      "LLM이 장소명을 임의로 만들지 않도록 원천 데이터와 근거 기반 품질 정책을 분리해 설계",
+      "후보, 확정, area/container fallback을 나누어 hallucination과 과도한 provider search 비용을 제어",
+      "확정 장소만 taste profile, recommendation seed, 첫 추천 CTA, KPI report에 반영",
     ],
     stack: ["FastAPI", "Flutter", "Gemini", "Pydantic", "pgvector", "RAG", "KPI Report", "Human Review"],
     icon: ShieldCheck,
@@ -142,22 +142,22 @@ export const caseStudies: CaseStudy[] = [
         title: "Problem",
         body: [
           "사진과 위치만으로 정확한 장소를 맞추는 문제는 음식점, 카페, 복합건물처럼 오답 비용이 높은 케이스가 많습니다.",
-          "AI가 그럴듯한 이름을 만들어내면 사용자 기록과 추천 seed까지 오염될 수 있어 source-of-truth와 후보 데이터를 엄격히 분리해야 했습니다.",
+          "AI가 그럴듯한 이름을 만들어내면 사용자 기록과 추천 seed까지 오염될 수 있어 원천 데이터와 후보 데이터를 엄격히 나눠야 했습니다.",
         ],
       },
       {
         title: "Approach",
         body: [
-          "OCR, 간판, 영수증, 예약, 메뉴판, 일정 context처럼 검색어를 만들 수 있는 evidence가 있을 때만 provider search를 허용했습니다.",
+          "OCR, 간판, 영수증, 예약, 메뉴판, 일정 context처럼 검색어를 만들 수 있는 근거 자료가 있을 때만 provider search를 허용했습니다.",
           "확정 장소가 없으면 title/summary 생성을 보류하고, 불확실한 식당·카페·복합건물은 area/container fallback으로 처리했습니다.",
-          "확정된 장소만 취향 그래프와 추천 seed로 승격하고, 첫 추천 CTA와 KPI report에서 노출/클릭/저장 흐름을 추적했습니다.",
+          "확정된 장소만 취향 그래프와 추천 seed에 반영하고, 첫 추천 CTA와 KPI report에서 노출/클릭/저장 흐름을 추적했습니다.",
         ],
       },
       {
         title: "Result",
         body: [
-          "AI 추천의 품질을 모델 응답이 아니라 데이터 신뢰도, 사용자 확인, fallback 정책으로 관리하는 구조를 만들었습니다.",
-          "커머스 카탈로그에서도 후기, 상세페이지, 가격, 이미지, 후보 상품명이 섞일 때 같은 source-of-truth 정책이 중요하다고 봅니다.",
+          "AI 추천 품질을 모델 응답 자체가 아니라 데이터 신뢰도, 사용자 확인, fallback 정책으로 관리했습니다.",
+          "커머스 카탈로그에서도 후기, 상세페이지, 가격, 이미지, 후보 상품명이 섞일 때 같은 원천 데이터 기준이 중요하다고 봅니다.",
         ],
       },
     ],
@@ -168,7 +168,7 @@ export const caseStudies: CaseStudy[] = [
     eyebrow: "업무 요청·실행·승인·메신저 Agent 접점",
     period: "2026.01 - 현재",
     summary:
-      "AI CLI 사용이 개발자 개인 프롬프트에 머무르지 않도록 사내 업무 자동화 툴과 agent/skill 자산 저장소를 정리하고, 메신저 기반 Agent gateway를 Slack/Discord와 연결해 모든 회사 구성원이 메신저에서 도메인 특화 AI 에이전트를 사용할 수 있는 업무 접점을 설계했습니다.",
+      "AI CLI 사용이 개발자 개인 도구에 머무르지 않도록 사내 업무 자동화 툴과 agent/skill 자산 저장소를 정리했습니다. 메신저 기반 Agent gateway를 Slack/Discord와 연결해 회사 구성원이 각자 업무 맥락에서 AI 에이전트를 호출할 수 있는 접점도 설계했습니다.",
     impact: [
       "비개발 직군도 메신저에서 사내 규칙, 서비스 위키, 운영 정책, 리포트 업무 에이전트를 호출할 수 있는 접점 설계",
       "Claude Code, Codex CLI, Gemini CLI가 공유하는 agent/skill workspace 구성",
@@ -187,15 +187,15 @@ export const caseStudies: CaseStudy[] = [
       {
         title: "Approach",
         body: [
-          "agent/skill 자산 저장소는 여러 AI CLI가 같은 규칙, agent, skill, command를 공유하게 하는 작업 자산 저장소로 정리했고, 메신저 기반 Agent gateway는 Slack/Discord 기반 접점으로 연결했습니다.",
-          "사내 업무 자동화 툴과 task board는 요청, 실행, 승인, 결과 기록, human review가 남는 업무 운영 시스템 역할을 하도록 구성했습니다.",
+          "agent/skill 자산 저장소는 여러 AI CLI가 같은 규칙, agent, skill, command를 공유하도록 정리했고, 메신저 기반 Agent gateway는 Slack/Discord 접점에서 사용할 수 있게 했습니다.",
+          "사내 업무 자동화 툴과 task board에는 요청, 실행, 승인, 결과 기록, human review가 남도록 구성했습니다.",
         ],
       },
       {
         title: "Result",
         body: [
           "AI를 개발자 개인 CLI 사용이 아니라 모든 구성원이 각자 업무 맥락에서 호출할 수 있는 회사 공용 업무 접점으로 확장했습니다.",
-          "도메인별 에이전트, 실행 기록, 승인 흐름, 산출물 관리가 함께 남아 현업 확산 가능성과 운영 재현성을 높였습니다.",
+          "도메인별 에이전트, 실행 기록, 승인 흐름, 산출물 관리가 함께 남아 현업으로 확산하기 쉬운 운영 방식을 만들었습니다.",
         ],
       },
     ],
@@ -206,7 +206,7 @@ export const caseStudies: CaseStudy[] = [
     eyebrow: "Naver Place / Treatment / Promotion / Beauty Product Data",
     period: "2026",
     summary:
-      "네이버 플레이스 피부과 4,255건을 시작으로 병원 상세, 피부 시술, 이벤트·프로모션, 뷰티 제품, 리뷰, 채널·성과 데이터처럼 회사 업무 도메인에 필요한 외부 데이터를 수집·검증하기 위해 HTTP-only crawler, Playwright worker, Gemini/Codex CLI, Cloud SQL, R2, SQLite checkpoint를 조합한 데이터 파이프라인을 구축했습니다.",
+      "네이버 플레이스 피부과 4,255건을 시작으로 병원 상세, 피부 시술, 이벤트·프로모션, 뷰티 제품, 리뷰, 채널·성과 데이터를 수집·검증하는 데이터 파이프라인을 구축했습니다. HTTP-only crawler, Playwright worker, Gemini/Codex CLI, Cloud SQL, R2, SQLite checkpoint를 상황에 맞게 조합했습니다.",
     impact: [
       "4,255건 입력 데이터를 대상으로 place id search, home, information, photos, validation, export skill pipeline 설계",
       "병원 상세, 피부 시술, 이벤트·프로모션, 뷰티 제품, 리뷰, 채널·성과 데이터를 업무 도메인별 수집 대상으로 정의",
@@ -233,8 +233,8 @@ export const caseStudies: CaseStudy[] = [
       {
         title: "Result",
         body: [
-          "단발성 크롤링이 아니라 중단 후 재개, 실패 재시도, 병합, 보정, export가 가능한 운영 파이프라인을 만들었습니다.",
-          "수집 데이터를 리포트와 대시보드에 연결할 수 있는 형태로 정리했습니다.",
+          "단발성 크롤링이 아니라 중단 후 재개, 실패 재시도, 병합, 보정, export까지 가능한 파이프라인으로 정리했습니다.",
+          "수집한 데이터는 리포트와 대시보드에서 바로 사용할 수 있는 형태로 가공했습니다.",
         ],
       },
     ],
@@ -249,7 +249,7 @@ export const caseStudies: CaseStudy[] = [
     impact: [
       "prompt versioning, active/testing 상태, A/B evaluator, quality score, bandit, drift monitor 구조 설계",
       "metrics -> analyze -> generate -> vote -> debate -> adopt -> lesson으로 이어지는 개선 루프 구성",
-      "factual guard, persona guard, human review, rate limit, emergency halt로 브랜드 리스크 관리",
+      "factual guard, persona guard, human review, rate limit, emergency halt로 브랜드 리스크를 관리",
     ],
     stack: ["PromptOps", "A/B Evaluation", "Codex", "Gemini", "PostgreSQL", "LLM-as-Judge", "Quality Guard"],
     icon: Repeat2,
@@ -264,7 +264,7 @@ export const caseStudies: CaseStudy[] = [
       {
         title: "Approach",
         body: [
-          "전문가 기반 콘텐츠 생성과 persona adaptation을 분리하고, 성과 데이터를 prompt variant와 lesson으로 되돌리는 구조를 만들었습니다.",
+          "전문가 기반 콘텐츠 생성과 persona adaptation을 분리하고, 성과 데이터를 prompt variant와 lesson으로 되돌리는 흐름을 만들었습니다.",
           "개선안은 단일 응답에 의존하지 않고 평가와 승인 흐름을 거치도록 했습니다.",
         ],
       },
@@ -272,7 +272,7 @@ export const caseStudies: CaseStudy[] = [
         title: "Result",
         body: [
           "브랜드 콘텐츠 운영을 감에 의존하는 생성 작업이 아니라 측정 가능한 LLM Test & Learn 프로세스로 전환했습니다.",
-          "사실성, 톤, drift, 성과를 함께 보는 품질 중심 자동화 구조를 만들었습니다.",
+          "사실성, 톤, drift, 성과를 함께 보는 품질 중심 자동화 방식을 만들었습니다.",
         ],
       },
     ],
@@ -283,7 +283,7 @@ export const caseStudies: CaseStudy[] = [
     eyebrow: "CheckYourHospital Side Project / Memoriz",
     period: "2026",
     summary:
-      "개인 사이드 프로젝트 CheckYourHospital의 AI SEO/AEO 진단 서비스와 Memoriz의 AI album/search 기능에서 평가 데이터, 리포트, 품질 가드, Admin, E2E, follow-up automation까지 포함한 운영 품질 검증 체계를 구축했습니다.",
+      "개인 사이드 프로젝트 CheckYourHospital의 AI SEO/AEO 진단 서비스와 Memoriz의 AI album/search 기능에서 평가 데이터, 리포트, 품질 가드, Admin, E2E, follow-up automation까지 이어지는 품질 검증 체계를 구축했습니다.",
     impact: [
       "병원 홈페이지를 7개 카테고리 48개 항목으로 진단하는 AI SEO/AEO scoring/report pipeline 설계",
       "AI 추천 시뮬레이션, 다국어 매트릭스, 의료법 컴플라이언스, Naver Place 연동, PDF 리포트 생성 흐름 구축",
@@ -302,15 +302,15 @@ export const caseStudies: CaseStudy[] = [
       {
         title: "Approach",
         body: [
-          "AI 결과물을 리포트와 Admin에서 확인 가능하게 만들고, 평가 데이터, 리포트 산출물, targeted test를 기능 변경과 연결했습니다.",
+          "AI 결과물을 리포트와 Admin에서 확인할 수 있게 만들고, 평가 데이터, 리포트 산출물, targeted test를 기능 변경 흐름에 포함했습니다.",
           "리드 캡처와 후속 자동화까지 제품 흐름 안에 포함했습니다.",
         ],
       },
       {
         title: "Result",
         body: [
-          "AI 기능을 데모가 아니라 고객에게 설명 가능한 리포트와 운영자가 검증 가능한 업무 흐름으로 만들었습니다.",
-          "품질 기준과 운영 산출물이 함께 남는 AI 제품 개발 프로세스를 만들었습니다.",
+          "AI 기능을 데모가 아니라 고객에게 설명 가능한 리포트와 운영자가 검증할 수 있는 업무 흐름으로 만들었습니다.",
+          "품질 기준과 운영 산출물이 함께 남는 AI 제품 개발 방식을 정리했습니다.",
         ],
       },
     ],
@@ -347,7 +347,7 @@ export const caseStudies: CaseStudy[] = [
       {
         title: "Result",
         body: [
-          "짧은 기간에 3개 서비스와 각 플랫폼을 운영 가능한 수준으로 유지보수했습니다.",
+          "짧은 기간에 3개 서비스와 각 플랫폼을 실제 운영할 수 있는 수준으로 유지보수했습니다.",
           "제품 개발뿐 아니라 공연장, 컨퍼런스, 보조기기 현장의 운영 문제까지 개발 범위로 다뤘습니다.",
         ],
       },

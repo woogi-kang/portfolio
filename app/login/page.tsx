@@ -52,10 +52,10 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="container flex h-[calc(100vh-4rem)] items-center justify-center">
-            <Card className="w-full max-w-sm">
+        <div className="mx-auto flex min-h-[calc(100dvh-3.5rem)] max-w-6xl items-center justify-center px-5 py-12 md:px-8">
+            <Card className="w-full max-w-sm border bg-card shadow-none">
                 <CardHeader>
-                    <CardTitle className="text-2xl">Login</CardTitle>
+                    <CardTitle className="text-2xl tracking-normal">Admin Login</CardTitle>
                     <CardDescription>
                         Enter your email below to login to your account.
                     </CardDescription>
@@ -67,7 +67,6 @@ export default function LoginPage() {
                             <Input
                                 id="email"
                                 type="email"
-                                placeholder="m@example.com"
                                 required
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
