@@ -69,15 +69,58 @@ export type RoleEvidenceStage = {
   status: ClaimStatus
 }
 
+export type RoleMetric = {
+  label: string
+  value: string
+  note: string
+}
+
+export type RoleProject = {
+  name: string
+  meta: string
+  summary: string
+  outcome?: string
+  highlights: string[]
+  sourceLabel: string
+}
+
+export type RoleProjectGroup = {
+  id: string
+  eyebrow: string
+  title: string
+  note: string
+  projects: RoleProject[]
+}
+
+export type RoleFitMap = {
+  eyebrow: string
+  title: string
+  note: string
+  items: Array<{
+    workstream: string
+    evidence: string
+    firstCheck: string
+  }>
+}
+
 export type RoleDossier = {
   slug: string
   company: string
   role: string
   thesis: string
   applicationNote?: string
+  reviewCue?: string
+  metrics?: RoleMetric[]
+  projectGroups?: RoleProjectGroup[]
+  evidenceSection?: {
+    eyebrow: string
+    title: string
+    note: string
+  }
   existingEvidence: PublicClaim[]
   futureProposal: string[]
   caseSlugs?: string[]
+  fitMap?: RoleFitMap
   evidenceMap?: {
     caption: string
     note: string

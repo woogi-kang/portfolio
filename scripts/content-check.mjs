@@ -37,6 +37,15 @@ const anonymizedDenylist = [
   "C-Biz",
   "C-Sound",
 ]
+const dossierPublicNameAllowlist = new Map([
+  ["thefounders-fde", new Set(["플레드", "CheckYourHospital", "Memoriz"])],
+])
+const dossierNumericAllowlist = new Map([
+  [
+    "thefounders-fde",
+    new Set(["2026.01", "2026.06", "6", "20", "4", "4,000", "1", "4,255"]),
+  ],
+])
 const allowedNumericClaims = new Map([
   ["woogi-harness", new Set(["25", "385"])],
   ["domain-diagnostic-saas", new Set(["7", "48"])],
@@ -193,8 +202,11 @@ for (const [dossierIndex, dossier] of data.roleDossiers.entries()) {
     fail(`${path}.slug is duplicated or not an approved role dossier`)
   }
   const dossierText = JSON.stringify(dossier)
+  const allowedPublicNames = dossierPublicNameAllowlist.get(dossier.slug) ?? new Set()
   for (const blockedName of anonymizedDenylist) {
-    if (dossierText.includes(blockedName)) fail(`${path} leaks non-public project name ${blockedName}`)
+    if (dossierText.includes(blockedName) && !allowedPublicNames.has(blockedName)) {
+      fail(`${path} leaks non-public project name ${blockedName}`)
+    }
   }
   if (!Array.isArray(dossier?.existingEvidence) || dossier.existingEvidence.length === 0) {
     fail(`${path}.existingEvidence must not be empty`)
@@ -207,6 +219,57 @@ for (const [dossierIndex, dossier] of data.roleDossiers.entries()) {
   }
   if (dossier.applicationNote !== undefined) {
     requireString(dossier.applicationNote, `${path}.applicationNote`)
+  }
+  if (dossier.reviewCue !== undefined) {
+    requireString(dossier.reviewCue, `${path}.reviewCue`)
+  }
+  if (dossier.metrics !== undefined) {
+    if (!Array.isArray(dossier.metrics) || dossier.metrics.length === 0) {
+      fail(`${path}.metrics must be a non-empty array when present`)
+    }
+    for (const [metricIndex, metric] of dossier.metrics.entries()) {
+      requireString(metric?.label, `${path}.metrics[${metricIndex}].label`)
+      requireString(metric?.value, `${path}.metrics[${metricIndex}].value`)
+      requireString(metric?.note, `${path}.metrics[${metricIndex}].note`)
+    }
+  }
+  if (dossier.projectGroups !== undefined) {
+    if (!Array.isArray(dossier.projectGroups) || dossier.projectGroups.length === 0) {
+      fail(`${path}.projectGroups must be a non-empty array when present`)
+    }
+    const groupIds = new Set()
+    for (const [groupIndex, group] of dossier.projectGroups.entries()) {
+      const groupPath = `${path}.projectGroups[${groupIndex}]`
+      requireString(group?.id, `${groupPath}.id`)
+      if (!/^[a-z0-9][a-z0-9-]*$/.test(group.id)) fail(`${groupPath}.id is invalid`)
+      if (groupIds.has(group.id)) fail(`${groupPath}.id is duplicated`)
+      groupIds.add(group.id)
+      requireString(group?.eyebrow, `${groupPath}.eyebrow`)
+      requireString(group?.title, `${groupPath}.title`)
+      requireString(group?.note, `${groupPath}.note`)
+      if (!Array.isArray(group?.projects) || group.projects.length === 0) {
+        fail(`${groupPath}.projects must not be empty`)
+      }
+      for (const [projectIndex, project] of group.projects.entries()) {
+        const projectPath = `${groupPath}.projects[${projectIndex}]`
+        requireString(project?.name, `${projectPath}.name`)
+        requireString(project?.meta, `${projectPath}.meta`)
+        requireString(project?.summary, `${projectPath}.summary`)
+        requireString(project?.sourceLabel, `${projectPath}.sourceLabel`)
+        if (project.outcome !== undefined) requireString(project.outcome, `${projectPath}.outcome`)
+        if (!Array.isArray(project?.highlights) || project.highlights.length === 0) {
+          fail(`${projectPath}.highlights must not be empty`)
+        }
+        project.highlights.forEach((highlight, highlightIndex) =>
+          requireString(highlight, `${projectPath}.highlights[${highlightIndex}]`),
+        )
+      }
+    }
+  }
+  if (dossier.evidenceSection !== undefined) {
+    requireString(dossier.evidenceSection?.eyebrow, `${path}.evidenceSection.eyebrow`)
+    requireString(dossier.evidenceSection?.title, `${path}.evidenceSection.title`)
+    requireString(dossier.evidenceSection?.note, `${path}.evidenceSection.note`)
   }
   if (dossier.caseSlugs !== undefined) {
     if (!Array.isArray(dossier.caseSlugs) || dossier.caseSlugs.length === 0) {
@@ -229,6 +292,28 @@ for (const [dossierIndex, dossier] of data.roleDossiers.entries()) {
       if (!allowedClaimStatuses.has(stage?.status)) {
         fail(`${path}.evidenceMap.stages[${stageIndex}].status must be verified or context-only`)
       }
+    }
+  }
+  if (dossier.fitMap !== undefined) {
+    requireString(dossier.fitMap?.eyebrow, `${path}.fitMap.eyebrow`)
+    requireString(dossier.fitMap?.title, `${path}.fitMap.title`)
+    requireString(dossier.fitMap?.note, `${path}.fitMap.note`)
+    if (!Array.isArray(dossier.fitMap?.items) || dossier.fitMap.items.length === 0) {
+      fail(`${path}.fitMap.items must not be empty`)
+    }
+    for (const [itemIndex, item] of dossier.fitMap.items.entries()) {
+      requireString(item?.workstream, `${path}.fitMap.items[${itemIndex}].workstream`)
+      requireString(item?.evidence, `${path}.fitMap.items[${itemIndex}].evidence`)
+      requireString(item?.firstCheck, `${path}.fitMap.items[${itemIndex}].firstCheck`)
+    }
+  }
+  const allowedDossierNumbers = dossierNumericAllowlist.get(dossier.slug)
+  if (allowedDossierNumbers) {
+    const numbers = narrativeStrings(dossier)
+      .flatMap((text) => text.match(/(?<![A-Za-z])\d+(?:[.,]\d+)?(?![A-Za-z])/g) ?? [])
+      .filter((number) => !allowedDossierNumbers.has(number))
+    if (numbers.length > 0) {
+      fail(`${path} contains unapproved numeric claims: ${[...new Set(numbers)].join(", ")}`)
     }
   }
 }

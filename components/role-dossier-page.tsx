@@ -6,10 +6,79 @@ import {
   EvidenceChainFigure,
 } from "@/components/dossier"
 import { portfolioPublic } from "@/lib/public-content"
-import type { PublicCase, RoleDossier } from "@/lib/public-content"
+import type {
+  PublicCase,
+  RoleDossier,
+  RoleProjectGroup,
+} from "@/lib/public-content"
 
 const dossiers: readonly RoleDossier[] = portfolioPublic.roleDossiers
 const publicCases: readonly PublicCase[] = portfolioPublic.cases
+
+function ProjectGroupSection({
+  slug,
+  group,
+  muted,
+}: {
+  slug: string
+  group: RoleProjectGroup
+  muted: boolean
+}) {
+  const titleId = `${slug}-${group.id}-title`
+
+  return (
+    <section
+      id={`${slug}-${group.id}`}
+      className={`page-section ${muted ? "bg-surface-muted" : ""}`}
+      aria-labelledby={titleId}
+    >
+      <div className="site-container site-grid gap-y-8">
+        <div className="col-span-4 md:col-span-3 xl:col-span-5">
+          <p className="eyebrow text-action">{group.eyebrow}</p>
+          <h2 id={titleId} className="section-title mt-3">
+            {group.title}
+          </h2>
+          <p className="mt-4 max-w-md text-sm text-ink-muted">{group.note}</p>
+        </div>
+
+        <div className="col-span-4 border-t border-line-strong md:col-span-5 xl:col-span-9 xl:col-start-8">
+          {group.projects.map((project, index) => (
+            <article key={project.name} className="border-b border-line-strong py-7">
+              <div className="grid gap-6 xl:grid-cols-9">
+                <div className="xl:col-span-4">
+                  <p className="eyebrow text-context">
+                    {String(index + 1).padStart(2, "0")} · {project.meta}
+                  </p>
+                  <h3 className="mt-3 text-2xl md:text-3xl">{project.name}</h3>
+                  <p className="mt-3 text-sm text-ink-muted md:text-base">
+                    {project.summary}
+                  </p>
+                </div>
+
+                <div className="xl:col-span-5">
+                  {project.outcome ? (
+                    <p className="border-l-2 border-[var(--action)] pl-4 font-heading text-lg font-bold leading-relaxed text-foreground md:text-xl">
+                      {project.outcome}
+                    </p>
+                  ) : null}
+                  <ul className={`${project.outcome ? "mt-5" : ""} space-y-3 text-sm text-ink-muted md:text-base`}>
+                    {project.highlights.map((highlight) => (
+                      <li key={highlight} className="grid grid-cols-[0.75rem_minmax(0,1fr)] gap-2">
+                        <span className="mt-[0.7rem] size-1 bg-[var(--action)]" aria-hidden="true" />
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <p className="status-label mt-5 text-context">{project.sourceLabel}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
 
 export function RoleDossierPage({ slug }: { slug: string }) {
   const dossier = dossiers.find((item) => item.slug === slug)
@@ -36,7 +105,8 @@ export function RoleDossierPage({ slug }: { slug: string }) {
               <p className="lede mt-4">{dossier.thesis}</p>
             </div>
             <aside className="col-span-4 self-end border-y py-5 text-sm text-ink-muted md:col-span-3 xl:col-span-5 xl:col-start-12">
-              실제 수행 사례와 합류 후 확인할 가설을 별도 구역에 적었습니다.
+              {dossier.reviewCue ??
+                "실제 수행 사례와 합류 후 확인할 가설을 별도 구역에 적었습니다."}
             </aside>
           </div>
           {dossier.applicationNote ? (
@@ -44,19 +114,45 @@ export function RoleDossierPage({ slug }: { slug: string }) {
               {dossier.applicationNote}
             </p>
           ) : null}
+
+          {dossier.metrics?.length ? (
+            <dl className="mt-10 grid gap-px border-y border-line-strong bg-[var(--line)] md:grid-cols-2 xl:grid-cols-4">
+              {dossier.metrics.map((metric) => (
+                <div key={metric.label} className="bg-canvas px-0 py-5 md:p-6">
+                  <dt className="eyebrow">{metric.label}</dt>
+                  <dd className="mt-3 font-heading text-[clamp(1.35rem,2.4vw,2.15rem)] font-bold leading-tight text-action">
+                    {metric.value}
+                  </dd>
+                  <dd className="mt-2 text-xs text-ink-muted md:text-sm">{metric.note}</dd>
+                </div>
+              ))}
+            </dl>
+          ) : null}
         </div>
       </header>
+
+      {dossier.projectGroups?.map((group, index) => (
+        <ProjectGroupSection
+          key={group.id}
+          slug={slug}
+          group={group}
+          muted={index % 2 === 1}
+        />
+      ))}
 
       <section className="page-section" aria-labelledby={`${slug}-evidence-title`}>
         <div className="site-container">
           <div className="site-grid gap-y-8">
             <div className="col-span-4 md:col-span-3 xl:col-span-5">
-              <p className="eyebrow text-verified">이미 수행</p>
+              <p className="eyebrow text-verified">
+                {dossier.evidenceSection?.eyebrow ?? "이미 수행"}
+              </p>
               <h2 id={`${slug}-evidence-title`} className="section-title mt-3">
-                실제로 구현한 범위
+                {dossier.evidenceSection?.title ?? "실제로 구현한 범위"}
               </h2>
               <p className="mt-4 max-w-md text-sm text-ink-muted">
-                공개 저장소 또는 현재 사실 원장에서 확인한 내용만 적었습니다.
+                {dossier.evidenceSection?.note ??
+                  "공개 저장소 또는 현재 사실 원장에서 확인한 내용만 적었습니다."}
               </p>
             </div>
             <div className="col-span-4 md:col-span-5 xl:col-span-9 xl:col-start-8">
@@ -112,8 +208,53 @@ export function RoleDossierPage({ slug }: { slug: string }) {
         </div>
       </section>
 
+      {dossier.fitMap ? (
+        <section
+          className="page-section bg-surface-muted"
+          aria-labelledby={`${slug}-fit-title`}
+        >
+          <div className="site-container site-grid gap-y-8">
+            <div className="col-span-4 md:col-span-3 xl:col-span-5">
+              <p className="eyebrow text-action">{dossier.fitMap.eyebrow}</p>
+              <h2 id={`${slug}-fit-title`} className="section-title mt-3">
+                {dossier.fitMap.title}
+              </h2>
+              <p className="mt-4 max-w-md text-sm text-ink-muted">
+                {dossier.fitMap.note}
+              </p>
+            </div>
+
+            <div className="col-span-4 border-t border-line-strong md:col-span-5 xl:col-span-9 xl:col-start-8">
+              {dossier.fitMap.items.map((item, index) => (
+                <article
+                  key={item.workstream}
+                  className="grid gap-5 border-b border-line-strong py-6 xl:grid-cols-9"
+                >
+                  <div className="xl:col-span-3">
+                    <p className="eyebrow text-context">
+                      과업 후보 {String(index + 1).padStart(2, "0")}
+                    </p>
+                    <h3 className="mt-2 text-xl md:text-2xl">{item.workstream}</h3>
+                  </div>
+                  <dl className="grid gap-5 text-sm md:grid-cols-2 md:text-base xl:col-span-6">
+                    <div>
+                      <dt className="eyebrow">연결되는 경험</dt>
+                      <dd className="mt-2 text-ink-muted">{item.evidence}</dd>
+                    </div>
+                    <div>
+                      <dt className="eyebrow">첫 검증 기준</dt>
+                      <dd className="mt-2 text-ink-muted">{item.firstCheck}</dd>
+                    </div>
+                  </dl>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <section
-        className="page-section bg-surface-muted"
+        className={`page-section ${dossier.fitMap ? "" : "bg-surface-muted"}`}
         aria-labelledby={`${slug}-proposal-title`}
       >
         <div className="site-container site-grid gap-y-8">
