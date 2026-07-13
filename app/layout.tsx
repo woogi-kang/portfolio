@@ -1,35 +1,29 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { goormSans, nanumGothicCoding, pretendard } from "./fonts";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Navbar } from "@/components/navbar";
+import { SiteHeader } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import JsonLd from "@/components/json-ld";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://woogi.is-a.dev"),
   title: {
-    default: "Kang Taewook | AI Data Product Engineer",
+    default: "Kang Taewook | Product Engineer — AI Systems & Automation",
     template: "%s | Woogi",
   },
   description:
-    "Seoul-based AI Data Product Engineer building LLM data pipelines, catalog data layers, grounded AI services, evaluation workflows, and full-stack product operations.",
+    "외부 데이터를 검증된 레코드로 만들고 사람 승인 뒤 검색·추천·업무 실행에 연결하는 Product Engineer 강태욱의 포트폴리오입니다.",
   keywords: [
-    "AI Data Product Engineer",
+    "Product Engineer",
+    "AI Systems",
+    "AI Automation",
+    "Product Full-stack",
+    "Multi-platform Device",
     "LLM Data Pipeline",
-    "Catalog System",
-    "Structured Output",
-    "RAG",
-    "Grounded AI",
-    "AI Automation Engineer",
-    "AI Agent Engineer",
-    "PromptOps",
-    "Data Pipeline",
-    "LLM Evaluation",
-    "MCP",
-    "LangChain",
-    "LangGraph",
     "Flutter",
-    "Automation",
+    "Next.js",
+    "FastAPI",
     "Kang Taewook",
     "Woogi",
     "Seoul",
@@ -40,26 +34,27 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     url: "https://woogi.is-a.dev",
-    title: "Kang Taewook | AI Data Product Engineer",
+    title: "Kang Taewook | Product Engineer — AI Systems & Automation",
     description:
-      "LLM data pipelines, catalog data layers, grounded AI services, evaluation workflows, and product operations.",
-    siteName: "Woogi AI Data Product Portfolio",
+      "데이터 수집, 제품 API, 승인형 AI 업무와 멀티플랫폼 디바이스 구현 사례를 정리했습니다.",
+    siteName: "Woogi Product Systems Portfolio",
     images: [
       {
-        url: "/og-image.png", // We might need to generate this or use a placeholder
-        width: 1200,
-        height: 630,
-        alt: "Kang Taewook AI Data Product Portfolio",
+        url: "/profile.jpg",
+        width: 496,
+        height: 638,
+        alt: "Product Engineer 강태욱",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Kang Taewook | AI Data Product Engineer",
+    card: "summary",
+    title: "Kang Taewook | Product Engineer",
     description:
-      "LLM data pipelines, catalog data layers, grounded AI services, evaluation workflows, and product operations.",
-    images: ["/og-image.png"],
+      "데이터·AI 업무, 제품 전달과 멀티플랫폼 디바이스 구현 사례를 소개합니다.",
+    images: ["/profile.jpg"],
   },
+  alternates: { canonical: "/" },
   robots: {
     index: true,
     follow: true,
@@ -80,16 +75,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body className="font-sans antialiased">
+      <body
+        className={`${pretendard.variable} ${goormSans.variable} ${nanumGothicCoding.variable} font-sans antialiased`}
+      >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
+          <a className="skip-link" href="#main-content">
+            본문으로 건너뛰기
+          </a>
           <div className="relative flex min-h-[100dvh] flex-col">
-            <Navbar />
-            <main className="flex-1">{children}</main>
+            <SiteHeader />
+            <main id="main-content" className="flex-1">
+              {children}
+            </main>
             <Footer />
           </div>
           <JsonLd />

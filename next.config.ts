@@ -1,6 +1,14 @@
 import type { NextConfig } from "next";
 
+import portfolioPublic from "./content/portfolio-public.json";
+
 const nextConfig: NextConfig = {
+  async redirects() {
+    return portfolioPublic.legacyRedirects.map((redirect) => ({
+      ...redirect,
+      permanent: true,
+    }));
+  },
   images: {
     remotePatterns: [
       {

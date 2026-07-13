@@ -1,37 +1,36 @@
-export default function JsonLd() {
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "Person",
-                "@id": "https://woogi.is-a.dev/#person",
-                "name": "Kang Taewook",
-                "alternateName": "Woogi",
-                "url": "https://woogi.is-a.dev",
-                "jobTitle": "AI Data Product Engineer / Product Engineer",
-                "description": "Product engineer based in Seoul building LLM data pipelines, catalog data layers, grounded AI services, evaluation workflows, and practical AI product operations.",
-                "sameAs": [
-                    "https://github.com/woogi-kang",
-                    "https://www.linkedin.com/in/taewook-kang/",
-                    "https://velog.io/@woogi-dev"
-                ]
-            },
-            {
-                "@type": "WebSite",
-                "@id": "https://woogi.is-a.dev/#website",
-                "url": "https://woogi.is-a.dev",
-                "name": "Woogi AI Data Product Portfolio",
-                "publisher": {
-                    "@id": "https://woogi.is-a.dev/#person"
-                }
-            }
-        ]
-    };
+import { portfolioPublic } from "@/lib/public-content"
 
-    return (
-        <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-    );
+export default function JsonLd() {
+  const { profile } = portfolioPublic
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://woogi.is-a.dev/#person",
+        name: profile.nameEn,
+        alternateName: "Woogi",
+        url: "https://woogi.is-a.dev",
+        jobTitle: profile.role,
+        description: profile.summary,
+        sameAs: [profile.github, profile.linkedin, "https://velog.io/@woogi-dev"],
+        knowsAbout: ["AI systems", "Product engineering", "Flutter", "Multi-platform device systems"],
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://woogi.is-a.dev/#website",
+        url: "https://woogi.is-a.dev",
+        name: "Woogi Product Systems Portfolio",
+        inLanguage: "ko-KR",
+        publisher: { "@id": "https://woogi.is-a.dev/#person" },
+      },
+    ],
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  )
 }

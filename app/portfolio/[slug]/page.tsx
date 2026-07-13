@@ -1,198 +1,242 @@
-import Image from "next/image"
+import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft, ArrowRight } from "lucide-react"
-import type { Metadata } from "next"
 
-import { Reveal } from "@/components/motion-reveal"
-import { Button } from "@/components/ui/button"
-import { caseStudies, getCaseStudy } from "@/lib/portfolio-data"
+import {
+  ArchitectureFigure,
+  CaseFactPanel,
+  DecisionBlock,
+  DisclosureNote,
+  EvidenceFigure,
+  ValidationBlock,
+} from "@/components/dossier"
+import { portfolioPublic } from "@/lib/public-content"
 
-const artifactBySlug: Record<string, { src: string; label: string; alt: string }> = {
-  "llm-structured-extraction-catalog-pipeline": {
-    src: "/company-os-dashboard-desktop.png",
-    label: "Pipeline control surface",
-    alt: "AI workflow dashboard with work queue and reference controls",
-  },
-  "evidence-gated-ai-recommendation-pipeline": {
-    src: "/memoriz-natural-search-reuse.png",
-    label: "Memory reuse surface",
-    alt: "Memoriz natural search screen over saved records",
-  },
-  "internal-automation-agent-workflow": {
-    src: "/company-os-worker-status-desktop.png",
-    label: "Agent run status",
-    alt: "Provider run status screen for agent operations",
-  },
-  "data-collection-verification-pipeline": {
-    src: "/checkyourhospital-psf-validation-table.png",
-    label: "Validation table",
-    alt: "Validation table for AI search readiness diagnosis",
-  },
-  "ai-product-quality-report-automation": {
-    src: "/checkyourhospital-psf-validation-table.png",
-    label: "Evaluation report",
-    alt: "Evaluation report table for AI search readiness",
-  },
-  "smart-glasses-platform-suite": {
-    src: "/memoriz-ai-draft-review.png",
-    label: "Mobile review surface",
-    alt: "Mobile AI draft review screen",
-  },
-  "flutter-consulting-modernization": {
-    src: "/project-placeholder.png",
-    label: "Product engineering archive",
-    alt: "Project placeholder image",
-  },
-  "self-improving-social-agents": {
-    src: "/company-os-worker-status-desktop.png",
-    label: "PromptOps control surface",
-    alt: "Worker status panel for provider execution",
-  },
+type PageProps = {
+  params: Promise<{ slug: string }>
 }
 
 export function generateStaticParams() {
-  return caseStudies.map((project) => ({ slug: project.slug }))
+  return [
+    ...portfolioPublic.cases.map((item) => ({ slug: item.slug })),
+    ...portfolioPublic.withheldCases.map((item) => ({ slug: item.slug })),
+  ]
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const project = getCaseStudy(slug)
-
-  if (!project) {
+  const caseStudy = portfolioPublic.cases.find((item) => item.slug === slug)
+  if (caseStudy) {
     return {
-      title: "Case Study Not Found",
+      title: caseStudy.seo.title,
+      description: caseStudy.seo.description,
+      alternates: { canonical: `/portfolio/${slug}` },
+      robots: { index: caseStudy.seo.index, follow: true },
+      openGraph: {
+        title: caseStudy.seo.title,
+        description: caseStudy.seo.description,
+        url: `/portfolio/${slug}`,
+      },
     }
   }
 
-  return {
-    title: project.title,
-    description: project.summary,
+  const withheld = portfolioPublic.withheldCases.find((item) => item.slug === slug)
+  if (withheld) {
+    return {
+      title: `${withheld.title} — 공개 보류`,
+      description: withheld.reason,
+      alternates: { canonical: `/portfolio/${slug}` },
+      robots: { index: false, follow: false, nocache: true },
+    }
   }
+
+  return { title: "사례를 찾을 수 없습니다" }
 }
 
-export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+function WithheldCase({ title, reason }: { title: string; reason: string }) {
+  return (
+    <section className="page-intro min-h-[65dvh]">
+      <div className="site-container site-grid gap-y-8">
+        <div className="col-span-4 md:col-span-5 xl:col-span-9">
+          <p className="eyebrow text-withheld">공개 보류 · 검색 제외</p>
+          <h1 className="section-title mt-5">{title}</h1>
+          <p className="lede mt-6">{reason}</p>
+        </div>
+        <aside className="col-span-4 self-end border-y py-5 text-sm text-ink-muted md:col-span-3 xl:col-span-5 xl:col-start-11">
+          공개되지 않은 내용을 빈 화면, 가상 지표, 추정 아키텍처로 채우지 않습니다. 공개 권한과 검증 근거가 확보되면 공개본을 갱신해 다시 검토합니다.
+        </aside>
+        <Link className="link-arrow col-span-4 w-fit" href="/portfolio">
+          <ArrowLeft className="size-4" aria-hidden="true" /> 사례 인덱스로 돌아가기
+        </Link>
+      </div>
+    </section>
+  )
+}
+
+export default async function CasePage({ params }: PageProps) {
   const { slug } = await params
-  const project = getCaseStudy(slug)
+  const withheld = portfolioPublic.withheldCases.find((item) => item.slug === slug)
+  if (withheld) return <WithheldCase title={withheld.title} reason={withheld.reason} />
 
-  if (!project) {
-    notFound()
-  }
+  const caseStudy = portfolioPublic.cases.find((item) => item.slug === slug)
+  if (!caseStudy) notFound()
 
-  const currentIndex = caseStudies.findIndex((item) => item.slug === project.slug)
-  const nextProject = caseStudies[(currentIndex + 1) % caseStudies.length]
-  const Icon = project.icon
-  const artifact = artifactBySlug[project.slug]
+  const caseIndex = portfolioPublic.cases.findIndex((item) => item.slug === slug)
+  const nextCase = portfolioPublic.cases[(caseIndex + 1) % portfolioPublic.cases.length]
 
   return (
-    <main className="bg-background">
-      <section className="border-b bg-[#111812] text-[#f3f2e9]">
-        <div className="mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-16">
-          <Button asChild variant="ghost" className="-ml-3 mb-10 text-[#f3f2e9] hover:bg-white/10 hover:text-white">
-            <Link href="/portfolio">
-              <ArrowLeft className="h-4 w-4" />
-              전체 작업으로 돌아가기
-            </Link>
-          </Button>
+    <article>
+      <header className="page-intro">
+        <div className="site-container">
+          <Link className="link-arrow mb-8 w-fit text-foreground" href="/portfolio">
+            <ArrowLeft className="size-4" aria-hidden="true" /> 사례 인덱스
+          </Link>
+          <div className="site-grid gap-y-8">
+            <div className="col-span-4 md:col-span-5 xl:col-span-10">
+              <p className="eyebrow">{caseStudy.kicker}</p>
+              <h1 className="display-title mt-5">{caseStudy.title}</h1>
+              <p className="lede mt-6 md:mt-8">{caseStudy.summary}</p>
+            </div>
+            <div className="col-span-4 self-end md:col-span-3 xl:col-span-5 xl:col-start-12">
+              <DisclosureNote status={caseStudy.disclosure.status} note={caseStudy.disclosure.note} />
+            </div>
+          </div>
+          <div className="mt-10">
+            <CaseFactPanel
+              items={[
+                { label: "역할", value: caseStudy.role },
+                { label: "영역", value: caseStudy.domain },
+                { label: "시기", value: caseStudy.period },
+                { label: "공개 자료", value: `${caseStudy.evidence.length}개 항목` },
+              ]}
+            />
+          </div>
+        </div>
+      </header>
 
-          <div className="grid gap-10 lg:grid-cols-[1fr_360px] lg:items-end">
-            <Reveal>
-              <p className="font-mono text-xs text-[#f2d27b]">{project.period}</p>
-              <h1 className="mt-5 max-w-4xl text-balance text-4xl font-semibold leading-tight md:text-6xl">
-                {project.title}
-              </h1>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-[#dbe3dc]">{project.summary}</p>
-            </Reveal>
-            <Reveal delay={0.08} className="border border-white/10 bg-white/5 p-5">
-              <Icon className="h-8 w-8 text-[#f2d27b]" />
-              <p className="mt-5 text-sm text-[#dbe3dc]">{project.eyebrow}</p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {project.stack.slice(0, 6).map((tech) => (
-                  <span key={tech} className="border border-white/10 px-2 py-1 text-xs text-[#dbe3dc]">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </Reveal>
+      <section className="page-section" aria-labelledby="problem-title">
+        <div className="site-container site-grid gap-y-8">
+          <div className="col-span-4 md:col-span-3 xl:col-span-5">
+            <h2 id="problem-title" className="section-title mt-3">문제와 제약</h2>
+          </div>
+          <div className="col-span-4 md:col-span-5 xl:col-span-9 xl:col-start-8">
+            <p className="text-xl leading-relaxed md:text-2xl">{caseStudy.problem}</p>
+            <ul className="mt-8 border-t">
+              {caseStudy.constraints.map((constraint, index) => (
+                <li key={constraint} className="grid grid-cols-[2rem_minmax(0,1fr)] border-b py-4 text-sm md:py-5 md:text-base">
+                  <span className="font-mono text-xs text-action">C{index + 1}</span>
+                  <span>{constraint}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      <section className="border-b py-12 md:py-16">
-        <div className="mx-auto grid max-w-6xl gap-8 px-5 md:px-8 lg:grid-cols-[320px_1fr]">
-          <Reveal>
-            <p className="font-mono text-xs text-muted-foreground">IMPACT</p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-normal">이 사례에서 보여주는 것</h2>
-          </Reveal>
-          <div className="grid gap-px border bg-border">
-            {project.impact.map((impact, index) => (
-              <Reveal key={impact} delay={index * 0.04} className="grid gap-4 bg-card p-5 md:grid-cols-[56px_1fr]">
-                <span className="font-mono text-sm text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
-                <p className="leading-7 text-muted-foreground">{impact}</p>
-              </Reveal>
+      <section className="page-section" aria-labelledby="responsibility-title">
+        <div className="site-container site-grid gap-y-8">
+          <div className="col-span-4 md:col-span-3 xl:col-span-5">
+            <h2 id="responsibility-title" className="section-title mt-3">내가 맡은 범위</h2>
+          </div>
+          <ol className="col-span-4 border-t md:col-span-5 xl:col-span-9 xl:col-start-8">
+            {caseStudy.responsibility.map((item, index) => (
+              <li key={item} className="grid grid-cols-[2.5rem_minmax(0,1fr)] border-b py-5 md:py-6">
+                <span className="font-mono text-xs text-action">R{index + 1}</span>
+                <span className="font-semibold">{item}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="page-section" aria-labelledby="decision-title">
+        <div className="site-container site-grid gap-y-8">
+          <div className="col-span-4 md:col-span-3 xl:col-span-5">
+            <h2 id="decision-title" className="section-title mt-3">핵심 판단</h2>
+          </div>
+          <div className="col-span-4 md:col-span-5 xl:col-span-9 xl:col-start-8">
+            {caseStudy.decisions.map((decision, index) => (
+              <DecisionBlock key={decision.title} index={index} title={decision.title} body={decision.body} />
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-12 md:py-16">
-        <div className="mx-auto grid max-w-6xl gap-10 px-5 md:px-8 lg:grid-cols-[320px_1fr]">
-          <aside className="lg:sticky lg:top-24 lg:h-fit">
-            <Reveal>
-            <p className="font-mono text-xs text-muted-foreground">ARTIFACT</p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-normal">실제 화면과 운영 흐름</h2>
-              {artifact && (
-                <div className="mt-6 overflow-hidden border bg-card">
-                  <Image
-                    src={artifact.src}
-                    alt={artifact.alt}
-                    width={1200}
-                    height={800}
-                    className="aspect-[4/3] w-full bg-white object-contain object-left-top"
-                  />
-                  <p className="border-t p-3 text-sm text-muted-foreground">{artifact.label}</p>
-                </div>
-              )}
-            </Reveal>
-          </aside>
+      <section className="page-section" aria-labelledby="implementation-title">
+        <div className="site-container">
+          <div className="site-grid gap-y-8">
+            <div className="col-span-4 md:col-span-3 xl:col-span-5">
+              <h2 id="implementation-title" className="section-title mt-3">구현 구조</h2>
+            </div>
+            <ol className="col-span-4 border-t md:col-span-5 xl:col-span-9 xl:col-start-8">
+              {caseStudy.implementation.map((item, index) => (
+                <li key={item} className="grid grid-cols-[2.5rem_minmax(0,1fr)] border-b py-4 md:py-5">
+                  <span className="font-mono text-xs text-action">I{index + 1}</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <div className="mt-10 md:mt-12">
+            <ArchitectureFigure caption={caseStudy.diagram.caption} nodes={caseStudy.diagram.nodes} />
+          </div>
+        </div>
+      </section>
 
-          <div className="space-y-10">
-            {project.sections.map((section, sectionIndex) => (
-              <Reveal key={section.title} delay={sectionIndex * 0.04}>
-                <article className="border-t pt-6">
-                  <div className="grid gap-5 md:grid-cols-[160px_1fr]">
-                    <div>
-                      <p className="font-mono text-xs text-muted-foreground">{String(sectionIndex + 1).padStart(2, "0")}</p>
-                      <h2 className="mt-2 text-2xl font-semibold tracking-normal">{section.title}</h2>
-                    </div>
-                    <div className="space-y-4">
-                      {section.body.map((paragraph) => (
-                        <p key={paragraph} className="max-w-3xl leading-8 text-muted-foreground">
-                          {paragraph}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                </article>
-              </Reveal>
+      <section className="page-section" aria-labelledby="validation-title">
+        <div className="site-container">
+          <div className="site-grid mb-8 gap-y-4">
+            <div className="col-span-4 md:col-span-3 xl:col-span-5">
+              <h2 id="validation-title" className="section-title mt-3">검증과 확인된 결과</h2>
+            </div>
+            <p className="col-span-4 max-w-2xl self-end text-ink-muted md:col-span-5 xl:col-span-7 xl:col-start-9">
+              코드·문서에서 확인한 구현과 측정된 외부 성과를 별도 상태로 표시합니다. 외부 성과가 없으면 수치로 적지 않습니다.
+            </p>
+          </div>
+          <div className="grid gap-6 lg:grid-cols-2">
+            <ValidationBlock id="case-validation" claims={caseStudy.validation} />
+            <ValidationBlock id="case-outcomes" title="확인된 결과" claims={caseStudy.outcomes} />
+          </div>
+        </div>
+      </section>
+
+      <section className="page-section" aria-labelledby="evidence-title">
+        <div className="site-container">
+          <div className="site-grid mb-8 gap-y-4">
+            <div className="col-span-4 md:col-span-3 xl:col-span-5">
+              <h2 id="evidence-title" className="section-title mt-3">공개 자료와 제한</h2>
+            </div>
+          </div>
+          <div className="grid border-b sm:grid-cols-2">
+            {caseStudy.evidence.map((evidence) => (
+              <EvidenceFigure key={evidence.label} evidence={evidence} />
             ))}
           </div>
+          <div className="mt-10">
+            <DisclosureNote status={caseStudy.disclosure.status} note={caseStudy.disclosure.note} />
+          </div>
         </div>
       </section>
 
-      <section className="border-t bg-card py-12">
-        <div className="mx-auto flex max-w-6xl flex-col justify-between gap-5 px-5 md:flex-row md:items-center md:px-8">
-          <div>
-            <p className="font-mono text-xs text-muted-foreground">NEXT CASE</p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-normal">{nextProject.title}</h2>
-          </div>
-          <Button asChild className="w-fit">
-            <Link href={`/portfolio/${nextProject.slug}`}>
-              다음 사례 보기 <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Button>
+      <nav className="border-t" aria-label="다음 사례">
+        <div className="site-container grid gap-0 md:grid-cols-2">
+          <Link className="group min-h-36 border-b py-7 md:border-b-0 md:border-r md:pr-8" href="/portfolio">
+            <span className="font-mono text-xs text-ink-muted">INDEX</span>
+            <span className="mt-4 flex items-center gap-2 font-heading text-2xl font-bold">
+              <ArrowLeft className="size-5 transition-transform duration-150 group-hover:-translate-x-1" aria-hidden="true" />
+              All work
+            </span>
+          </Link>
+          <Link className="group min-h-36 py-7 md:pl-8" href={`/portfolio/${nextCase.slug}`}>
+            <span className="font-mono text-xs text-ink-muted">NEXT CASE</span>
+            <span className="mt-4 flex items-center justify-between gap-3 font-heading text-2xl font-bold">
+              {nextCase.title}
+              <ArrowRight className="size-5 transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true" />
+            </span>
+          </Link>
         </div>
-      </section>
-    </main>
+      </nav>
+    </article>
   )
 }

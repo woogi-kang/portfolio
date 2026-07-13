@@ -1,32 +1,24 @@
-import { MetadataRoute } from "next";
-import { caseStudies } from "@/lib/portfolio-data";
+import type { MetadataRoute } from "next"
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = "https://woogi.is-a.dev";
+import { portfolioPublic } from "@/lib/public-content"
 
-    // Static routes
-    const routes = [
-        "",
-        "/portfolio",
-        "/portfolio/alwayz-shopport-ai-data",
-        "/portfolio/moais-ai-llm",
-        "/portfolio/overdare-ai-agent",
-        "/posts",
-        "/resume",
-        "/contact",
-    ].map((route) => ({
-        url: `${baseUrl}${route}`,
-        lastModified: new Date(),
-        changeFrequency: "monthly" as const,
-        priority: route === "" ? 1 : 0.8,
-    }));
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = "https://woogi.is-a.dev"
+  const lastModified = new Date(portfolioPublic.reviewedAt)
+  const routes = ["", "/portfolio", "/resume", "/posts", "/contact"].map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: route === "" ? 1 : 0.8,
+  }))
+  const caseRoutes = portfolioPublic.cases
+    .filter((item) => item.seo.index)
+    .map((item) => ({
+      url: `${baseUrl}/portfolio/${item.slug}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }))
 
-    const projectRoutes = caseStudies.map((project) => ({
-        url: `${baseUrl}/portfolio/${project.slug}`,
-        lastModified: new Date(),
-        changeFrequency: "monthly" as const,
-        priority: 0.7,
-    }));
-
-    return [...routes, ...projectRoutes];
+  return [...routes, ...caseRoutes]
 }
