@@ -20,7 +20,7 @@ export async function generateMetadata({
   return {
     title: "Resume — Product Engineer",
     description:
-      "Device, Product Delivery, AI Systems로 확장해 온 Product Engineer 강태욱의 HTML 이력서입니다.",
+      "모바일 제품 개발에서 데이터 수집과 AI 업무 자동화까지 확장해 온 Product Engineer 강태욱의 웹 이력서입니다.",
     alternates: { canonical: "/resume" },
     robots: { index: lens === undefined, follow: true },
   }
@@ -43,8 +43,9 @@ export default async function ResumePage({
   const lens = portfolioPublic.roleLenses.find((item) => item.id === activeLens)
   const caseOrder = lens?.caseOrder ?? [
     "woogi-harness",
+    "structured-domain-data-pipeline",
+    "human-governed-ai-operations",
     "smart-glasses-realtime-platform",
-    "ott-multiplatform-integration",
   ]
   const selectedCases = selectCasesByLens(
     portfolioPublic.cases,
@@ -92,7 +93,7 @@ export default async function ResumePage({
         <div className="site-container">
           <div className="site-grid mb-8 gap-y-4">
             <div className="col-span-4 md:col-span-3 xl:col-span-5">
-            <p className="eyebrow">경력</p>
+              <p className="eyebrow">경력</p>
               <h2 id="experience-title" className="section-title mt-3">경력 타임라인</h2>
             </div>
             <p className="col-span-4 self-end text-sm text-ink-muted md:col-span-5 xl:col-span-7 xl:col-start-9">
@@ -120,8 +121,8 @@ export default async function ResumePage({
       <section className="page-section" aria-labelledby="skills-title">
         <div className="site-container site-grid gap-y-8">
           <div className="col-span-4 md:col-span-3 xl:col-span-5">
-              <p className="eyebrow">기술</p>
-              <h2 id="skills-title" className="section-title mt-3">사례에서 사용한 기술</h2>
+            <p className="eyebrow">기술</p>
+            <h2 id="skills-title" className="section-title mt-3">사례에서 사용한 기술</h2>
           </div>
           <div className="col-span-4 border-t md:col-span-5 xl:col-span-9 xl:col-start-8">
             {portfolioPublic.skills.map((group) => (
@@ -136,10 +137,49 @@ export default async function ResumePage({
         </div>
       </section>
 
+      <section className="page-section" aria-labelledby="education-title">
+        <div className="site-container site-grid gap-y-8">
+          <div className="col-span-4 md:col-span-3 xl:col-span-5">
+            <p className="eyebrow">학력 · 자격</p>
+            <h2 id="education-title" className="section-title mt-3">Education & Credentials</h2>
+          </div>
+          <div className="col-span-4 grid gap-8 md:col-span-5 xl:col-span-9 xl:col-start-8 xl:grid-cols-2">
+            <section aria-labelledby="education-list-title">
+              <h3 id="education-list-title" className="border-b pb-3 font-mono text-xs font-bold text-action">
+                Education
+              </h3>
+              <ul>
+                {portfolioPublic.education.map((item) => (
+                  <li key={`${item.institution}-${item.period}`} className="border-b py-5">
+                    <strong className="block text-lg">{item.institution}</strong>
+                    <span className="mt-2 block text-sm text-ink-muted">{item.program}</span>
+                    <span className="mt-1 block font-mono text-xs text-ink-muted">{item.period}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+            <section aria-labelledby="credentials-list-title">
+              <h3 id="credentials-list-title" className="border-b pb-3 font-mono text-xs font-bold text-action">
+                Credentials
+              </h3>
+              <ul>
+                {portfolioPublic.credentials.map((item) => (
+                  <li key={`${item.name}-${item.period}`} className="border-b py-5">
+                    <strong className="block text-lg">{item.name}</strong>
+                    <span className="mt-2 block text-sm text-ink-muted">{item.detail}</span>
+                    <span className="mt-1 block font-mono text-xs text-ink-muted">{item.period}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
+        </div>
+      </section>
+
       <section className="page-section">
         <div className="site-container flex flex-wrap items-center justify-between gap-5 border-y py-6">
           <p className="max-w-2xl text-ink-muted">
-            채용 포지션이나 궁금한 프로젝트를 알려주시면 관련 자료와 제가 맡은 범위를 답변드리겠습니다.
+            채용 포지션이나 궁금한 프로젝트를 알려주시면 관련 자료를 보내드리고, 제가 맡은 범위를 설명드리겠습니다.
           </p>
           <div className="flex flex-wrap gap-x-5">
             <Link className="link-arrow" href="/contact">

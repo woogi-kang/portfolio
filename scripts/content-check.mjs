@@ -61,12 +61,10 @@ const dossierNumericAllowlist = new Map([
       "15",
       "17",
       "20",
-      "22",
       "30",
       "48",
       "50",
       "90",
-      "244",
       "679",
     ]),
   ],
@@ -81,6 +79,8 @@ const claimLedgerStatuses = new Map([
   ["CLM-023", "context-only"],
   ["CLM-024", "context-only"],
   ["CLM-025", "verified"],
+  ["CLM-026", "context-only"],
+  ["CLM-027", "context-only"],
 ])
 
 function fail(message) {
@@ -150,6 +150,22 @@ if (/\b(?:unsupported|conflicting)\b/.test(raw)) {
 
 if (data?.schemaVersion !== 1) fail("schemaVersion must be 1")
 requireString(data?.profile?.role, "profile.role")
+if (!Array.isArray(data?.education) || data.education.length === 0) {
+  fail("education must contain at least one item")
+}
+for (const [index, item] of data.education.entries()) {
+  requireString(item?.institution, `education[${index}].institution`)
+  requireString(item?.program, `education[${index}].program`)
+  requireString(item?.period, `education[${index}].period`)
+}
+if (!Array.isArray(data?.credentials) || data.credentials.length === 0) {
+  fail("credentials must contain at least one item")
+}
+for (const [index, item] of data.credentials.entries()) {
+  requireString(item?.name, `credentials[${index}].name`)
+  requireString(item?.detail, `credentials[${index}].detail`)
+  requireString(item?.period, `credentials[${index}].period`)
+}
 if (!Array.isArray(data?.roleLenses) || data.roleLenses.length !== 3) {
   fail("roleLenses must contain the three approved lenses")
 }
@@ -243,6 +259,14 @@ for (const [dossierIndex, dossier] of data.roleDossiers.entries()) {
     fail(`${path}.slug is duplicated or not an approved role dossier`)
   }
   const dossierText = JSON.stringify(dossier)
+  if (
+    dossier.slug === "thefounders-fde" &&
+    [/(?:약\s*)?20명\s*규모/, /4인\s*개발팀/, /개발팀\s*4명/, /4명\s*규모\s*개발팀/].some(
+      (pattern) => pattern.test(dossierText),
+    )
+  ) {
+    fail(`${path} exposes a Pled organization or team size`)
+  }
   const allowedPublicNames = dossierPublicNameAllowlist.get(dossier.slug) ?? new Set()
   for (const blockedName of anonymizedDenylist) {
     if (dossierText.includes(blockedName) && !allowedPublicNames.has(blockedName)) {

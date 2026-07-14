@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     url: "https://woogi.is-a.dev",
     title: "Kang Taewook | Product Engineer — AI Systems & Automation",
     description:
-      "데이터 수집, 제품 API, 승인형 AI 업무와 멀티플랫폼 디바이스 구현 사례를 정리했습니다.",
+      "데이터 수집, 제품 API, 담당자가 검토하는 AI 업무와 멀티플랫폼 디바이스 구현 사례를 정리했습니다.",
     siteName: "Woogi Product Systems Portfolio",
     images: [
       {

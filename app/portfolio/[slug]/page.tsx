@@ -18,10 +18,7 @@ type PageProps = {
 }
 
 export function generateStaticParams() {
-  return [
-    ...portfolioPublic.cases.map((item) => ({ slug: item.slug })),
-    ...portfolioPublic.withheldCases.map((item) => ({ slug: item.slug })),
-  ]
+  return portfolioPublic.cases.map((item) => ({ slug: item.slug }))
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -41,44 +38,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
 
-  const withheld = portfolioPublic.withheldCases.find((item) => item.slug === slug)
-  if (withheld) {
-    return {
-      title: `${withheld.title} — 비공개 사례`,
-      description: withheld.reason,
-      alternates: { canonical: `/portfolio/${slug}` },
-      robots: { index: false, follow: false, nocache: true },
-    }
-  }
-
   return { title: "사례를 찾을 수 없습니다" }
-}
-
-function WithheldCase({ title, reason }: { title: string; reason: string }) {
-  return (
-    <section className="page-intro min-h-[65dvh]">
-      <div className="site-container site-grid gap-y-8">
-        <div className="col-span-4 md:col-span-5 xl:col-span-9">
-          <p className="eyebrow text-withheld">Case unavailable</p>
-          <h1 className="section-title mt-5">{title}</h1>
-          <p className="lede mt-6">{reason}</p>
-        </div>
-        <aside className="col-span-4 self-end border-y py-5 text-sm text-ink-muted md:col-span-3 xl:col-span-5 xl:col-start-11">
-          이 프로젝트는 아직 소개할 수 있는 범위를 확인하고 있습니다. 정리가 끝나면 실제로 맡은 역할과 결과를 중심으로 업데이트하겠습니다.
-        </aside>
-        <Link className="link-arrow col-span-4 w-fit" href="/portfolio">
-          <ArrowLeft className="size-4" aria-hidden="true" /> 전체 사례로 돌아가기
-        </Link>
-      </div>
-    </section>
-  )
 }
 
 export default async function CasePage({ params }: PageProps) {
   const { slug } = await params
-  const withheld = portfolioPublic.withheldCases.find((item) => item.slug === slug)
-  if (withheld) return <WithheldCase title={withheld.title} reason={withheld.reason} />
-
   const caseStudy = portfolioPublic.cases.find((item) => item.slug === slug)
   if (!caseStudy) notFound()
 

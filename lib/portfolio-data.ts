@@ -166,7 +166,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "internal-automation-agent-workflow",
     title: "Company-wide AI Workflow Automation",
     eyebrow: "업무 요청·실행·승인·메신저 Agent 접점",
-    period: "2026.01 - 현재",
+    period: "2026.01 - 2026.05",
     summary:
       "AI CLI 사용이 개발자 개인 도구에 머무르지 않도록 사내 업무 자동화 툴과 agent/skill 자산 저장소를 정리했습니다. 메신저 기반 Agent gateway를 Slack/Discord와 연결해 회사 구성원이 각자 업무 맥락에서 AI 에이전트를 호출할 수 있는 접점도 설계했습니다.",
     impact: [
@@ -428,8 +428,8 @@ export const capabilities = [
 
 export const timeline = [
   {
-    period: "2026.01 - 현재",
-    role: "AI Data Product / Agent Engineer",
+    period: "2026.01 - 2026.05",
+    role: "App Lead · AX Engineer",
     company: "주식회사 플레드",
     body: "AI Agent와 데이터 자동화로 개발, 운영, 마케팅, CS, 리포트 업무의 반복 구간을 줄이는 역할. 병원·미용·뷰티 도메인의 웹/이미지/OCR/리뷰성 데이터를 수집·구조화·검증하고 AI 상담, RAG/HybridSearch, grounded web search, report/admin 운영 흐름으로 연결.",
   },
@@ -441,7 +441,7 @@ export const timeline = [
   },
   {
     period: "2023.03 - 2025.01",
-    role: "Project-based Flutter Consultant / App Lead",
+    role: "프로젝트 기반 Flutter 컨설턴트 · App Lead",
     company: "Multiple product teams",
     body: "OTT, 보안 문서, 실시간 주문, 인플루언서 매칭, 프리미엄 데이팅, 로컬 OTA, 프리다이빙 커뮤니티 앱의 구조 개선과 출시 안정화 담당.",
   },

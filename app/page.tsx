@@ -119,7 +119,7 @@ export default async function Home({
               </h2>
             </div>
             <p className="col-span-4 max-w-2xl self-end text-ink-muted md:col-span-5 xl:col-span-8 xl:col-start-9">
-              모바일, TV, 스마트 글래스 앱을 만들던 경험을 API, 데이터 파이프라인과 승인형 AI 업무로 넓혀 왔습니다.
+              모바일, TV, 스마트 글래스 앱을 만들던 경험을 API, 데이터 파이프라인과 담당자가 검토하는 AI 업무로 넓혀 왔습니다.
             </p>
           </div>
           <CareerTrajectory />
@@ -132,7 +132,7 @@ export default async function Home({
             <div className="col-span-4 md:col-span-4 xl:col-span-7">
               <p className="eyebrow">Work</p>
               <h2 id="work-title" className="section-title mt-3">
-                직접 만든 프로젝트
+                직접 맡아 해결한 프로젝트
               </h2>
             </div>
             <div className="col-span-4 self-end md:col-span-4 xl:col-span-6 xl:col-start-10">
@@ -164,7 +164,7 @@ export default async function Home({
               {
                 href: "/resume",
                 title: "Resume",
-                body: "경력과 맡은 범위를 문서형 타임라인으로 정리했습니다.",
+                body: "경력과 맡은 범위를 시간순으로 정리했습니다.",
               },
               {
                 href: "/posts",

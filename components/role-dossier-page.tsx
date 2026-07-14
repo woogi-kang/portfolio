@@ -61,7 +61,7 @@ function ProjectGroupSection({
                   {project.story ? (
                     <dl className="border-t border-line-strong text-sm md:text-base">
                       {([
-                        ["업무 맥락", project.story.context],
+                        ["배경", project.story.context],
                         ["문제", project.story.problem],
                         ["만든 것", project.story.build],
                         ["결과", project.story.result],
@@ -137,7 +137,7 @@ export function RoleDossierPage({ slug }: { slug: string }) {
             </div>
             <div className="col-span-4 self-end border-y py-5 text-sm text-ink-muted md:col-span-3 xl:col-span-5 xl:col-start-12">
               {dossier.reviewCue ??
-                "실제 수행 사례와 합류 후 확인할 가설을 별도 구역에 적었습니다."}
+                "이미 해 본 일과 입사 후 먼저 확인할 일을 나눠 적었습니다."}
             </div>
           </div>
           {dossier.applicationNote ? (
@@ -147,7 +147,9 @@ export function RoleDossierPage({ slug }: { slug: string }) {
           ) : null}
 
           {dossier.metrics?.length ? (
-            <dl className="mt-10 grid gap-px border-y border-line-strong bg-[var(--line)] md:grid-cols-2 xl:grid-cols-4">
+            <dl className={`mt-10 grid gap-px border-y border-line-strong bg-[var(--line)] md:grid-cols-2 ${
+              dossier.metrics.length === 3 ? "xl:grid-cols-3" : "xl:grid-cols-4"
+            }`}>
               {dossier.metrics.map((metric) => (
                 <div key={metric.label} className="bg-canvas px-0 py-5 md:p-6">
                   <dt className="eyebrow">{metric.label}</dt>
@@ -292,14 +294,14 @@ export function RoleDossierPage({ slug }: { slug: string }) {
         <div className="site-container site-grid gap-y-8">
           <div className="col-span-4 md:col-span-3 xl:col-span-5">
             <p className="eyebrow text-context">
-              {dossier.proposalSection?.eyebrow ?? "합류 후 검증"}
+              {dossier.proposalSection?.eyebrow ?? "합류 후 첫 단계"}
             </p>
             <h2 id={`${slug}-proposal-title`} className="section-title mt-3">
-              {dossier.proposalSection?.title ?? "먼저 확인할 가설"}
+              {dossier.proposalSection?.title ?? "입사 후 먼저 확인할 일"}
             </h2>
             <p className="mt-4 max-w-md text-sm text-ink-muted">
               {dossier.proposalSection?.note ??
-                "인터뷰와 작은 파일럿으로 문제와 성과 기준을 먼저 확인할 제안입니다."}
+                "인터뷰와 작은 파일럿으로 문제와 성과 기준을 확인하는 제안입니다."}
             </p>
           </div>
           <ol className="col-span-4 border-t border-line-strong md:col-span-5 xl:col-span-9 xl:col-start-8">

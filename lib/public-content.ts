@@ -157,6 +157,16 @@ export type PortfolioPublicProjection = {
     location: string
     image: string
   }
+  education: Array<{
+    institution: string
+    program: string
+    period: string
+  }>
+  credentials: Array<{
+    name: string
+    detail: string
+    period: string
+  }>
   roleLenses: RoleLens[]
   trajectory: Array<{
     phase: string
