@@ -75,13 +75,21 @@ export type RoleMetric = {
   note: string
 }
 
+export type RoleProjectStory = {
+  context: string
+  problem: string
+  build: string
+  result: string
+}
+
 export type RoleProject = {
   name: string
   meta: string
-  summary: string
+  story?: RoleProjectStory
+  summary?: string
   outcome?: string
-  highlights: string[]
-  sourceLabel: string
+  highlights?: string[]
+  sourceLabel?: string
 }
 
 export type RoleProjectGroup = {
@@ -117,6 +125,11 @@ export type RoleDossier = {
     title: string
     note: string
   }
+  proposalSection?: {
+    eyebrow: string
+    title: string
+    note: string
+  }
   existingEvidence: PublicClaim[]
   futureProposal: string[]
   caseSlugs?: string[]
@@ -124,6 +137,7 @@ export type RoleDossier = {
   evidenceMap?: {
     caption: string
     note: string
+    label?: string
     stages: RoleEvidenceStage[]
   }
 }

@@ -215,17 +215,19 @@ export function ArchitectureFigure({
 export function EvidenceChainFigure({
   caption,
   note,
+  label = "공개용 역량 지도",
   stages,
 }: {
   caption: string
   note: string
+  label?: string
   stages: readonly RoleEvidenceStage[]
 }) {
   return (
     <figure className="structural-panel overflow-hidden">
       <figcaption className="grid gap-1 border-b px-4 py-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:gap-4">
         <span className="font-mono text-xs font-bold text-foreground">{caption}</span>
-        <span className="font-mono text-[10px] text-ink-muted">공개용 역량 지도</span>
+        <span className="font-mono text-[10px] text-ink-muted">{label}</span>
       </figcaption>
       <ol className="grid p-4 lg:grid-cols-5 lg:p-6">
         {stages.map((stage, index) => (

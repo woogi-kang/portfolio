@@ -44,34 +44,65 @@ function ProjectGroupSection({
         <div className="col-span-4 border-t border-line-strong md:col-span-5 xl:col-span-9 xl:col-start-8">
           {group.projects.map((project, index) => (
             <article key={project.name} className="border-b border-line-strong py-7">
-              <div className="grid gap-6 xl:grid-cols-9">
-                <div className="xl:col-span-4">
+              <div className="grid gap-6 xl:grid-cols-9 xl:gap-10">
+                <div className="xl:col-span-3">
                   <p className="eyebrow text-context">
                     {String(index + 1).padStart(2, "0")} · {project.meta}
                   </p>
                   <h3 className="mt-3 text-2xl md:text-3xl">{project.name}</h3>
-                  <p className="mt-3 text-sm text-ink-muted md:text-base">
-                    {project.summary}
-                  </p>
-                </div>
-
-                <div className="xl:col-span-5">
-                  {project.outcome ? (
-                    <p className="border-l-2 border-[var(--action)] pl-4 font-heading text-lg font-bold leading-relaxed text-foreground md:text-xl">
-                      {project.outcome}
+                  {project.summary ? (
+                    <p className="mt-3 text-sm text-ink-muted md:text-base">
+                      {project.summary}
                     </p>
                   ) : null}
-                  <ul className={`${project.outcome ? "mt-5" : ""} space-y-3 text-sm text-ink-muted md:text-base`}>
-                    {project.highlights.map((highlight) => (
-                      <li key={highlight} className="grid grid-cols-[0.75rem_minmax(0,1fr)] gap-2">
-                        <span className="mt-[0.7rem] size-1 bg-[var(--action)]" aria-hidden="true" />
-                        <span>{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
+                </div>
+
+                <div className="xl:col-span-6">
+                  {project.story ? (
+                    <dl className="border-t border-line-strong text-sm md:text-base">
+                      {([
+                        ["업무 맥락", project.story.context],
+                        ["문제", project.story.problem],
+                        ["만든 것", project.story.build],
+                        ["결과", project.story.result],
+                      ] as const).map(([label, value]) => (
+                        <div
+                          key={label}
+                          className={`grid gap-2 border-b border-line-strong py-4 md:grid-cols-[6rem_minmax(0,1fr)] md:gap-5 ${
+                            label === "결과" ? "text-foreground" : "text-ink-muted"
+                          }`}
+                        >
+                          <dt className={`eyebrow ${label === "결과" ? "text-action" : ""}`}>
+                            {label}
+                          </dt>
+                          <dd className={label === "결과" ? "font-semibold" : ""}>{value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  ) : (
+                    <>
+                      {project.outcome ? (
+                        <p className="border-l-2 border-[var(--action)] pl-4 font-heading text-lg font-bold leading-relaxed text-foreground md:text-xl">
+                          {project.outcome}
+                        </p>
+                      ) : null}
+                      {project.highlights?.length ? (
+                        <ul className={`${project.outcome ? "mt-5" : ""} space-y-3 text-sm text-ink-muted md:text-base`}>
+                          {project.highlights.map((highlight) => (
+                            <li key={highlight} className="grid grid-cols-[0.75rem_minmax(0,1fr)] gap-2">
+                              <span className="mt-[0.7rem] size-1 bg-[var(--action)]" aria-hidden="true" />
+                              <span>{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                    </>
+                  )}
                 </div>
               </div>
-              <p className="status-label mt-5 text-context">{project.sourceLabel}</p>
+              {project.sourceLabel ? (
+                <p className="status-label mt-5 text-context">{project.sourceLabel}</p>
+              ) : null}
             </article>
           ))}
         </div>
@@ -104,10 +135,10 @@ export function RoleDossierPage({ slug }: { slug: string }) {
               </p>
               <p className="lede mt-4">{dossier.thesis}</p>
             </div>
-            <aside className="col-span-4 self-end border-y py-5 text-sm text-ink-muted md:col-span-3 xl:col-span-5 xl:col-start-12">
+            <div className="col-span-4 self-end border-y py-5 text-sm text-ink-muted md:col-span-3 xl:col-span-5 xl:col-start-12">
               {dossier.reviewCue ??
                 "실제 수행 사례와 합류 후 확인할 가설을 별도 구역에 적었습니다."}
-            </aside>
+            </div>
           </div>
           {dossier.applicationNote ? (
             <p className="mt-6 border-l-2 border-context pl-4 text-sm text-ink-muted md:max-w-4xl md:text-base">
@@ -185,6 +216,7 @@ export function RoleDossierPage({ slug }: { slug: string }) {
               <EvidenceChainFigure
                 caption={dossier.evidenceMap.caption}
                 note={dossier.evidenceMap.note}
+                label={dossier.evidenceMap.label}
                 stages={dossier.evidenceMap.stages}
               />
             </div>
@@ -196,7 +228,7 @@ export function RoleDossierPage({ slug }: { slug: string }) {
                 <div className="col-span-4 md:col-span-4 xl:col-span-7">
                   <p className="eyebrow">관련 사례</p>
                   <h3 id={`${slug}-related-title`} className="mt-3 text-2xl md:text-3xl">
-                    공개 범위 안에서 더 보기
+                    구현 사례 더 보기
                   </h3>
                 </div>
               </div>
@@ -259,13 +291,15 @@ export function RoleDossierPage({ slug }: { slug: string }) {
       >
         <div className="site-container site-grid gap-y-8">
           <div className="col-span-4 md:col-span-3 xl:col-span-5">
-            <p className="eyebrow text-context">합류 후 검증</p>
+            <p className="eyebrow text-context">
+              {dossier.proposalSection?.eyebrow ?? "합류 후 검증"}
+            </p>
             <h2 id={`${slug}-proposal-title`} className="section-title mt-3">
-              먼저 확인할 가설
+              {dossier.proposalSection?.title ?? "먼저 확인할 가설"}
             </h2>
             <p className="mt-4 max-w-md text-sm text-ink-muted">
-              회사에서 이미 수행한 일이나 확정 계획이 아닙니다. 인터뷰와 작은 파일럿으로 먼저
-              확인할 제안입니다.
+              {dossier.proposalSection?.note ??
+                "인터뷰와 작은 파일럿으로 문제와 성과 기준을 먼저 확인할 제안입니다."}
             </p>
           </div>
           <ol className="col-span-4 border-t border-line-strong md:col-span-5 xl:col-span-9 xl:col-start-8">

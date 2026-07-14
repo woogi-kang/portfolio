@@ -43,7 +43,32 @@ const dossierPublicNameAllowlist = new Map([
 const dossierNumericAllowlist = new Map([
   [
     "thefounders-fde",
-    new Set(["2026.01", "2026.06", "6", "20", "4", "4,000", "1", "4,255"]),
+    new Set([
+      "1",
+      "2",
+      "3",
+      "4",
+      "4,000",
+      "4,255",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "11",
+      "12",
+      "13",
+      "15",
+      "17",
+      "20",
+      "22",
+      "30",
+      "48",
+      "50",
+      "90",
+      "244",
+      "679",
+    ]),
   ],
 ])
 const allowedNumericClaims = new Map([
@@ -254,15 +279,30 @@ for (const [dossierIndex, dossier] of data.roleDossiers.entries()) {
         const projectPath = `${groupPath}.projects[${projectIndex}]`
         requireString(project?.name, `${projectPath}.name`)
         requireString(project?.meta, `${projectPath}.meta`)
-        requireString(project?.summary, `${projectPath}.summary`)
-        requireString(project?.sourceLabel, `${projectPath}.sourceLabel`)
-        if (project.outcome !== undefined) requireString(project.outcome, `${projectPath}.outcome`)
-        if (!Array.isArray(project?.highlights) || project.highlights.length === 0) {
-          fail(`${projectPath}.highlights must not be empty`)
+        if (project.story !== undefined) {
+          requireString(project.story?.context, `${projectPath}.story.context`)
+          requireString(project.story?.problem, `${projectPath}.story.problem`)
+          requireString(project.story?.build, `${projectPath}.story.build`)
+          requireString(project.story?.result, `${projectPath}.story.result`)
+        } else {
+          requireString(project?.summary, `${projectPath}.summary`)
+          if (!Array.isArray(project?.highlights) || project.highlights.length === 0) {
+            fail(`${projectPath}.highlights must not be empty`)
+          }
         }
-        project.highlights.forEach((highlight, highlightIndex) =>
-          requireString(highlight, `${projectPath}.highlights[${highlightIndex}]`),
-        )
+        if (project.summary !== undefined) requireString(project.summary, `${projectPath}.summary`)
+        if (project.sourceLabel !== undefined) {
+          requireString(project.sourceLabel, `${projectPath}.sourceLabel`)
+        }
+        if (project.outcome !== undefined) requireString(project.outcome, `${projectPath}.outcome`)
+        if (project.highlights !== undefined) {
+          if (!Array.isArray(project.highlights) || project.highlights.length === 0) {
+            fail(`${projectPath}.highlights must not be empty when present`)
+          }
+          project.highlights.forEach((highlight, highlightIndex) =>
+            requireString(highlight, `${projectPath}.highlights[${highlightIndex}]`),
+          )
+        }
       }
     }
   }
@@ -270,6 +310,11 @@ for (const [dossierIndex, dossier] of data.roleDossiers.entries()) {
     requireString(dossier.evidenceSection?.eyebrow, `${path}.evidenceSection.eyebrow`)
     requireString(dossier.evidenceSection?.title, `${path}.evidenceSection.title`)
     requireString(dossier.evidenceSection?.note, `${path}.evidenceSection.note`)
+  }
+  if (dossier.proposalSection !== undefined) {
+    requireString(dossier.proposalSection?.eyebrow, `${path}.proposalSection.eyebrow`)
+    requireString(dossier.proposalSection?.title, `${path}.proposalSection.title`)
+    requireString(dossier.proposalSection?.note, `${path}.proposalSection.note`)
   }
   if (dossier.caseSlugs !== undefined) {
     if (!Array.isArray(dossier.caseSlugs) || dossier.caseSlugs.length === 0) {
@@ -283,6 +328,9 @@ for (const [dossierIndex, dossier] of data.roleDossiers.entries()) {
   if (dossier.evidenceMap !== undefined) {
     requireString(dossier.evidenceMap.caption, `${path}.evidenceMap.caption`)
     requireString(dossier.evidenceMap.note, `${path}.evidenceMap.note`)
+    if (dossier.evidenceMap.label !== undefined) {
+      requireString(dossier.evidenceMap.label, `${path}.evidenceMap.label`)
+    }
     if (!Array.isArray(dossier.evidenceMap.stages) || dossier.evidenceMap.stages.length < 3) {
       fail(`${path}.evidenceMap.stages must contain at least three stages`)
     }
