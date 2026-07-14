@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const withheld = portfolioPublic.withheldCases.find((item) => item.slug === slug)
   if (withheld) {
     return {
-      title: `${withheld.title} — 공개 보류`,
+      title: `${withheld.title} — 비공개 사례`,
       description: withheld.reason,
       alternates: { canonical: `/portfolio/${slug}` },
       robots: { index: false, follow: false, nocache: true },
@@ -59,15 +59,15 @@ function WithheldCase({ title, reason }: { title: string; reason: string }) {
     <section className="page-intro min-h-[65dvh]">
       <div className="site-container site-grid gap-y-8">
         <div className="col-span-4 md:col-span-5 xl:col-span-9">
-          <p className="eyebrow text-withheld">공개 보류 · 검색 제외</p>
+          <p className="eyebrow text-withheld">Case unavailable</p>
           <h1 className="section-title mt-5">{title}</h1>
           <p className="lede mt-6">{reason}</p>
         </div>
         <aside className="col-span-4 self-end border-y py-5 text-sm text-ink-muted md:col-span-3 xl:col-span-5 xl:col-start-11">
-          공개되지 않은 내용을 빈 화면, 가상 지표, 추정 아키텍처로 채우지 않습니다. 공개 권한과 검증 근거가 확보되면 공개본을 갱신해 다시 검토합니다.
+          이 프로젝트는 아직 소개할 수 있는 범위를 확인하고 있습니다. 정리가 끝나면 실제로 맡은 역할과 결과를 중심으로 업데이트하겠습니다.
         </aside>
         <Link className="link-arrow col-span-4 w-fit" href="/portfolio">
-          <ArrowLeft className="size-4" aria-hidden="true" /> 사례 인덱스로 돌아가기
+          <ArrowLeft className="size-4" aria-hidden="true" /> 전체 사례로 돌아가기
         </Link>
       </div>
     </section>
@@ -84,9 +84,12 @@ export default async function CasePage({ params }: PageProps) {
 
   const caseIndex = portfolioPublic.cases.findIndex((item) => item.slug === slug)
   const nextCase = portfolioPublic.cases[(caseIndex + 1) % portfolioPublic.cases.length]
+  const relatedEvidence = caseStudy.evidence.filter(
+    (item) => "href" in item && Boolean(item.href),
+  )
 
   return (
-    <article>
+    <article className="public-case">
       <header className="page-intro">
         <div className="site-container">
           <Link className="link-arrow mb-8 w-fit text-foreground" href="/portfolio">
@@ -99,7 +102,7 @@ export default async function CasePage({ params }: PageProps) {
               <p className="lede mt-6 md:mt-8">{caseStudy.summary}</p>
             </div>
             <div className="col-span-4 self-end md:col-span-3 xl:col-span-5 xl:col-start-12">
-              <DisclosureNote status={caseStudy.disclosure.status} note={caseStudy.disclosure.note} />
+              <DisclosureNote note={caseStudy.disclosure.note} />
             </div>
           </div>
           <div className="mt-10">
@@ -107,8 +110,7 @@ export default async function CasePage({ params }: PageProps) {
               items={[
                 { label: "역할", value: caseStudy.role },
                 { label: "영역", value: caseStudy.domain },
-                { label: "시기", value: caseStudy.period },
-                { label: "공개 자료", value: `${caseStudy.evidence.length}개 항목` },
+                { label: "구분", value: caseStudy.period },
               ]}
             />
           </div>
@@ -125,7 +127,7 @@ export default async function CasePage({ params }: PageProps) {
             <ul className="mt-8 border-t">
               {caseStudy.constraints.map((constraint, index) => (
                 <li key={constraint} className="grid grid-cols-[2rem_minmax(0,1fr)] border-b py-4 text-sm md:py-5 md:text-base">
-                  <span className="font-mono text-xs text-action">C{index + 1}</span>
+                  <span className="font-mono text-xs text-action">{String(index + 1).padStart(2, "0")}</span>
                   <span>{constraint}</span>
                 </li>
               ))}
@@ -142,7 +144,7 @@ export default async function CasePage({ params }: PageProps) {
           <ol className="col-span-4 border-t md:col-span-5 xl:col-span-9 xl:col-start-8">
             {caseStudy.responsibility.map((item, index) => (
               <li key={item} className="grid grid-cols-[2.5rem_minmax(0,1fr)] border-b py-5 md:py-6">
-                <span className="font-mono text-xs text-action">R{index + 1}</span>
+                <span className="font-mono text-xs text-action">{String(index + 1).padStart(2, "0")}</span>
                 <span className="font-semibold">{item}</span>
               </li>
             ))}
@@ -167,12 +169,12 @@ export default async function CasePage({ params }: PageProps) {
         <div className="site-container">
           <div className="site-grid gap-y-8">
             <div className="col-span-4 md:col-span-3 xl:col-span-5">
-              <h2 id="implementation-title" className="section-title mt-3">구현 구조</h2>
+              <h2 id="implementation-title" className="section-title mt-3">구현한 내용</h2>
             </div>
             <ol className="col-span-4 border-t md:col-span-5 xl:col-span-9 xl:col-start-8">
               {caseStudy.implementation.map((item, index) => (
                 <li key={item} className="grid grid-cols-[2.5rem_minmax(0,1fr)] border-b py-4 md:py-5">
-                  <span className="font-mono text-xs text-action">I{index + 1}</span>
+                  <span className="font-mono text-xs text-action">{String(index + 1).padStart(2, "0")}</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -188,48 +190,44 @@ export default async function CasePage({ params }: PageProps) {
         <div className="site-container">
           <div className="site-grid mb-8 gap-y-4">
             <div className="col-span-4 md:col-span-3 xl:col-span-5">
-              <h2 id="validation-title" className="section-title mt-3">검증과 확인된 결과</h2>
+              <h2 id="validation-title" className="section-title mt-3">구현과 결과</h2>
             </div>
-            <p className="col-span-4 max-w-2xl self-end text-ink-muted md:col-span-5 xl:col-span-7 xl:col-start-9">
-              코드·문서에서 확인한 구현과 측정된 외부 성과를 별도 상태로 표시합니다. 외부 성과가 없으면 수치로 적지 않습니다.
-            </p>
           </div>
           <div className="grid gap-6 lg:grid-cols-2">
             <ValidationBlock id="case-validation" claims={caseStudy.validation} />
-            <ValidationBlock id="case-outcomes" title="확인된 결과" claims={caseStudy.outcomes} />
+            <ValidationBlock id="case-outcomes" title="결과" claims={caseStudy.outcomes} />
           </div>
         </div>
       </section>
 
-      <section className="page-section" aria-labelledby="evidence-title">
-        <div className="site-container">
-          <div className="site-grid mb-8 gap-y-4">
-            <div className="col-span-4 md:col-span-3 xl:col-span-5">
-              <h2 id="evidence-title" className="section-title mt-3">공개 자료와 제한</h2>
+      {relatedEvidence.length > 0 ? (
+        <section className="page-section" aria-labelledby="evidence-title">
+          <div className="site-container">
+            <div className="site-grid mb-8 gap-y-4">
+              <div className="col-span-4 md:col-span-3 xl:col-span-5">
+                <h2 id="evidence-title" className="section-title mt-3">관련 자료</h2>
+              </div>
+            </div>
+            <div className="grid border-b sm:grid-cols-2">
+              {relatedEvidence.map((evidence) => (
+                <EvidenceFigure key={evidence.label} evidence={evidence} />
+              ))}
             </div>
           </div>
-          <div className="grid border-b sm:grid-cols-2">
-            {caseStudy.evidence.map((evidence) => (
-              <EvidenceFigure key={evidence.label} evidence={evidence} />
-            ))}
-          </div>
-          <div className="mt-10">
-            <DisclosureNote status={caseStudy.disclosure.status} note={caseStudy.disclosure.note} />
-          </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       <nav className="border-t" aria-label="다음 사례">
         <div className="site-container grid gap-0 md:grid-cols-2">
           <Link className="group min-h-36 border-b py-7 md:border-b-0 md:border-r md:pr-8" href="/portfolio">
-            <span className="font-mono text-xs text-ink-muted">INDEX</span>
+            <span className="font-mono text-xs text-ink-muted">전체 사례</span>
             <span className="mt-4 flex items-center gap-2 font-heading text-2xl font-bold">
               <ArrowLeft className="size-5 transition-transform duration-150 group-hover:-translate-x-1" aria-hidden="true" />
-              All work
+              모든 프로젝트
             </span>
           </Link>
           <Link className="group min-h-36 py-7 md:pl-8" href={`/portfolio/${nextCase.slug}`}>
-            <span className="font-mono text-xs text-ink-muted">NEXT CASE</span>
+            <span className="font-mono text-xs text-ink-muted">다음 사례</span>
             <span className="mt-4 flex items-center justify-between gap-3 font-heading text-2xl font-bold">
               {nextCase.title}
               <ArrowRight className="size-5 transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true" />

@@ -40,7 +40,7 @@ export default async function PostsPage() {
           </div>
           <div className="col-span-4 self-end md:col-span-3 xl:col-span-5 xl:col-start-11">
             <p className="lede text-base md:text-lg">
-              현재 공개 글은 Flutter·디바이스 구현 기록이 중심입니다. AI·Product 글은 공개되는 대로 같은 인덱스에 추가합니다.
+              Flutter와 디바이스 제품을 만들며 해결한 문제를 기록했습니다. AI와 제품 개발 글도 주제별로 함께 모읍니다.
             </p>
           </div>
         </div>
@@ -69,8 +69,8 @@ export default async function PostsPage() {
             </aside>
           ) : latest.length === 0 ? (
             <aside className="structural-panel p-5 md:p-6" role="status">
-              <h3 className="text-xl">공개된 글이 아직 없습니다.</h3>
-              <p className="mt-2 text-sm text-ink-muted">새 글이 게시되면 이 인덱스에 자동으로 반영됩니다.</p>
+              <h3 className="text-xl">아직 작성한 글이 없습니다.</h3>
+              <p className="mt-2 text-sm text-ink-muted">새 글을 쓰면 이곳에 자동으로 추가됩니다.</p>
             </aside>
           ) : (
             <div className="grid border-t md:grid-cols-2 lg:grid-cols-3">
@@ -100,10 +100,10 @@ export default async function PostsPage() {
           <div className="site-grid mb-8 gap-y-4">
             <div className="col-span-4 md:col-span-4 xl:col-span-7">
               <p className="eyebrow">전체 글</p>
-              <h2 id="index-title" className="section-title mt-3">관점별 전체 글</h2>
+              <h2 id="index-title" className="section-title mt-3">주제별 전체 글</h2>
             </div>
             <p className="col-span-4 self-end text-sm text-ink-muted md:col-span-4 xl:col-span-5 xl:col-start-11">
-              현재 공개 글은 Device 현장 기록에 집중되어 있습니다. AI·Product 분류는 검증 가능한 공개 글이 생길 때 채우며, 분류는 제목·요약·태그를 기준으로 합니다.
+              글의 제목, 요약과 태그를 기준으로 AI, Product, Device 세 주제에 나눠 보여드립니다.
             </p>
           </div>
           {posts.length > 0 ? <WritingIndex sections={sections} username={username} /> : null}

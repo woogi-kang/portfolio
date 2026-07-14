@@ -1,9 +1,8 @@
 import Link from "next/link"
-import { ArrowRight, ArrowUpRight, Check, CircleDashed, LockKeyhole } from "lucide-react"
+import { ArrowRight, ArrowUpRight } from "lucide-react"
 
 import { portfolioPublic } from "@/content/portfolio-public.generated"
 import type {
-  ClaimStatus,
   PublicCase,
   PublicClaim,
   PublicEvidence,
@@ -12,12 +11,6 @@ import type {
 } from "@/lib/public-content"
 import { cn } from "@/lib/utils"
 
-const disclosureLabel = {
-  public: "공개",
-  anonymized: "익명화",
-  withheld: "보류",
-} as const
-
 const evidenceKindLabel = {
   repository: "저장소",
   command: "명령",
@@ -25,41 +18,29 @@ const evidenceKindLabel = {
   screen: "화면",
 } as const
 
-function StatusMark({
-  status,
-  label,
-}: {
-  status: ClaimStatus
-  label?: string
-}) {
-  return (
-    <span className={cn("status-label", status === "verified" ? "text-verified" : "text-context")}>
-      {label ?? (status === "verified" ? "공개 검증" : "맥락 확인")}
-    </span>
-  )
-}
-
 export function RoleLensNav({
   activeLens,
   path = "/",
+  showCounts = false,
   className,
 }: {
   activeLens?: RoleLensId
   path?: string
+  showCounts?: boolean
   className?: string
 }) {
   return (
-    <nav className={cn("border-y", className)} aria-label="직무 렌즈">
-      <div className="flex min-w-0 overflow-x-auto">
+    <nav className={cn("border-t sm:border-y", className)} aria-label="사례 분야 필터">
+      <div className="grid min-w-0 grid-cols-2 sm:flex sm:overflow-x-auto">
         <Link
           href={path}
           aria-current={!activeLens ? "page" : undefined}
           className={cn(
-            "flex min-h-12 shrink-0 items-center border-r px-4 font-mono text-xs font-bold text-ink-muted transition-[background-color,color] duration-150 hover:bg-muted hover:text-foreground",
+            "flex min-h-12 items-center justify-center border-b border-r px-3 font-mono text-xs font-bold text-ink-muted transition-[background-color,color] duration-150 hover:bg-muted hover:text-foreground even:border-r-0 sm:shrink-0 sm:justify-start sm:border-b-0 sm:px-4 sm:even:border-r sm:last:border-r-0",
             !activeLens && "bg-foreground text-background hover:bg-foreground hover:text-background",
           )}
         >
-          전체
+          전체{showCounts ? ` ${portfolioPublic.cases.length}` : ""}
         </Link>
         {portfolioPublic.roleLenses.map((lens) => (
           <Link
@@ -67,17 +48,19 @@ export function RoleLensNav({
             href={`${path}?lens=${lens.id}`}
             aria-current={activeLens === lens.id ? "page" : undefined}
             className={cn(
-              "flex min-h-12 shrink-0 items-center border-r px-4 font-mono text-xs font-bold text-ink-muted transition-[background-color,color] duration-150 hover:bg-muted hover:text-foreground",
+              "flex min-h-12 items-center justify-center border-b border-r px-3 font-mono text-xs font-bold text-ink-muted transition-[background-color,color] duration-150 hover:bg-muted hover:text-foreground even:border-r-0 sm:shrink-0 sm:justify-start sm:border-b-0 sm:px-4 sm:even:border-r sm:last:border-r-0",
               activeLens === lens.id && "bg-foreground text-background hover:bg-foreground hover:text-background",
             )}
           >
             {lens.label}
+            {showCounts
+              ? ` ${portfolioPublic.cases.filter((item) =>
+                  item.lenses.some((lensId) => lensId === lens.id),
+                ).length}`
+              : ""}
           </Link>
         ))}
       </div>
-      <p className="border-t px-4 py-2 font-mono text-[10px] text-ink-muted sm:hidden">
-        좌우로 이동해 렌즈 전환
-      </p>
     </nav>
   )
 }
@@ -93,10 +76,7 @@ export function CareerTrajectory({
         <li key={entry.phase} className="site-grid border-b py-5 md:py-7">
           <p className="col-span-1 font-mono text-xs text-ink-muted">0{index + 1}</p>
           <div className="col-span-3 md:col-span-2 xl:col-span-3">
-            <div className="flex flex-wrap items-center gap-2">
-              <p className="font-mono text-xs font-bold text-action">{entry.phase}</p>
-              <StatusMark status={entry.status} />
-            </div>
+            <p className="font-mono text-xs font-bold text-action">{entry.phase}</p>
             <p className="mt-1 font-mono text-xs text-ink-muted">{entry.period}</p>
           </div>
           <div className="col-span-4 mt-4 md:col-span-5 md:mt-0 xl:col-span-10">
@@ -114,13 +94,11 @@ export function CaseIndexRow({
 }: {
   caseStudy: PublicCase
 }) {
-  const label = disclosureLabel[caseStudy.disclosure.status]
-
   return (
     <article className="group border-t last:border-b">
       <Link
         href={`/portfolio/${caseStudy.slug}`}
-        className="grid min-h-32 gap-4 rounded-none py-5 transition-[background-color] duration-150 hover:bg-muted/70 lg:grid-cols-[minmax(0,1.15fr)_minmax(9rem,.65fr)_minmax(10rem,.65fr)_8rem_2.75rem] lg:items-center lg:px-2"
+        className="grid min-h-32 min-w-0 gap-4 rounded-none py-5 transition-[background-color] duration-150 hover:bg-muted/70 lg:grid-cols-[minmax(0,1.3fr)_minmax(9rem,.65fr)_minmax(9rem,.45fr)_2.75rem] lg:items-center lg:px-2"
         aria-label={`${caseStudy.title} 사례 보기`}
       >
         <span>
@@ -132,11 +110,8 @@ export function CaseIndexRow({
           <span className="mt-1 block text-ink-muted">{caseStudy.domain}</span>
         </span>
         <span className="text-sm text-ink-muted">
-          <span className="mb-1 block font-mono text-[10px] font-bold uppercase tracking-wider lg:hidden">확인 방법</span>
-          {caseStudy.verificationMethod}
-        </span>
-        <span className={cn("status-label w-fit", caseStudy.disclosure.status === "public" ? "text-verified" : "text-context")}>
-          {label}
+          <span className="mb-1 block font-mono text-[10px] font-bold uppercase tracking-wider lg:hidden">구분</span>
+          {caseStudy.period}
         </span>
         <ArrowRight className="size-5 text-action transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true" />
       </Link>
@@ -150,7 +125,7 @@ export function CaseFactPanel({
   items: Array<{ label: string; value: string }>
 }) {
   return (
-    <dl className="grid border-l border-t sm:grid-cols-2 lg:grid-cols-4">
+    <dl className="grid border-l border-t sm:grid-cols-2 lg:grid-cols-3">
       {items.map((item) => (
         <div key={item.label} className="border-b border-r p-4 md:p-5">
           <dt className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink-muted">{item.label}</dt>
@@ -172,7 +147,7 @@ export function DecisionBlock({
 }) {
   return (
     <article className="grid gap-3 border-t py-6 md:grid-cols-[4rem_minmax(0,1fr)] md:gap-6 md:py-8">
-      <p className="font-mono text-xs text-action">D{String(index + 1).padStart(2, "0")}</p>
+      <p className="font-mono text-xs text-action">{String(index + 1).padStart(2, "0")}</p>
       <div>
         <h3 className="text-xl md:text-2xl">{title}</h3>
         <p className="mt-3 max-w-3xl text-ink-muted">{body}</p>
@@ -192,12 +167,12 @@ export function ArchitectureFigure({
     <figure className="structural-panel overflow-hidden">
       <figcaption className="flex items-center justify-between gap-4 border-b px-4 py-3 font-mono text-xs text-ink-muted">
         <span>{caption}</span>
-        <span>공개용 구조도</span>
+        <span>작동 흐름</span>
       </figcaption>
       <ol className="grid gap-0 p-4 md:grid-cols-[repeat(var(--node-count),minmax(0,1fr))] md:p-6" style={{ "--node-count": nodes.length } as React.CSSProperties}>
         {nodes.map((node, index) => (
           <li key={node} className="relative flex min-h-20 items-center border border-b-0 px-4 py-3 text-sm font-semibold last:border-b md:min-h-28 md:border-b md:border-r-0 md:last:border-r">
-            <span className="mr-3 font-mono text-[10px] text-action">N{index + 1}</span>
+            <span className="mr-3 font-mono text-[10px] text-action">{String(index + 1).padStart(2, "0")}</span>
             {node}
             {index < nodes.length - 1 ? (
               <ArrowRight className="absolute -bottom-3 left-1/2 z-10 size-5 -translate-x-1/2 rotate-90 bg-[var(--surface)] text-action md:-right-3 md:bottom-auto md:left-auto md:top-1/2 md:-translate-y-1/2 md:translate-x-0 md:rotate-0" aria-hidden="true" />
@@ -206,7 +181,7 @@ export function ArchitectureFigure({
         ))}
       </ol>
       <p className="border-t px-4 py-3 text-xs text-ink-muted">
-        내부 구조 원본이 아니라 공개 가능한 구성 요소만 단순화한 그림입니다.
+        이해를 돕기 위해 주요 단계만 단순화했습니다.
       </p>
     </figure>
   )
@@ -215,7 +190,7 @@ export function ArchitectureFigure({
 export function EvidenceChainFigure({
   caption,
   note,
-  label = "공개용 역량 지도",
+  label = "역량 지도",
   stages,
 }: {
   caption: string
@@ -260,10 +235,11 @@ export function EvidenceFigure({ evidence }: { evidence: PublicEvidence }) {
       <span className="font-mono text-xs font-bold text-action">{evidenceKindLabel[evidence.kind]}</span>
       <strong className="mt-3 block text-lg">{evidence.label}</strong>
       <span className="mt-2 block text-sm text-ink-muted">{evidence.detail}</span>
-      <span className="mt-5 inline-flex items-center gap-2">
-        <StatusMark status={evidence.status} />
-        {evidence.href ? <ArrowUpRight className="size-4 text-action" aria-hidden="true" /> : null}
-      </span>
+      {evidence.href ? (
+        <span className="mt-5 inline-flex items-center gap-2 font-mono text-xs font-bold text-action">
+          자료 열기 <ArrowUpRight className="size-4" aria-hidden="true" />
+        </span>
+      ) : null}
     </>
   )
 
@@ -284,7 +260,7 @@ export function EvidenceFigure({ evidence }: { evidence: PublicEvidence }) {
 }
 
 export function ValidationBlock({
-  title = "검증",
+  title = "구현 내용",
   id,
   claims,
 }: {
@@ -300,15 +276,10 @@ export function ValidationBlock({
         <h3 id={headingId} className="text-xl">{title}</h3>
       </div>
       <ul>
-        {claims.map((claim) => (
-          <li key={claim.text} className="grid gap-3 border-b p-5 last:border-b-0 md:grid-cols-[1.5rem_minmax(0,1fr)_auto] md:items-start">
-            {claim.status === "verified" ? (
-              <Check className="mt-1 size-4 text-verified" aria-hidden="true" />
-            ) : (
-              <CircleDashed className="mt-1 size-4 text-context" aria-hidden="true" />
-            )}
+        {claims.map((claim, index) => (
+          <li key={claim.text} className="grid gap-3 border-b p-5 last:border-b-0 md:grid-cols-[2rem_minmax(0,1fr)] md:items-start">
+            <span className="font-mono text-xs font-bold text-action">{String(index + 1).padStart(2, "0")}</span>
             <p className="text-sm md:text-base">{claim.text}</p>
-            <StatusMark status={claim.status} />
           </li>
         ))}
       </ul>
@@ -317,20 +288,13 @@ export function ValidationBlock({
 }
 
 export function DisclosureNote({
-  status,
   note,
 }: {
-  status: PublicCase["disclosure"]["status"]
   note: string
 }) {
   return (
-    <aside className="grid gap-4 border-y py-5 xl:grid-cols-[12rem_minmax(0,1fr)] xl:items-start" aria-label="공개 경계">
-      <div className="flex items-center gap-2">
-        <LockKeyhole className="size-4 text-ink-muted" aria-hidden="true" />
-        <span className={cn("status-label", status === "public" ? "text-verified" : status === "anonymized" ? "text-context" : "text-withheld")}>
-          {disclosureLabel[status]}
-        </span>
-      </div>
+    <aside className="grid gap-3 border-y py-5 xl:grid-cols-[7rem_minmax(0,1fr)] xl:items-start" aria-label="정리 범위">
+      <p className="font-mono text-xs font-bold text-action">정리 범위</p>
       <p className="text-sm text-ink-muted md:text-base">{note}</p>
     </aside>
   )
@@ -347,13 +311,7 @@ export function ExperienceTimeline({
         <li key={`${entry.period}-${entry.organization}`} className="grid gap-3 border-b py-6 md:grid-cols-[9rem_minmax(0,1fr)] md:gap-8 md:py-8">
           <p className="font-mono text-xs text-action">{entry.period}</p>
           <article>
-            <div className="flex flex-wrap items-center gap-2">
-              <p className="text-sm font-semibold text-ink-muted">{entry.organization}</p>
-              <StatusMark
-                status={entry.status}
-                label={entry.status === "context-only" ? "공식 직함 미확정" : undefined}
-              />
-            </div>
+            <p className="text-sm font-semibold text-ink-muted">{entry.organization}</p>
             <h3 className="mt-1 text-xl md:text-2xl">{entry.role}</h3>
             <p className="mt-3 max-w-3xl text-ink-muted">{entry.summary}</p>
           </article>

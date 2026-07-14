@@ -189,4 +189,21 @@ export type PortfolioPublicProjection = {
   roleDossiers: RoleDossier[]
 }
 
+export function selectCasesByLens<T extends PublicCase>(
+  cases: readonly T[],
+  order: readonly string[],
+  activeLens?: RoleLensId,
+  limit?: number,
+): T[] {
+  const selected = order
+    .map((slug) => cases.find((item) => item.slug === slug))
+    .filter((item): item is T => Boolean(item))
+    .filter(
+      (item) =>
+        !activeLens || item.lenses.some((lensId) => lensId === activeLens),
+    )
+
+  return typeof limit === "number" ? selected.slice(0, limit) : selected
+}
+
 export { portfolioPublic } from "@/content/portfolio-public.generated"

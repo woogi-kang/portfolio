@@ -6,7 +6,7 @@ import { portfolioPublic } from "@/lib/public-content"
 
 export const metadata: Metadata = {
   title: "Contact — Hiring & Collaboration",
-  description: "Product Engineer 강태욱에게 채용 또는 제품 협업 맥락을 전달합니다.",
+  description: "Product Engineer 강태욱에게 채용 또는 제품 협업 내용을 전달합니다.",
   alternates: { canonical: "/contact" },
 }
 

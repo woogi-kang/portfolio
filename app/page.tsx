@@ -8,7 +8,7 @@ import {
   RoleLensNav,
 } from "@/components/dossier"
 import { ProfileStamp } from "@/components/profile-stamp"
-import { portfolioPublic } from "@/lib/public-content"
+import { portfolioPublic, selectCasesByLens } from "@/lib/public-content"
 import type { RoleLensId } from "@/lib/public-content"
 
 export async function generateMetadata({
@@ -21,7 +21,7 @@ export async function generateMetadata({
   return {
     title: "Product Engineer — AI Systems & Automation",
     description:
-      "외부 데이터를 검증된 레코드로 만들고 사람 승인 뒤 제품과 업무에 연결하는 Product Engineer 강태욱의 포트폴리오입니다.",
+      "데이터 수집과 검색, AI 업무 자동화, 멀티플랫폼 앱을 구현한 Product Engineer 강태욱의 포트폴리오입니다.",
     alternates: { canonical: "/" },
     robots: { index: lens === undefined, follow: true },
   }
@@ -50,10 +50,12 @@ export default async function Home({
   const activeLens = parseLens(lensParam)
   const lens = portfolioPublic.roleLenses.find((item) => item.id === activeLens)
   const order = lens?.caseOrder ?? unifiedOrder
-  const featuredCases = order
-    .map((slug) => portfolioPublic.cases.find((item) => item.slug === slug))
-    .filter((item): item is (typeof portfolioPublic.cases)[number] => Boolean(item))
-    .slice(0, 4)
+  const featuredCases = selectCasesByLens(
+    portfolioPublic.cases,
+    order,
+    activeLens,
+    4,
+  )
   const summary = lens?.summary ?? portfolioPublic.profile.summary
 
   return (
@@ -68,7 +70,7 @@ export default async function Home({
             </h1>
             <p className="lede mt-6 md:mt-8">{summary}</p>
             <div className="mt-7 flex flex-wrap gap-x-6 gap-y-2">
-              <Link className="link-arrow" href="/portfolio">
+              <Link className="link-arrow" href={`/portfolio${activeLens ? `?lens=${activeLens}` : ""}`}>
                 대표 사례 보기 <ArrowRight className="size-4" aria-hidden="true" />
               </Link>
               <Link
@@ -82,14 +84,14 @@ export default async function Home({
             </div>
           </div>
 
-          <aside className="col-span-4 self-end md:col-span-3 xl:col-span-5 xl:col-start-12" aria-label="대표 공개 증거">
+          <aside className="col-span-4 self-end md:col-span-3 xl:col-span-5 xl:col-start-12" aria-label="대표 오픈소스 프로젝트">
             <div className="grid grid-cols-[7rem_minmax(0,1fr)] gap-4 border-t pt-4 sm:grid-cols-[8.5rem_minmax(0,1fr)]">
               <ProfileStamp
                 src={portfolioPublic.profile.image}
                 name={portfolioPublic.profile.name}
               />
               <div className="min-w-0">
-                <p className="font-mono text-xs font-bold text-verified">공개 저장소</p>
+                <p className="font-mono text-xs font-bold text-verified">오픈소스</p>
                 <p className="mt-2 font-heading text-xl font-bold">Woogi Harness</p>
                 <p className="mt-2 text-sm text-ink-muted">
                   전문 에이전트 25개 이상 · 활성 skill entrypoint 385개
@@ -130,14 +132,14 @@ export default async function Home({
             <div className="col-span-4 md:col-span-4 xl:col-span-7">
               <p className="eyebrow">Work</p>
               <h2 id="work-title" className="section-title mt-3">
-                무엇을 만들고 어떻게 확인했는가
+                직접 만든 프로젝트
               </h2>
             </div>
             <div className="col-span-4 self-end md:col-span-4 xl:col-span-6 xl:col-start-10">
               <p className="text-ink-muted">
                 {lens
-                  ? `${lens.label} 역할에서 먼저 볼 사례 순서입니다. 본문 내용은 바뀌지 않습니다.`
-                  : "AI 업무, 제품 전달과 디바이스 작업을 맡은 범위, 구현, 확인 방법으로 비교합니다."}
+                  ? `${lens.label}과 연결된 프로젝트만 모았습니다.`
+                  : "AI 업무, 제품 구현과 디바이스 작업을 문제, 역할과 결과 순서로 정리했습니다."}
               </p>
             </div>
           </div>

@@ -183,7 +183,7 @@ export function RoleDossierPage({ slug }: { slug: string }) {
               </h2>
               <p className="mt-4 max-w-md text-sm text-ink-muted">
                 {dossier.evidenceSection?.note ??
-                  "공개 저장소 또는 현재 사실 원장에서 확인한 내용만 적었습니다."}
+                  "저장소, 코드와 프로젝트 기록으로 확인한 내용만 적었습니다."}
               </p>
             </div>
             <div className="col-span-4 md:col-span-5 xl:col-span-9 xl:col-start-8">
@@ -202,7 +202,7 @@ export function RoleDossierPage({ slug }: { slug: string }) {
                           item.status === "verified" ? "text-verified" : "text-context"
                         }`}
                       >
-                        {item.sourceLabel ?? (item.status === "verified" ? "공개 저장소 검증" : "문서 확인")}
+                        {item.sourceLabel ?? (item.status === "verified" ? "저장소에서 확인" : "프로젝트 기록")}
                       </span>
                     </div>
                   </li>

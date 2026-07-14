@@ -7,7 +7,7 @@ import {
   ExperienceTimeline,
   RoleLensNav,
 } from "@/components/dossier"
-import { portfolioPublic } from "@/lib/public-content"
+import { portfolioPublic, selectCasesByLens } from "@/lib/public-content"
 import type { RoleLensId } from "@/lib/public-content"
 
 export async function generateMetadata({
@@ -46,17 +46,19 @@ export default async function ResumePage({
     "smart-glasses-realtime-platform",
     "ott-multiplatform-integration",
   ]
-  const selectedCases = caseOrder
-    .map((slug) => portfolioPublic.cases.find((item) => item.slug === slug))
-    .filter((item): item is (typeof portfolioPublic.cases)[number] => Boolean(item))
-    .slice(0, 3)
+  const selectedCases = selectCasesByLens(
+    portfolioPublic.cases,
+    caseOrder,
+    activeLens,
+    3,
+  )
 
   return (
     <article>
       <header className="page-intro">
         <div className="site-container site-grid gap-y-8">
           <div className="col-span-4 md:col-span-5 xl:col-span-10">
-            <p className="eyebrow">HTML 이력서 · 공개용 문서</p>
+            <p className="eyebrow">Resume · Web</p>
             <h1 className="display-title mt-5">{portfolioPublic.profile.name}</h1>
             <p className="mt-5 font-heading text-xl font-bold text-action md:text-3xl">
               {portfolioPublic.profile.role}
@@ -78,9 +80,6 @@ export default async function ResumePage({
                 <dd className="font-semibold">웹 이력서</dd>
               </div>
             </dl>
-            <p className="mt-5 text-xs text-ink-muted">
-              승인된 중립 PDF가 준비되기 전에는 회사 맞춤 PDF를 기본 이력서로 노출하지 않습니다.
-            </p>
           </aside>
         </div>
       </header>
@@ -97,7 +96,7 @@ export default async function ResumePage({
               <h2 id="experience-title" className="section-title mt-3">경력 타임라인</h2>
             </div>
             <p className="col-span-4 self-end text-sm text-ink-muted md:col-span-5 xl:col-span-7 xl:col-start-9">
-              공식 직함과 현재 재직 상태가 확정되지 않은 구간은 단정하지 않고, 공개 가능한 역할과 수행 범위만 표시합니다.
+              회사와 프로젝트에서 맡은 역할을 시간순으로 정리했습니다.
             </p>
           </div>
           <ExperienceTimeline />
@@ -109,7 +108,7 @@ export default async function ResumePage({
           <div className="site-grid mb-8 gap-y-4">
             <div className="col-span-4 md:col-span-4 xl:col-span-7">
               <p className="eyebrow">Related work</p>
-              <h2 id="selected-title" className="section-title mt-3">이력에서 바로 확인할 사례</h2>
+              <h2 id="selected-title" className="section-title mt-3">경력과 연결된 프로젝트</h2>
             </div>
           </div>
           {selectedCases.map((caseStudy) => (
@@ -140,7 +139,7 @@ export default async function ResumePage({
       <section className="page-section">
         <div className="site-container flex flex-wrap items-center justify-between gap-5 border-y py-6">
           <p className="max-w-2xl text-ink-muted">
-            채용 포지션이나 확인할 사례를 알려주시면 관련 문서 링크와 맡은 범위를 답변드리겠습니다.
+            채용 포지션이나 궁금한 프로젝트를 알려주시면 관련 자료와 제가 맡은 범위를 답변드리겠습니다.
           </p>
           <div className="flex flex-wrap gap-x-5">
             <Link className="link-arrow" href="/contact">

@@ -43,7 +43,7 @@ export function WritingIndex({
                 </Link>
               </li>
             )) : (
-              <li className="px-4 py-5 text-sm text-ink-muted md:px-5">이 관점으로 분류된 공개 글이 아직 없습니다.</li>
+              <li className="px-4 py-5 text-sm text-ink-muted md:px-5">이 주제로 작성한 글이 아직 없습니다.</li>
             )}
           </ol>
         </section>

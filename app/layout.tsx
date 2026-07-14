@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | Woogi",
   },
   description:
-    "외부 데이터를 검증된 레코드로 만들고 사람 승인 뒤 검색·추천·업무 실행에 연결하는 Product Engineer 강태욱의 포트폴리오입니다.",
+    "데이터 수집과 검색, AI 업무 자동화, 멀티플랫폼 앱을 구현한 Product Engineer 강태욱의 포트폴리오입니다.",
   keywords: [
     "Product Engineer",
     "AI Systems",

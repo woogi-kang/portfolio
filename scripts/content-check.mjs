@@ -169,6 +169,14 @@ for (const [caseIndex, item] of data.cases.entries()) {
   requireString(item?.role, `${path}.role`)
   requireString(item?.verificationMethod, `${path}.verificationMethod`)
   requireString(item?.problem, `${path}.problem`)
+  if (!Array.isArray(item?.lenses) || item.lenses.length === 0) {
+    fail(`${path}.lenses must contain at least one approved lens`)
+  }
+  for (const lensId of item.lenses) {
+    if (!expectedLensIds.includes(lensId)) {
+      fail(`${path}.lenses contains unknown lens ${lensId}`)
+    }
+  }
   if (slugs.has(item.slug)) fail(`duplicate case slug ${item.slug}`)
   slugs.add(item.slug)
   if (!allowedDisclosureStatuses.has(item?.disclosure?.status)) {
@@ -205,8 +213,16 @@ for (const [caseIndex, item] of data.cases.entries()) {
 }
 
 for (const lens of data.roleLenses) {
+  const orderedSlugs = new Set()
   for (const slug of lens.caseOrder) {
     if (!slugs.has(slug)) fail(`lens ${lens.id} references unknown case ${slug}`)
+    if (orderedSlugs.has(slug)) fail(`lens ${lens.id} repeats case ${slug}`)
+    orderedSlugs.add(slug)
+  }
+  for (const item of data.cases.filter((entry) => entry.lenses.includes(lens.id))) {
+    if (!orderedSlugs.has(item.slug)) {
+      fail(`lens ${lens.id} omits matching case ${item.slug} from caseOrder`)
+    }
   }
 }
 
