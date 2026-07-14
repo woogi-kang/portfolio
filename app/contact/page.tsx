@@ -22,7 +22,7 @@ export default function ContactPage() {
           </p>
           <div className="mt-8 border-y py-5 text-sm">
             <p className="text-ink-muted">Direct email</p>
-            <Link className="mt-1 inline-flex min-h-11 items-center font-semibold hover:text-action" href={`mailto:${portfolioPublic.profile.email}`}>
+            <Link className="break-anywhere mt-1 inline-flex min-h-11 items-center font-semibold hover:text-action" href={`mailto:${portfolioPublic.profile.email}`}>
               {portfolioPublic.profile.email}
             </Link>
           </div>

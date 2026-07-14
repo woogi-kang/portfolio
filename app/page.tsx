@@ -113,11 +113,11 @@ export default async function Home({
             <div className="col-span-4 md:col-span-3 xl:col-span-5">
               <p className="eyebrow">Career</p>
               <h2 id="trajectory-title" className="section-title mt-3">
-                기기 앱에서 데이터·AI 업무까지
+                기기 앱에서 데이터와 AI 업무까지
               </h2>
             </div>
             <p className="col-span-4 max-w-2xl self-end text-ink-muted md:col-span-5 xl:col-span-8 xl:col-start-9">
-              모바일·TV·스마트 글래스 앱을 만들던 경험을 API, 데이터 파이프라인과 승인형 AI 업무로 넓혀 왔습니다.
+              모바일, TV, 스마트 글래스 앱을 만들던 경험을 API, 데이터 파이프라인과 승인형 AI 업무로 넓혀 왔습니다.
             </p>
           </div>
           <CareerTrajectory />
@@ -137,7 +137,7 @@ export default async function Home({
               <p className="text-ink-muted">
                 {lens
                   ? `${lens.label} 역할에서 먼저 볼 사례 순서입니다. 본문 내용은 바뀌지 않습니다.`
-                  : "AI 업무, 제품 전달과 디바이스 작업을 맡은 범위·구현·확인 방법으로 비교합니다."}
+                  : "AI 업무, 제품 전달과 디바이스 작업을 맡은 범위, 구현, 확인 방법으로 비교합니다."}
               </p>
             </div>
           </div>

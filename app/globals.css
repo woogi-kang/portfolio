@@ -188,7 +188,8 @@
     font-variant-numeric: tabular-nums;
     text-rendering: optimizeLegibility;
     word-break: keep-all;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
+    line-break: strict;
   }
 
   h1,
@@ -201,20 +202,45 @@
     letter-spacing: -0.025em;
     text-wrap: balance;
     word-break: keep-all;
+    overflow-wrap: break-word;
+    line-break: strict;
   }
 
   p,
   li,
   dd {
     line-height: 1.72;
+    text-wrap: pretty;
   }
 
   code,
-  pre,
   kbd,
-  samp,
+  samp {
+    font-family: var(--font-nanum-coding), "SFMono-Regular", Consolas, monospace;
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+
+  pre,
   .font-mono {
     font-family: var(--font-nanum-coding), "SFMono-Regular", Consolas, monospace;
+  }
+
+  pre {
+    overflow-x: auto;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+  @supports (word-break: auto-phrase) {
+    html[lang="ko"] body,
+    html[lang="ko"] h1,
+    html[lang="ko"] h2,
+    html[lang="ko"] h3,
+    html[lang="ko"] h4,
+    html[lang="ko"] .font-heading {
+      word-break: auto-phrase;
+    }
   }
 
   a,
@@ -380,6 +406,12 @@
 
   .text-pretty {
     text-wrap: pretty;
+  }
+
+  .break-anywhere {
+    word-break: normal;
+    overflow-wrap: anywhere;
+    line-break: auto;
   }
 
   .border-line-strong {

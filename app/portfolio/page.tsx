@@ -77,7 +77,7 @@ export default async function PortfolioPage({
               </p>
               <p>
                 <span className="status-label mr-2 text-context">익명화</span>
-                회사·고객·내부 데이터를 제거한 구조와 역할만 공개합니다.
+                회사, 고객, 내부 데이터를 제거한 구조와 역할만 공개합니다.
               </p>
             </div>
           </div>
@@ -98,7 +98,7 @@ export default async function PortfolioPage({
           <aside className="mt-10 grid gap-3 border-y py-5 text-sm text-ink-muted md:grid-cols-[10rem_minmax(0,1fr)]">
             <p className="font-mono text-xs font-bold text-withheld">공개 보류</p>
             <p>
-              소유권·구현 성숙도·공개 범위가 부족한 사례는 내용을 채워 보이지 않습니다. 기존 URL에는 noindex 공개 보류 안내만 남깁니다.
+              소유권, 구현 성숙도, 공개 범위가 부족한 사례는 내용을 채워 보이지 않습니다. 기존 URL에는 noindex 공개 보류 안내만 남깁니다.
             </p>
           </aside>
         </div>

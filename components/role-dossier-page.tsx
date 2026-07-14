@@ -45,7 +45,7 @@ function ProjectGroupSection({
           {group.projects.map((project, index) => (
             <article key={project.name} className="border-b border-line-strong py-7">
               <div className="grid gap-6 xl:grid-cols-9 xl:gap-10">
-                <div className="xl:col-span-3">
+                <div className="xl:col-span-4">
                   <p className="eyebrow text-context">
                     {String(index + 1).padStart(2, "0")} · {project.meta}
                   </p>
@@ -57,7 +57,7 @@ function ProjectGroupSection({
                   ) : null}
                 </div>
 
-                <div className="xl:col-span-6">
+                <div className="xl:col-span-5">
                   {project.story ? (
                     <dl className="border-t border-line-strong text-sm md:text-base">
                       {([

@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Kang Taewook | Product Engineer",
     description:
-      "데이터·AI 업무, 제품 전달과 멀티플랫폼 디바이스 구현 사례를 소개합니다.",
+      "데이터와 AI 업무, 제품 전달과 멀티플랫폼 디바이스 구현 사례를 소개합니다.",
     images: ["/profile.jpg"],
   },
   alternates: { canonical: "/" },
