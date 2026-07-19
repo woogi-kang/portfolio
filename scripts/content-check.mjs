@@ -66,6 +66,12 @@ const dossierNumericAllowlist = new Map([
       "50",
       "90",
       "679",
+      "0",
+      "610",
+      "6,766",
+      "96,319",
+      "103,399",
+      "110,165",
     ]),
   ],
 ])
@@ -81,6 +87,7 @@ const claimLedgerStatuses = new Map([
   ["CLM-025", "verified"],
   ["CLM-026", "context-only"],
   ["CLM-027", "context-only"],
+  ["CLM-030", "verified"],
 ])
 
 function fail(message) {
@@ -287,6 +294,20 @@ for (const [dossierIndex, dossier] of data.roleDossiers.entries()) {
   }
   if (dossier.reviewCue !== undefined) {
     requireString(dossier.reviewCue, `${path}.reviewCue`)
+  }
+  if (dossier.liveDemo !== undefined) {
+    requireString(dossier.liveDemo?.label, `${path}.liveDemo.label`)
+    requireString(dossier.liveDemo?.href, `${path}.liveDemo.href`)
+    requireString(dossier.liveDemo?.note, `${path}.liveDemo.note`)
+    let liveDemoUrl
+    try {
+      liveDemoUrl = new URL(dossier.liveDemo.href)
+    } catch {
+      fail(`${path}.liveDemo.href must be a valid URL`)
+    }
+    if (liveDemoUrl.protocol !== "https:") {
+      fail(`${path}.liveDemo.href must use HTTPS`)
+    }
   }
   if (dossier.metrics !== undefined) {
     if (!Array.isArray(dossier.metrics) || dossier.metrics.length === 0) {

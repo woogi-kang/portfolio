@@ -118,6 +118,11 @@ export type RoleDossier = {
   thesis: string
   applicationNote?: string
   reviewCue?: string
+  liveDemo?: {
+    label: string
+    href: string
+    note: string
+  }
   metrics?: RoleMetric[]
   projectGroups?: RoleProjectGroup[]
   evidenceSection?: {

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowLeft, Check, CircleDashed, Lightbulb } from "lucide-react"
+import { ArrowLeft, Check, CircleDashed, ExternalLink, Lightbulb } from "lucide-react"
 
 import {
   CaseIndexRow,
@@ -144,6 +144,21 @@ export function RoleDossierPage({ slug }: { slug: string }) {
             <p className="mt-6 border-l-2 border-context pl-4 text-sm text-ink-muted md:max-w-4xl md:text-base">
               {dossier.applicationNote}
             </p>
+          ) : null}
+
+          {dossier.liveDemo ? (
+            <div className="mt-6 flex flex-col items-start justify-between gap-3 border-y border-line-strong py-4 md:flex-row md:items-center">
+              <p className="max-w-3xl text-sm text-ink-muted">{dossier.liveDemo.note}</p>
+              <a
+                className="inline-flex min-h-11 shrink-0 items-center gap-2 font-semibold text-action underline decoration-line-strong underline-offset-4 hover:decoration-action focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-action"
+                href={dossier.liveDemo.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {dossier.liveDemo.label}
+                <ExternalLink className="size-4" aria-hidden="true" />
+              </a>
+            </div>
           ) : null}
 
           {dossier.metrics?.length ? (
