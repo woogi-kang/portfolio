@@ -135,7 +135,7 @@ export type RoleDossier = {
     title: string
     note: string
   }
-  existingEvidence: PublicClaim[]
+  existingEvidence?: PublicClaim[]
   futureProposal: string[]
   caseSlugs?: string[]
   fitMap?: RoleFitMap

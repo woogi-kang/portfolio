@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowLeft, Check, CircleDashed, ExternalLink, Lightbulb } from "lucide-react"
+import { ArrowLeft, ExternalLink } from "lucide-react"
 
 import {
   CaseIndexRow,
@@ -124,21 +124,28 @@ export function RoleDossierPage({ slug }: { slug: string }) {
       <header className="page-intro role-dossier-intro">
         <div className="site-container">
           <Link className="link-arrow mb-6 w-fit text-foreground" href="/portfolio">
-            <ArrowLeft className="size-4" aria-hidden="true" /> 사례 인덱스
+            <ArrowLeft className="size-4" aria-hidden="true" /> 전체 사례
           </Link>
           <div className="site-grid gap-y-6">
-            <div className="col-span-4 md:col-span-5 xl:col-span-10">
-              <p className="eyebrow">지원 역할 문서</p>
+            <div
+              className={`col-span-4 ${
+                dossier.reviewCue
+                  ? "md:col-span-5 xl:col-span-10"
+                  : "md:col-span-8 xl:col-span-13"
+              }`}
+            >
+              <p className="eyebrow">지원 자료</p>
               <h1 className="display-title mt-4">{dossier.company}</h1>
               <p className="mt-3 font-heading text-xl font-bold text-action md:text-3xl">
                 {dossier.role}
               </p>
               <p className="lede mt-4">{dossier.thesis}</p>
             </div>
-            <div className="col-span-4 self-end border-y py-5 text-sm text-ink-muted md:col-span-3 xl:col-span-5 xl:col-start-12">
-              {dossier.reviewCue ??
-                "이미 해 본 일과 입사 후 먼저 확인할 일을 나눠 적었습니다."}
-            </div>
+            {dossier.reviewCue ? (
+              <div className="col-span-4 self-end border-y py-5 text-sm text-ink-muted md:col-span-3 xl:col-span-5 xl:col-start-12">
+                {dossier.reviewCue}
+              </div>
+            ) : null}
           </div>
           {dossier.applicationNote ? (
             <p className="mt-6 border-l-2 border-context pl-4 text-sm text-ink-muted md:max-w-4xl md:text-base">
@@ -188,74 +195,72 @@ export function RoleDossierPage({ slug }: { slug: string }) {
         />
       ))}
 
-      <section className="page-section" aria-labelledby={`${slug}-evidence-title`}>
-        <div className="site-container">
-          <div className="site-grid gap-y-8">
-            <div className="col-span-4 md:col-span-3 xl:col-span-5">
-              <p className="eyebrow text-verified">
-                {dossier.evidenceSection?.eyebrow ?? "이미 수행"}
-              </p>
-              <h2 id={`${slug}-evidence-title`} className="section-title mt-3">
-                {dossier.evidenceSection?.title ?? "실제로 구현한 범위"}
-              </h2>
-              <p className="mt-4 max-w-md text-sm text-ink-muted">
-                {dossier.evidenceSection?.note ??
-                  "저장소, 코드와 프로젝트 기록으로 확인한 내용만 적었습니다."}
-              </p>
-            </div>
-            <div className="col-span-4 md:col-span-5 xl:col-span-9 xl:col-start-8">
-              <ol className="border-t">
-                {dossier.existingEvidence.map((item) => (
-                  <li key={item.text} className="grid grid-cols-[2rem_minmax(0,1fr)] border-b py-5">
-                    {item.status === "verified" ? (
-                      <Check className="mt-1 size-4 text-verified" aria-hidden="true" />
-                    ) : (
-                      <CircleDashed className="mt-1 size-4 text-context" aria-hidden="true" />
-                    )}
-                    <div>
-                      <p className="font-semibold">{item.text}</p>
-                      <span
-                        className={`status-label mt-3 ${
-                          item.status === "verified" ? "text-verified" : "text-context"
-                        }`}
-                      >
-                        {item.sourceLabel ?? (item.status === "verified" ? "저장소에서 확인" : "프로젝트 기록")}
-                      </span>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
-
-          {dossier.evidenceMap ? (
-            <div className="mt-12">
-              <EvidenceChainFigure
-                caption={dossier.evidenceMap.caption}
-                note={dossier.evidenceMap.note}
-                label={dossier.evidenceMap.label}
-                stages={dossier.evidenceMap.stages}
-              />
-            </div>
-          ) : null}
-
-          {relatedCases.length > 0 ? (
-            <div className="mt-14" aria-labelledby={`${slug}-related-title`}>
-              <div className="site-grid mb-6 gap-y-3">
-                <div className="col-span-4 md:col-span-4 xl:col-span-7">
-                  <p className="eyebrow">관련 사례</p>
-                  <h3 id={`${slug}-related-title`} className="mt-3 text-2xl md:text-3xl">
-                    구현 사례 더 보기
-                  </h3>
-                </div>
+      {dossier.existingEvidence?.length ? (
+        <section className="page-section" aria-labelledby={`${slug}-evidence-title`}>
+          <div className="site-container">
+            <div className="site-grid gap-y-8">
+              <div className="col-span-4 md:col-span-3 xl:col-span-5">
+                <p className="eyebrow text-verified">
+                  {dossier.evidenceSection?.eyebrow ?? "직접 수행"}
+                </p>
+                <h2 id={`${slug}-evidence-title`} className="section-title mt-3">
+                  {dossier.evidenceSection?.title ?? "직접 만든 범위"}
+                </h2>
+                <p className="mt-4 max-w-md text-sm text-ink-muted">
+                  {dossier.evidenceSection?.note ??
+                    "직접 맡아 구현한 내용만 적었습니다."}
+                </p>
               </div>
-              {relatedCases.map((caseStudy) => (
-                <CaseIndexRow key={caseStudy.slug} caseStudy={caseStudy} />
-              ))}
+              <div className="col-span-4 md:col-span-5 xl:col-span-9 xl:col-start-8">
+                <ol className="border-t">
+                  {dossier.existingEvidence.map((item, index) => (
+                    <li key={item.text} className="grid grid-cols-[2rem_minmax(0,1fr)] border-b py-5">
+                      <span className="eyebrow mt-1 text-context" aria-hidden="true">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <p className="font-semibold">{item.text}</p>
+                        {item.sourceLabel ? (
+                          <span className="status-label mt-3 text-context">
+                            {item.sourceLabel}
+                          </span>
+                        ) : null}
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </div>
             </div>
-          ) : null}
-        </div>
-      </section>
+
+            {dossier.evidenceMap ? (
+              <div className="mt-12">
+                <EvidenceChainFigure
+                  caption={dossier.evidenceMap.caption}
+                  note={dossier.evidenceMap.note}
+                  label={dossier.evidenceMap.label}
+                  stages={dossier.evidenceMap.stages}
+                />
+              </div>
+            ) : null}
+
+            {relatedCases.length > 0 ? (
+              <div className="mt-14" aria-labelledby={`${slug}-related-title`}>
+                <div className="site-grid mb-6 gap-y-3">
+                  <div className="col-span-4 md:col-span-4 xl:col-span-7">
+                    <p className="eyebrow">관련 사례</p>
+                    <h3 id={`${slug}-related-title`} className="mt-3 text-2xl md:text-3xl">
+                      구현 사례 더 보기
+                    </h3>
+                  </div>
+                </div>
+                {relatedCases.map((caseStudy) => (
+                  <CaseIndexRow key={caseStudy.slug} caseStudy={caseStudy} />
+                ))}
+              </div>
+            ) : null}
+          </div>
+        </section>
+      ) : null}
 
       {dossier.fitMap ? (
         <section
@@ -281,17 +286,17 @@ export function RoleDossierPage({ slug }: { slug: string }) {
                 >
                   <div className="xl:col-span-3">
                     <p className="eyebrow text-context">
-                      과업 후보 {String(index + 1).padStart(2, "0")}
+                      업무 {String(index + 1).padStart(2, "0")}
                     </p>
                     <h3 className="mt-2 text-xl md:text-2xl">{item.workstream}</h3>
                   </div>
                   <dl className="grid gap-5 text-sm md:grid-cols-2 md:text-base xl:col-span-6">
                     <div>
-                      <dt className="eyebrow">연결되는 경험</dt>
+                      <dt className="eyebrow">해 본 일</dt>
                       <dd className="mt-2 text-ink-muted">{item.evidence}</dd>
                     </div>
                     <div>
-                      <dt className="eyebrow">첫 검증 기준</dt>
+                      <dt className="eyebrow">먼저 확인할 것</dt>
                       <dd className="mt-2 text-ink-muted">{item.firstCheck}</dd>
                     </div>
                   </dl>
@@ -309,23 +314,25 @@ export function RoleDossierPage({ slug }: { slug: string }) {
         <div className="site-container site-grid gap-y-8">
           <div className="col-span-4 md:col-span-3 xl:col-span-5">
             <p className="eyebrow text-context">
-              {dossier.proposalSection?.eyebrow ?? "합류 후 첫 단계"}
+              {dossier.proposalSection?.eyebrow ?? "합류 후"}
             </p>
             <h2 id={`${slug}-proposal-title`} className="section-title mt-3">
-              {dossier.proposalSection?.title ?? "입사 후 먼저 확인할 일"}
+              {dossier.proposalSection?.title ?? "먼저 확인할 일"}
             </h2>
             <p className="mt-4 max-w-md text-sm text-ink-muted">
               {dossier.proposalSection?.note ??
-                "인터뷰와 작은 파일럿으로 문제와 성과 기준을 확인하는 제안입니다."}
+                "담당자와 현재 업무를 확인한 뒤 작은 범위부터 시작합니다."}
             </p>
           </div>
           <ol className="col-span-4 border-t border-line-strong md:col-span-5 xl:col-span-9 xl:col-start-8">
-            {dossier.futureProposal.map((item) => (
+            {dossier.futureProposal.map((item, index) => (
               <li
                 key={item}
                 className="grid grid-cols-[2rem_minmax(0,1fr)] border-b border-line-strong py-5"
               >
-                <Lightbulb className="mt-1 size-4 text-context" aria-hidden="true" />
+                <span className="eyebrow mt-1 text-context" aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
                 <p className="font-semibold">{item}</p>
               </li>
             ))}

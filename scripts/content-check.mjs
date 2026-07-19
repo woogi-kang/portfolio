@@ -280,12 +280,14 @@ for (const [dossierIndex, dossier] of data.roleDossiers.entries()) {
       fail(`${path} leaks non-public project name ${blockedName}`)
     }
   }
-  if (!Array.isArray(dossier?.existingEvidence) || dossier.existingEvidence.length === 0) {
-    fail(`${path}.existingEvidence must not be empty`)
+  if (dossier.existingEvidence !== undefined) {
+    if (!Array.isArray(dossier.existingEvidence) || dossier.existingEvidence.length === 0) {
+      fail(`${path}.existingEvidence must be a non-empty array when present`)
+    }
+    dossier.existingEvidence.forEach((claim, index) =>
+      checkClaim(claim, `${path}.existingEvidence[${index}]`),
+    )
   }
-  dossier.existingEvidence.forEach((claim, index) =>
-    checkClaim(claim, `${path}.existingEvidence[${index}]`),
-  )
   if (!Array.isArray(dossier?.futureProposal) || dossier.futureProposal.length === 0) {
     fail(`${path}.futureProposal must not be empty`)
   }
