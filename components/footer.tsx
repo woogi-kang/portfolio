@@ -3,10 +3,15 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-import { portfolioPublic } from "@/lib/public-content"
+type FooterProfile = {
+  nameEn: string
+  role: string
+  email: string
+  github: string
+  linkedin: string
+}
 
-export function Footer() {
-  const { profile } = portfolioPublic
+export function Footer({ profile }: { profile: FooterProfile }) {
   const pathname = usePathname()
 
   if (pathname.startsWith("/admin") || pathname.startsWith("/login")) return null
@@ -17,7 +22,7 @@ export function Footer() {
         <div>
           <p className="font-heading text-lg font-bold">{profile.nameEn}</p>
           <p className="mt-1 max-w-xl text-sm text-ink-muted">
-            {profile.role}. 외부 데이터부터 제품과 업무 자동화까지 구현합니다.
+            {profile.role}. AI 제품의 인프라·웹·서버와 업무 자동화까지 구현합니다.
           </p>
           <p className="mt-5 font-mono text-xs text-ink-muted">
             © {new Date().getFullYear()} Kang Taewook

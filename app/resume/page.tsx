@@ -20,7 +20,7 @@ export async function generateMetadata({
   return {
     title: "Resume — Product Engineer",
     description:
-      "모바일 제품 개발에서 데이터 수집과 AI 업무 자동화까지 확장해 온 Product Engineer 강태욱의 웹 이력서입니다.",
+      "Grum과 TONE SEOUL의 인프라·웹·서버 풀스택 개발과 AX 자동화 경험을 정리한 Product Engineer 강태욱의 웹 이력서입니다.",
     alternates: { canonical: "/resume" },
     robots: { index: lens === undefined, follow: true },
   }
@@ -42,10 +42,9 @@ export default async function ResumePage({
   const activeLens = parseLens(lensParam)
   const lens = portfolioPublic.roleLenses.find((item) => item.id === activeLens)
   const caseOrder = lens?.caseOrder ?? [
-    "woogi-harness",
+    "grum-tone-seoul-fullstack-products",
     "structured-domain-data-pipeline",
-    "human-governed-ai-operations",
-    "smart-glasses-realtime-platform",
+    "woogi-harness",
   ]
   const selectedCases = selectCasesByLens(
     portfolioPublic.cases,
@@ -65,6 +64,13 @@ export default async function ResumePage({
               {portfolioPublic.profile.role}
             </p>
             <p className="lede mt-6">{lens?.summary ?? portfolioPublic.profile.summary}</p>
+            <Link
+              className="link-arrow mt-6 w-fit"
+              href="/kang-taewook-resume-submission-2026.pdf"
+              target="_blank"
+            >
+              PDF 이력서 <ArrowUpRight className="size-4" aria-hidden="true" />
+            </Link>
           </div>
           <aside className="col-span-4 self-end border-y py-5 md:col-span-3 xl:col-span-5 xl:col-start-12">
             <dl className="grid gap-3 text-sm">

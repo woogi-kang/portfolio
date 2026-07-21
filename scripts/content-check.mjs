@@ -88,6 +88,8 @@ const claimLedgerStatuses = new Map([
   ["CLM-026", "context-only"],
   ["CLM-027", "context-only"],
   ["CLM-030", "verified"],
+  ["CLM-031", "context-only"],
+  ["CLM-032", "verified"],
 ])
 
 function fail(message) {

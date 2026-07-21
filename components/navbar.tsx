@@ -49,7 +49,7 @@ export function SiteHeader() {
           <span className="min-w-0 leading-tight">
             <span className="block truncate text-sm font-bold">Kang Taewook</span>
             <span className="block truncate text-[11px] text-ink-muted sm:text-xs">
-              Product Engineer · AI Systems
+              Product Engineer · AI &amp; Full-stack
             </span>
           </span>
         </Link>

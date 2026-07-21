@@ -19,18 +19,18 @@ export async function generateMetadata({
   const { lens } = await searchParams
 
   return {
-    title: "Product Engineer — AI Systems & Automation",
+    title: "Product Engineer — AI Systems & Full-stack",
     description:
-      "데이터 수집과 검색, AI 업무 자동화, 멀티플랫폼 앱을 구현한 Product Engineer 강태욱의 포트폴리오입니다.",
+      "Grum과 TONE SEOUL의 인프라·웹·서버, RAG 기반 AI 제품과 업무 자동화를 구현한 Product Engineer 강태욱의 포트폴리오입니다.",
     alternates: { canonical: "/" },
     robots: { index: lens === undefined, follow: true },
   }
 }
 
 const unifiedOrder = [
-  "woogi-harness",
+  "grum-tone-seoul-fullstack-products",
   "structured-domain-data-pipeline",
-  "human-governed-ai-operations",
+  "woogi-harness",
   "smart-glasses-realtime-platform",
 ]
 
@@ -66,7 +66,7 @@ export default async function Home({
             <p className="eyebrow">Seoul · Product Engineer</p>
             <h1 className="display-title mt-5">
               <span className="home-role-line">Product Engineer</span>
-              <span className="mt-2 block text-action">AI Systems &amp; Automation</span>
+              <span className="mt-2 block text-action">AI Systems &amp; Full-stack</span>
             </h1>
             <p className="lede mt-6 md:mt-8">{summary}</p>
             <div className="mt-7 flex flex-wrap gap-x-6 gap-y-2">
@@ -115,11 +115,11 @@ export default async function Home({
             <div className="col-span-4 md:col-span-3 xl:col-span-5">
               <p className="eyebrow">Career</p>
               <h2 id="trajectory-title" className="section-title mt-3">
-                기기 앱에서 데이터와 AI 업무까지
+                기기 앱에서 풀스택 AI 제품까지
               </h2>
             </div>
             <p className="col-span-4 max-w-2xl self-end text-ink-muted md:col-span-5 xl:col-span-8 xl:col-start-9">
-              모바일, TV, 스마트 글래스 앱을 만들던 경험을 API, 데이터 파이프라인과 담당자가 검토하는 AI 업무로 넓혀 왔습니다.
+              모바일, TV, 스마트 글래스 앱에서 시작해 인프라·웹·서버와 RAG 기반 AI 제품, 담당자가 검토하는 업무 자동화까지 넓혀 왔습니다.
             </p>
           </div>
           <CareerTrajectory />

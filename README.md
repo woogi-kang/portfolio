@@ -1,6 +1,6 @@
-# Woogi AX Portfolio
+# Woogi Product Engineer Portfolio
 
-Kang Taewook's portfolio site focused on AX engineering, AI agent workflows, PromptOps, RAG products, automation pipelines, and Flutter multi-platform product operations.
+Kang Taewook's portfolio site focused on full-stack AI products, cloud infrastructure, AX engineering, RAG products, automation pipelines, and Flutter multi-platform product operations.
 
 ## Stack
 
@@ -25,12 +25,14 @@ Open `http://localhost:3000`.
 Primary portfolio content lives in:
 
 ```text
-lib/portfolio-data.ts
+../career-docs/exports/portfolio-public.json
 ```
+
+Run `npm run content:sync` to validate and generate `content/portfolio-public.json` and `content/portfolio-public.generated.ts`.
 
 Main routes:
 
-- `/` - AX/AI Agent focused homepage
+- `/` - AI systems and full-stack product homepage
 - `/portfolio` - case study index
 - `/portfolio/[slug]` - static case study detail
 - `/resume` - resume summary and PDF download

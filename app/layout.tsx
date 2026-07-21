@@ -5,20 +5,23 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import JsonLd from "@/components/json-ld";
+import { portfolioPublic } from "@/lib/public-content";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://woogi.is-a.dev"),
   title: {
-    default: "Kang Taewook | Product Engineer — AI Systems & Automation",
+    default: "Kang Taewook | Product Engineer — AI Systems & Full-stack",
     template: "%s | Woogi",
   },
   description:
-    "데이터 수집과 검색, AI 업무 자동화, 멀티플랫폼 앱을 구현한 Product Engineer 강태욱의 포트폴리오입니다.",
+    "Grum과 TONE SEOUL의 인프라·웹·서버, RAG 기반 AI 제품과 업무 자동화를 구현한 Product Engineer 강태욱의 포트폴리오입니다.",
   keywords: [
     "Product Engineer",
     "AI Systems",
     "AI Automation",
     "Product Full-stack",
+    "Cloud Infrastructure",
+    "RAG",
     "Multi-platform Device",
     "LLM Data Pipeline",
     "Flutter",
@@ -34,9 +37,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     url: "https://woogi.is-a.dev",
-    title: "Kang Taewook | Product Engineer — AI Systems & Automation",
+    title: "Kang Taewook | Product Engineer — AI Systems & Full-stack",
     description:
-      "데이터 수집, 제품 API, 담당자가 검토하는 AI 업무와 멀티플랫폼 디바이스 구현 사례를 정리했습니다.",
+      "Grum과 TONE SEOUL의 인프라·웹·서버, RAG 기반 AI 제품과 담당자가 검토하는 업무 자동화 사례를 정리했습니다.",
     siteName: "Woogi Product Systems Portfolio",
     images: [
       {
@@ -51,7 +54,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Kang Taewook | Product Engineer",
     description:
-      "데이터와 AI 업무, 제품 전달과 멀티플랫폼 디바이스 구현 사례를 소개합니다.",
+      "인프라·웹·서버 풀스택 개발과 RAG 기반 AI 제품, 멀티플랫폼 디바이스 구현 사례를 소개합니다.",
     images: ["/profile.jpg"],
   },
   alternates: { canonical: "/" },
@@ -92,7 +95,15 @@ export default function RootLayout({
             <main id="main-content" className="flex-1">
               {children}
             </main>
-            <Footer />
+            <Footer
+              profile={{
+                nameEn: portfolioPublic.profile.nameEn,
+                role: portfolioPublic.profile.role,
+                email: portfolioPublic.profile.email,
+                github: portfolioPublic.profile.github,
+                linkedin: portfolioPublic.profile.linkedin,
+              }}
+            />
           </div>
           <JsonLd />
         </ThemeProvider>

@@ -14,7 +14,14 @@ export default function JsonLd() {
         jobTitle: profile.role,
         description: profile.summary,
         sameAs: [profile.github, profile.linkedin, "https://velog.io/@woogi-dev"],
-        knowsAbout: ["AI systems", "Product engineering", "Flutter", "Multi-platform device systems"],
+        knowsAbout: [
+          "AI systems",
+          "Full-stack product development",
+          "Cloud infrastructure",
+          "RAG",
+          "Flutter",
+          "Multi-platform device systems",
+        ],
       },
       {
         "@type": "WebSite",

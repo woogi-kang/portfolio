@@ -4,12 +4,12 @@ import type { PortfolioPublicProjection } from "@/lib/public-content"
 export const portfolioPublic = {
   "schemaVersion": 1,
   "generatedFrom": "career-docs public projection",
-  "reviewedAt": "2026-07-19",
+  "reviewedAt": "2026-07-21",
   "profile": {
     "name": "강태욱",
     "nameEn": "Kang Taewook",
-    "role": "Product Engineer — AI Systems & Automation",
-    "summary": "웹과 이미지에서 정보를 수집해 검색과 추천에 쓸 수 있는 데이터로 만들고, 담당자가 결과를 검토하는 AI 업무 도구를 구현합니다. 모바일·웹·백엔드와 현장 디바이스를 함께 다뤄 왔습니다.",
+    "role": "Product Engineer — AI Systems & Full-stack",
+    "summary": "Grum과 TONE SEOUL 같은 사용자용 서비스를 인프라·웹·서버까지 풀스택으로 개발했습니다. 비정형 데이터를 구조화해 RAG·검색·추천에 연결하고, 담당자가 검토하는 업무 자동화 도구도 구현합니다.",
     "email": "woogi.dev@gmail.com",
     "github": "https://github.com/woogi-kang",
     "linkedin": "https://www.linkedin.com/in/taewook-kang/",
@@ -37,6 +37,7 @@ export const portfolioPublic = {
       "shortLabel": "AI",
       "summary": "웹과 이미지에서 정보를 모으고, 사람이 검토한 결과를 검색·추천·업무 도구에 연결한 사례입니다.",
       "caseOrder": [
+        "grum-tone-seoul-fullstack-products",
         "human-governed-ai-operations",
         "woogi-harness",
         "structured-domain-data-pipeline",
@@ -49,8 +50,9 @@ export const portfolioPublic = {
       "id": "product-fullstack",
       "label": "제품 구현",
       "shortLabel": "Product",
-      "summary": "화면, API, 비동기 작업, 데이터베이스와 배포까지 한 제품 단위로 맡은 사례입니다.",
+      "summary": "사용자 화면, API 서버, 데이터베이스와 클라우드 인프라를 한 제품 단위로 맡은 사례입니다.",
       "caseOrder": [
+        "grum-tone-seoul-fullstack-products",
         "domain-diagnostic-saas",
         "human-governed-ai-operations",
         "structured-domain-data-pipeline",
@@ -67,6 +69,7 @@ export const portfolioPublic = {
       "caseOrder": [
         "smart-glasses-realtime-platform",
         "ott-multiplatform-integration",
+        "grum-tone-seoul-fullstack-products",
         "human-governed-ai-operations",
         "woogi-harness",
         "structured-domain-data-pipeline",
@@ -92,12 +95,120 @@ export const portfolioPublic = {
     {
       "phase": "AI Systems",
       "period": "2025—Now",
-      "title": "사람이 검토하고 다시 실행할 수 있는 AI 업무",
-      "body": "데이터를 수집·정리해 검색과 업무 도구에 연결하고, 담당자가 결과를 검토하며 중단된 작업은 남은 지점부터 이어서 처리할 수 있게 만들고 있습니다.",
+      "title": "AI 제품과 AX 자동화의 풀스택 구현",
+      "body": "Grum과 TONE SEOUL에서 인프라·웹·서버를 함께 개발하고, 데이터 수집과 RAG·검색·추천을 실제 사용자 서비스와 운영 도구에 연결했습니다.",
       "status": "context-only"
     }
   ],
   "cases": [
+    {
+      "slug": "grum-tone-seoul-fullstack-products",
+      "title": "Grum · TONE SEOUL",
+      "kicker": "플레드 · AI 건강상담·의료관광 제품",
+      "period": "회사 제품",
+      "role": "인프라 · 웹 · 서버 풀스택 개발",
+      "domain": "AI 건강상담 · 피부과 탐색과 예약",
+      "verificationMethod": "공개 서비스 · 저장소 이력",
+      "summary": "사용자용 서비스 두 개를 인프라·웹·서버까지 풀스택으로 개발했습니다. Grum에서는 AI 건강상담의 웹·스트리밍 흐름을, TONE SEOUL에서는 다국어 피부과 탐색·예약 웹과 FastAPI 서버를 맡았습니다.",
+      "problem": "AI 기능만 따로 만드는 것이 아니라 사용자 화면, API 서버, 데이터베이스와 배포 환경이 함께 움직이는 실제 서비스를 만들어야 했습니다.",
+      "constraints": [
+        "건강상담은 첨부파일과 이전 대화 맥락을 유지하면서 스트림 중단과 재연결을 처리해야 했습니다.",
+        "병원과 시술 정보는 언어와 검색 조건이 달라도 같은 데이터 기준으로 탐색돼야 했습니다.",
+        "웹·서버 배포와 인증, 데이터 구조와 API 계약을 함께 맞춰야 했습니다."
+      ],
+      "responsibility": [
+        "Grum의 Flutter 핵심 기능을 Next.js 웹으로 전환하고 AI 상담 BFF·SSE 흐름 구현",
+        "TONE SEOUL의 Next.js 사용자·운영 웹과 FastAPI 서버·도메인 로직 개발",
+        "Grum의 RAG·혼합 검색·Tool Calling을 AI 상담 흐름에 연결",
+        "TONE SEOUL의 PostgreSQL·Redis 데이터 계층과 GCP 배포 환경 구성",
+        "두 제품의 인증·오류 처리·모니터링·배포 절차를 제품 흐름에 맞춰 정리"
+      ],
+      "decisions": [
+        {
+          "title": "AI 응답과 화면 상태를 한 스트림으로 다뤘습니다.",
+          "body": "Grum 상담에서 텍스트 조각, UI 구성요소와 최종 데이터를 구분해 전달하고, 취소·복구와 추천 질문 상태를 같은 흐름에서 관리했습니다."
+        },
+        {
+          "title": "검색 데이터와 생성 결과의 역할을 분리했습니다.",
+          "body": "Grum에서는 RAG·혼합 검색·Tool Calling 결과를 상담 입력에 연결하고, 생성 응답과 화면 상태를 분리해 오류와 복구 흐름을 관리했습니다."
+        },
+        {
+          "title": "웹·서버·인프라를 한 제품 범위로 판단했습니다.",
+          "body": "화면 구현에서 끝내지 않고 API 계약, 데이터 저장과 배포 구성이 실제 사용자 흐름에서 함께 동작하는지 확인했습니다."
+        }
+      ],
+      "implementation": [
+        "Grum — Flutter 핵심 기능의 Next.js 전환, AI 상담 BFF·SSE와 Cloud Run 배포",
+        "Grum — RAG·혼합 검색·Tool Calling을 상담 흐름에 연결",
+        "TONE SEOUL — Next.js 사용자·운영 웹과 FastAPI 서버",
+        "TONE SEOUL — PostgreSQL·Redis 데이터 계층",
+        "TONE SEOUL — GCP Cloud Run·Cloud SQL·Cloud Storage·Secret Manager·Cloud Build 배포 구성"
+      ],
+      "validation": [
+        {
+          "text": "Grum 상담에서 첨부파일과 이전 대화 맥락을 유지하고, 응답 스트림의 취소·복구와 추천 질문 상태를 함께 처리했습니다.",
+          "status": "verified",
+          "claimIds": [
+            "CLM-032"
+          ]
+        },
+        {
+          "text": "두 제품 모두 화면 구현에서 끝내지 않고 API 계약, 데이터 저장과 배포 환경까지 제품 단위로 맡았습니다.",
+          "status": "context-only",
+          "claimIds": [
+            "CLM-031"
+          ]
+        }
+      ],
+      "outcomes": [
+        {
+          "text": "Grum과 TONE SEOUL에서 AI 기능과 사용자 화면, 서버, 데이터 계층과 배포 환경을 실제 서비스 흐름으로 연결했습니다.",
+          "status": "context-only",
+          "claimIds": [
+            "CLM-031"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "label": "Grum 공개 서비스",
+          "kind": "screen",
+          "detail": "AI 건강상담 제품의 공개 화면을 확인할 수 있습니다.",
+          "href": "https://grum.co.kr/",
+          "status": "verified"
+        },
+        {
+          "label": "TONE SEOUL 공개 서비스",
+          "kind": "screen",
+          "detail": "다국어 피부과 탐색·예약 제품의 공개 화면을 확인할 수 있습니다.",
+          "href": "https://tone-seoul.com/",
+          "status": "verified"
+        }
+      ],
+      "disclosure": {
+        "status": "public",
+        "note": "공개 서비스와 본인 작업 범위만 설명하며 비공개 코드, 고객 데이터와 운영 설정은 포함하지 않았습니다."
+      },
+      "diagram": {
+        "caption": "두 제품에서 맡은 기술 범위 — 제품별 구성",
+        "nodes": [
+          "Grum: Next.js 웹",
+          "Grum: BFF·SSE·RAG 연동",
+          "제품별 분리",
+          "TONE SEOUL: Next.js·FastAPI",
+          "TONE SEOUL: PostgreSQL·Redis·GCP"
+        ]
+      },
+      "lenses": [
+        "ai-product",
+        "product-fullstack"
+      ],
+      "seo": {
+        "title": "Grum · TONE SEOUL — 인프라·웹·서버 풀스택 개발",
+        "description": "AI 건강상담과 다국어 피부과 탐색·예약 서비스를 인프라·웹·서버까지 개발한 사례입니다.",
+        "index": true
+      }
+    },
     {
       "slug": "woogi-harness",
       "title": "Woogi Harness",
@@ -715,7 +826,7 @@ export const portfolioPublic = {
       "period": "2026.01—2026.05",
       "organization": "주식회사 플레드",
       "role": "App Lead · AX Engineer",
-      "summary": "마케팅·운영 담당자와 자동화 과제를 정하고, 웹·이미지 데이터 수집부터 검토 화면과 서비스 반영까지 맡았습니다.",
+      "summary": "Grum과 TONE SEOUL의 인프라·웹·서버를 풀스택으로 개발하고, RAG 기반 상담·검색과 병원·미용 데이터 수집, 운영 자동화를 실제 서비스에 연결했습니다.",
       "status": "context-only"
     },
     {
@@ -761,7 +872,11 @@ export const portfolioPublic = {
         "FastAPI",
         "PostgreSQL",
         "Redis",
-        "GCP"
+        "GCP Cloud Run",
+        "Cloud SQL",
+        "Cloud Storage",
+        "Secret Manager",
+        "Docker"
       ]
     },
     {
